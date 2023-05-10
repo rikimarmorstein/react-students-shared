@@ -1,7 +1,16 @@
-.Home .Box{
-    /* border: 1px solid rgb(241, 238, 238);
-    background-color: rgb(240, 236, 236);
-    padding: 20px; */
+.Home >*.box{
+    background-color:transparent ; 
 margin-top: 200px;
+width: 500px;
+margin-right: 0px  !important;
+}
+.css-1mo74lh{
+    align-items: center
 
 }
+body{
+    background-image: url('../../../Assets/Images/bus.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+

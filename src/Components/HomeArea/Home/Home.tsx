@@ -1,4 +1,6 @@
 import { Box, Tab, Tabs, Typography } from "@mui/material";
+import bus from "../../../Assets/Images/bus.png";
+
 import "./Home.css";
 import React from "react";
 
@@ -45,7 +47,9 @@ function Home(): JSX.Element {
     
     return (
         <div className="Home">
-	<div className="Box">         
+                {/* <img src={bus}/> */}
+
+	<div className="box">         
        <Box
       sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 180  ,flexDirection: 'row-reverse'}}
     >
