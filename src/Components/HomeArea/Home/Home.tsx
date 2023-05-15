@@ -81,4 +81,4 @@ function Home(): JSX.Element {
     );
 }
 
-export default Home;
+export default SchoolLogin;
