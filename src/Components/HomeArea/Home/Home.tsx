@@ -3,6 +3,7 @@ import bus from "../../../Assets/Images/bus.png";
 
 import "./Home.css";
 import React from "react";
+import SchoolLogin from "../../AuthArea/SchoolLogin/SchoolLogin";
 
 
 interface TabPanelProps {
@@ -67,7 +68,7 @@ function Home(): JSX.Element {
         
       </Tabs>
       <TabPanel value={value} index={0}>
-       הנהלה
+       <SchoolLogin/>
       </TabPanel>
       <TabPanel value={value} index={1}>
         מורות

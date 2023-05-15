@@ -1,0 +1,59 @@
+
+
+.SchoolLogin input,
+.SchoolLogin select,
+.SchoolLogin button {
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+
+}
+
+.SchoolLogin button {
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+
+}
+
+.SchoolLogin #button {
+    background-color:white;
+    color: black;
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid black;
+}
+
+.SchoolLogin #button:hover {
+    background-color: rgb(197, 153, 31);
+    color: black;
+}
+
+.SchoolLogin form {
+    width: 270px;
+    box-sizing: border-box;
+}
+
+.SchoolLogin .eye {
+    font-size: 35px;
+    margin-top: -17px;
+    color: rgb(83, 79, 79);
+}
+
+.SchoolLogin #password,
+.SchoolLogin #email {
+    width: 100%;
+}
+
+.SchoolLogin .emailIcon {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.SchoolLogin .userIcon {
+    margin-right: 25px;
+    color: rgb(83, 79, 79);
+    float: right;
+}

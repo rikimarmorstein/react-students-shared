@@ -1,5 +1,5 @@
 enum ClientType {
-    SCHOOL = "SCHOOL",
+    SCHOOL = "SCHOOL_DIRECTOR",
     TEACHER = "TEACHER",
     ADMIN = "ADMIN",
     PARENTS = "PARENTS"
