@@ -21,12 +21,9 @@ function SchoolLogin(): JSX.Element {
     const navigate = useNavigate();
 
     function send(credentials: CredentialsModel) {
-      // setClientType(ClientType.SCHOOL);
-      console.log(credentials.clientType);
-      credentials.phone === "SCHOOL_DIRECTOR";
-
-      console.log(credentials.phone);
-
+      credentials.clientType=ClientType.SCHOOL;
+      // console.log(credentials.clientType.toString());
+     
       authService.login(credentials).then(() => {
         notificationService.success("Welcome!");
         runLogoutTimer();

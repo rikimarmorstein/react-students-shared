@@ -7,13 +7,7 @@ class CredentialsModel {
     public name?: string;
     public phone?: string;
     public password?: string;
-
-
-    public  setClientType(clientType: ClientType) {
-		this.clientType = clientType;
-	}
-
-
 }
+
 
 export default CredentialsModel;
