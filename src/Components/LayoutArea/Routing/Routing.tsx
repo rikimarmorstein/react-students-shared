@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import "./Routing.css";
 import AddTeacher from "../../SchoolDirectorArea/AddTeacher/AddTeacher";
-import { Login } from "@mui/icons-material";
 import HomeArea from "../../HomeArea/HomeArea/HomeArea";
+import Login from "../../AuthArea/Login/Login";
 
 function Routing(): JSX.Element {
 
