@@ -46,7 +46,6 @@ function Home(): JSX.Element {
     };
     return (
         <div className="Home">
-            {/* <img src={bus}/> */}
             <div className="box">
                 <Box sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 180, flexDirection: 'row-reverse' }}    >      <Tabs orientation="vertical"        // variant="scrollable"  
                     value={value}
