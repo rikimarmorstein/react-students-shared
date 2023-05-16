@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import "./Routing.css";
-import Home from "../../HomeArea/Home/Home";
 import AddTeacher from "../../SchoolDirectorArea/AddTeacher/AddTeacher";
 import { Login } from "@mui/icons-material";
+import HomeArea from "../../HomeArea/HomeArea/HomeArea";
 
 function Routing(): JSX.Element {
 
@@ -11,8 +11,8 @@ function Routing(): JSX.Element {
     return (
         <div className="Routing">
 			<Routes>
-                <Route path="/home" element={<Home />} />
-                <Route index element={<Home />} />
+                <Route path="/home" element={<HomeArea />} />
+                <Route index element={<HomeArea />} />
 
                 <Route path="/login" element={<Login/>} />
 
