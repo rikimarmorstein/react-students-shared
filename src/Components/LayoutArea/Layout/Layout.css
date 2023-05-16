@@ -1,3 +1,36 @@
 .Layout {
-	
-}
+    height: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 18% 77% 5%;
+    align-items: stretch;
+    justify-items: stretch;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 18px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #E7E5E8;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border: 2px solid #000000;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(133, 114, 7);
+    border: 2px solid white;
+  }
+/*   
+  .Layout main,
+  .Layout footer {
+    margin-top: 10px;
+  } */
+  
+  /* main {
+    overflow: auto;
+    height: 100%;
+  } */
