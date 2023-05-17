@@ -7,9 +7,9 @@ import ClientType from "../Models/ClientType";
 
 class AuthService {
 
-        // Login to backend:
-         public async login(credentials: CredentialsModel): Promise<void> {
-        
+    // Login to backend:
+    public async login(credentials: CredentialsModel): Promise<void> {
+
         const response = await axios.post<string>(appConfig.authUrl, credentials);
         // Extract token: 
         const token = response.data;
@@ -19,8 +19,8 @@ class AuthService {
 
     // Logout: 
     public logout(): void {
-    // Update redux: 
-    store.dispatch({ type: AuthActionType.Logout });
+        // Update redux: 
+        store.dispatch({ type: AuthActionType.Logout });
     }
 }
 
