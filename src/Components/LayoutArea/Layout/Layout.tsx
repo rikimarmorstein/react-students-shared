@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import AuthMenu from "../../AuthArea/AuthMenu/AuthMenu";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
@@ -8,7 +9,7 @@ import "./Layout.css";
 function Layout(): JSX.Element {
     return (
         <div className="Layout">
-		 <header>
+            <header>
                 <Header />
                 <AuthMenu />
             </header>
@@ -17,10 +18,11 @@ function Layout(): JSX.Element {
             </aside>
             <main>
                 <Routing />
+                <Outlet />
             </main>
             <footer>
                 <Footer />
-            </footer>	
+            </footer>
         </div>
     );
 }
