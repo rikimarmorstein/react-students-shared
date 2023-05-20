@@ -16,7 +16,8 @@
     }
     
     .TeacherLogin #button {
-        background-color:white;
+        /* background-color:white; */
+        background-color:rgb(236, 163, 163);
         color: black;
         margin-top: 20px;
         padding: 10px;

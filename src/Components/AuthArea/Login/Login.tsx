@@ -48,11 +48,11 @@ function Login(): JSX.Element {
         <div className="Login">
             {/* <img src={bus}/> */}
             <div className="box">
-                <Box sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 180, flexDirection: 'row-reverse' }}    >      <Tabs orientation="vertical"        // variant="scrollable"  
+                <Box sx={{ flexGrow: 1, bgcolor: 'cornsilk', display: 'flex', flexDirection: 'row-reverse' }}    >      <Tabs orientation="vertical"        // variant="scrollable"  
                     value={value}
                     onChange={handleChange}
                     aria-label="Vertical tabs example"
-                    sx={{ borderLeft: 1, borderColor: 'divider' }} >
+                    sx={{ borderLeft: 2, borderColor: 'divider' }} >
                     <Tab label="הנהלה" {...a11yProps(0)} sx={{ fontSize: 20 }} />
                     <Tab label="מורות" {...a11yProps(1)} sx={{ fontSize: 20 }} />
                     <Tab label="הורים" {...a11yProps(2)} sx={{ fontSize: 20 }} />
