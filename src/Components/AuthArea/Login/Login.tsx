@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import SchoolLogin from "../../AuthArea/SchoolLogin/SchoolLogin";
 import TeacherLogin from "../../AuthArea/TeacherLogin/TeacherLogin";
+import ParentLogin from "../ParentLogin/ParentLogin";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -62,7 +63,8 @@ function Login(): JSX.Element {
                     </TabPanel>
                     <TabPanel value={value} index={1}>
                         <TeacherLogin /></TabPanel>
-                    <TabPanel value={value} index={2}> הורים </TabPanel>
+                    <TabPanel value={value} index={2}> 
+                    <ParentLogin/></TabPanel>
                 </Box>
             </div>
         </div>
