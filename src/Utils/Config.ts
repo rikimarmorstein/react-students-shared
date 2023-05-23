@@ -2,12 +2,12 @@ class Config {
 
 }
 
-class DevelopmentConfig {
+class DevelopmentConfig extends Config{
     public adminUrl = "http://localhost:8080/api/admin/";
     public authUrl = "http://localhost:8080/auth/login";
 }
 
-class ProductionConfig {
+class ProductionConfig extends Config{
     public adminUrl = "http://localhost:8080/api/admin/";
     public authUrl = "http://localhost:8080/auth/login";
 }
