@@ -6,9 +6,9 @@ import StudentUserModel from "../Models/StudentUserModel";
 class ParentService{
     private parentrUrl = appConfig.parentUrl;
 
-    // public getAllStudentsByPhone(phone:string): Promise<AxiosResponse<StudentUserModel []>> {
-    //     return tokenAxios.get(this.parentrUrl + "all-students-phone",phone);
-    // }
+    public getAllStudentsByPhone(phone:string): Promise<AxiosResponse<StudentUserModel []>> {
+        return tokenAxios.get(this.parentrUrl + "all-students-phone?all-students-phone="+ phone);
+    }
 
 }
 
