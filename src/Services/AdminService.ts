@@ -1,6 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 import appConfig from "../Utils/Config";
 import CredentialsModel from "../Models/CredentialsModel";
+import SchoolUserModel from "../Models/SchoolUserModel";
+import tokenAxios from "../Utils/Interceptors";
 
 class AdminService{
     private adminUrl = appConfig.adminUrl;
@@ -10,9 +12,9 @@ class AdminService{
     }
 
     
-    // public addCompany(company: CompanyModel): Promise<AxiosResponse<any>> {
-    //     return tokenAxios.post(this.adminUrl + "company", company);
-    // }
+    public addSchool(school: SchoolUserModel): Promise<AxiosResponse<any>> {
+        return tokenAxios.post(this.adminUrl + "school", school);
+    }
 
     // public updateCompany(company: CompanyModel): Promise<AxiosResponse<any>> {
     //     return tokenAxios.put(this.adminUrl + "company", company);
