@@ -16,21 +16,21 @@ class AdminService{
         return tokenAxios.post(this.adminUrl + "school", school);
     }
 
-    // public updateCompany(company: CompanyModel): Promise<AxiosResponse<any>> {
-    //     return tokenAxios.put(this.adminUrl + "company", company);
-    // }
+    public updateSchool(school: SchoolUserModel): Promise<AxiosResponse<any>> {
+        return tokenAxios.put(this.adminUrl +  "school", school);
+    }
 
-    // public deleteCompany(companyId: number): Promise<AxiosResponse<any>> {
-    //     return tokenAxios.delete(this.adminUrl + "company/" + companyId);
-    // }
+    public deleteSchool(schoolId: number): Promise<AxiosResponse<any>> {
+        return tokenAxios.delete(this.adminUrl + "school/" + schoolId);
+    }
 
-    // public getOneCompany(companyId: number): Promise<AxiosResponse<CompanyModel>> {
-    //     return tokenAxios.get(this.adminUrl + "company/" + companyId);
-    // }
+    public getOneSchool(schoolId: number): Promise<AxiosResponse<SchoolUserModel>> {
+        return tokenAxios.get(this.adminUrl + "one-school/" + schoolId);
+    }
 
-    // public getAllCompanies(): Promise<AxiosResponse<CompanyModel[]>> {
-    //     return tokenAxios.get(this.adminUrl + "companies");
-    // }
+    public getAllSchools(): Promise<AxiosResponse<SchoolUserModel[]>> {
+        return tokenAxios.get(this.adminUrl + "all-schools");
+    }
 }
 
 const adminService = new AdminService();
