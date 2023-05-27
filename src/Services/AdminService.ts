@@ -7,6 +7,10 @@ import tokenAxios from "../Utils/Interceptors";
 class AdminService{
     private adminUrl = appConfig.adminUrl;
 
+    public login(UserCredentials: CredentialsModel): Promise<AxiosResponse<string>> {
+        return axios.post(this.adminUrl + "login", UserCredentials);
+    }
+
     public admin(UserCredentials: CredentialsModel): Promise<AxiosResponse<string>> {
         return axios.post(this.adminUrl, UserCredentials);
     }

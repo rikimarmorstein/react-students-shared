@@ -5,11 +5,13 @@ class Config {
 class DevelopmentConfig extends Config{
     public adminUrl = "http://localhost:8080/api/admin/";
     public authUrl = "http://localhost:8080/auth/login";
+    public teacherUrl = "http://localhost:8080/api/teacher/";
 }
 
 class ProductionConfig extends Config{
     public adminUrl = "http://localhost:8080/api/admin/";
     public authUrl = "http://localhost:8080/auth/login";
+    public teacherUrl = "http://localhost:8080/api/teacher/";
 }
 
 const appConfig = process.env.NODE_ENV == "development"
