@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import appConfig from "../Utils/Config";
 import SchoolUserModel from "../Models/SchoolUserModel";
 import tokenAxios from "../Utils/Interceptors";
@@ -54,6 +54,26 @@ class SchoolDirectorService{
 
     public getAllStudentsByClass(numClass: number): Promise<AxiosResponse<StudentUserModel[]>> {
         return tokenAxios.get(this.schoolDirectorUrl + "all-student-class?all-student-class="+ numClass);
+    }
+
+    public setStudentToNotTravel(studentId: number): Promise<AxiosResponse<any>> {
+        return tokenAxios.put(this.schoolDirectorUrl + "set-student-to-not-travel/" + studentId);
+    }
+
+    public setStudentToTravel(studentId: number): Promise<AxiosResponse<any>> {
+        return tokenAxios.put(this.schoolDirectorUrl + "set-student-to-travel/" + studentId);
+    }
+
+    public whatCause(studentId: number, cause:string): Promise<AxiosResponse<any>> {
+        return tokenAxios.put(this.schoolDirectorUrl + "set-student-cause?set-student-cause="+cause+"/" + studentId);
+    }
+
+    public whichHour(studentId: number, hour:string): Promise<AxiosResponse<any>> {
+        return tokenAxios.put(this.schoolDirectorUrl + "set-student-hour?set-student-hour="+hour+"/" + studentId);
+    }
+
+    public getAllStudentsToTravelByBus(numBus:number): Promise<AxiosResponse<StudentUserModel[]>> {
+        return tokenAxios.get(this.schoolDirectorUrl + "all-students-to-travel-by-bus?all-students-to-travel-by-bus=" +numBus);
     }
 }
 
