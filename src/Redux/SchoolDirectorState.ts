@@ -47,6 +47,7 @@ export function updateStudentsAction(student:StudentUserModel): SchoolDirectorsA
 export function deleteStudentsAction(id: number): SchoolDirectorsAction {
     return { type: SchoolDirectorActionType.DeleteStudent, payload: id};
 }
+
 export function fetchTeacherAction(teachers: TeacherUserModel[]): SchoolDirectorsAction {
     return { type: SchoolDirectorActionType.FetchTeachers, payload: teachers };
 }
@@ -59,6 +60,7 @@ export function updateTeacherAction(teacher: TeacherUserModel): SchoolDirectorsA
 export function deleteTeacherAction(id: number): SchoolDirectorsAction {
     return { type: SchoolDirectorActionType.DeleteTeacher, payload: id};
 }
+
 export function fetchSchoolAction(schools: SchoolUserModel[]): SchoolDirectorsAction {
     return { type: SchoolDirectorActionType.FetchSchools, payload: schools };
 }
