@@ -25,7 +25,10 @@ export enum SchoolDirectorActionType {
     FetchSchools = "FetchSchools",//get
     AddSchool = "AddSchool",//post
     UpdateSchool = "UpdateSchool",//put
-    DeleteSchool = "DeleteSchool"//delete
+    DeleteSchool = "DeleteSchool",//delete
+
+    Logout = "Logout"
+
 }
 
 //3. Action -  an interface describing a single command
@@ -73,7 +76,9 @@ export function updateSchoolAction(school: SchoolUserModel): SchoolDirectorsActi
 export function deleteSchoolAction(id: number): SchoolDirectorsAction {
     return { type: SchoolDirectorActionType.DeleteSchool, payload: id};
 }
-
+export function logoutAction(): SchoolDirectorsAction {
+    return { type: SchoolDirectorActionType.Logout, payload: {} };
+}
 //5. reducer - a single function performing any of the above actions
 export function schoolReducer(currentState: SchoolDirectorState = new SchoolDirectorState(), action: SchoolDirectorsAction): SchoolDirectorState {
     const newState = { ...currentState };//duplicate current state
@@ -120,6 +125,11 @@ export function schoolReducer(currentState: SchoolDirectorState = new SchoolDire
         case SchoolDirectorActionType.DeleteSchool://here payload is an id of school to delete
             const indexToDelete = newState.schools.findIndex(p => p.id === action.payload);
             if (indexToDelete >= 0) newState.schools.splice(indexToDelete, 1);
+            break;
+        case SchoolDirectorActionType.Logout://here payload is an id of school to delete
+            newState.schools=[];
+            newState.students=[];
+            newState.teachers=[];
             break;
     }
     return newState;
