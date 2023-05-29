@@ -22,8 +22,6 @@ function SchoolLogin(): JSX.Element {
 
   function send(credentials: CredentialsModel) {
     credentials.clientType = ClientType.SCHOOL;
-    // console.log(credentials.clientType.toString());
-
     authService.login(credentials).then(() => {
       notificationService.success("Welcome!");
       runLogoutTimer();

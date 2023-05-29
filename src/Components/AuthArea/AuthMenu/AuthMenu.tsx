@@ -41,9 +41,9 @@ function AuthMenu(): JSX.Element {
 
     return (
         <div className="AuthMenu">
-            {!user &&
+            {!user && 
                 <>
-                    <span >
+                    <span >{}
                         <NavLink to="/login" title="Login"> <CgUserList className="login" /></NavLink></span>
                 </>
             }

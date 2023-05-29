@@ -1,3 +1,4 @@
+import { Route, Routes } from "react-router-dom";
 import AuthMenu from "../../AuthArea/AuthMenu/AuthMenu";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
@@ -10,7 +11,8 @@ function Layout(): JSX.Element {
         <div className="Layout">
 		 <header>
                 <Header />
-                <AuthMenu />
+             <AuthMenu />
+          
             </header>
             <aside>
                 <Menu />

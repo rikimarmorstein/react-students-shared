@@ -3,11 +3,11 @@ import "./Routing.css";
 import AddTeacher from "../../SchoolDirectorArea/AddTeacher/AddTeacher";
 import HomeArea from "../../HomeArea/HomeArea/HomeArea";
 import Login from "../../AuthArea/Login/Login";
+import AdminArea from "../../AdminArea/AdminArea/AdminArea";
 
 function Routing(): JSX.Element {
 
-
-
+    
     return (
         <div className="Routing">
 			<Routes>
@@ -16,8 +16,10 @@ function Routing(): JSX.Element {
 
                 <Route path="/login" element={<Login/>} />
 
+
                 <Route path="/school-director" element={<AddTeacher />} />
-                {/* <Route path="/school-director" element={<AddTeacher />} /> */}
+                <Route path="/admin" element={<AdminArea />} />
+                <Route path="/admin-login" element={<AdminArea />} />
 
                 </Routes>
 
