@@ -4,7 +4,7 @@ function AdminArea(): JSX.Element {
     return (
         <div className="AdminArea">
             //jkhlhll
-              </div>
+        </div>
     );
 }
 

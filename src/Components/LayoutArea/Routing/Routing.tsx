@@ -8,21 +8,21 @@ import PageNotFound from "../PageNotFount/PageNotFound";
 
 function Routing(): JSX.Element {
 
-    
+
     return (
         <div className="Routing">
-			<Routes>
-            <Route path="/" element={<Layout />} />
+            <Routes>
+                <Route path="/" element={<Layout />} />
                 <Route path="/home" element={<HomeArea />} />
                 <Route index element={<HomeArea />} />
 
-                <Route path="/login" element={<Login/>} />
-                  <Route path="/school-director" element={<AddTeacher />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/school-director" element={<AddTeacher />} />
                 <Route path="/admin" element={<AdminArea />} />
                 <Route path="/admin-login" element={<AdminArea />} />
 
                 <Route path="*" element={<PageNotFound />} />
-                </Routes>
+            </Routes>
 
         </div>
     );
