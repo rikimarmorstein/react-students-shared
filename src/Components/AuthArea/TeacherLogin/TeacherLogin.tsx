@@ -91,7 +91,7 @@ function TeacherLogin(): JSX.Element {
         //   }}
         />                     <span>{formState.errors?.phone?.message}</span>
         {/* <span>Must include @ and .</span><br /><br /> */}
-        <br />
+        <br /><br/>
         <FormControl id="password" variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password" variant="outlined" >Password</InputLabel>
           <OutlinedInput

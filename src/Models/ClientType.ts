@@ -2,7 +2,7 @@ enum ClientType {
     SCHOOL = "SCHOOL_DIRECTOR",
     TEACHER = "TEACHER",
     ADMIN = "ADMIN",
-    PARENTS = "PARENTS"
+    PARENTS = "PARENT"
 }
 
 export default ClientType;

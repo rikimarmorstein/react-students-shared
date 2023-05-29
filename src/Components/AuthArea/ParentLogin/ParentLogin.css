@@ -1,0 +1,40 @@
+.ParentLogin {
+	
+}
+
+
+.ParentLogin input,
+.ParentLogin select,
+.ParentLogin button {
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+
+}
+
+.ParentLogin button {
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+
+}
+
+.ParentLogin #button {
+    background-color:rgb(236, 163, 163);
+    color: black;
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid black;
+}
+
+.ParentLogin #button:hover {
+    background-color: rgb(197, 153, 31);
+    color: black;
+}
+
+.ParentLogin form {
+    width: 270px;
+    box-sizing: border-box;
+}

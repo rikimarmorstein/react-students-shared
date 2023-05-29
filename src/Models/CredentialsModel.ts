@@ -1,13 +1,12 @@
 import ClientType from "./ClientType";
 
 class CredentialsModel {
-    
-    public id?: number;
-    public clientType?: ClientType;
-    public name?: string;
-    public phone?: string;
-    public password?: string;
+    constructor(
+        public id: number,
+        public clientType: ClientType,
+        public name: string,
+        public phone: string,
+        public password: string,
+    ) { }
 }
-
-
 export default CredentialsModel;

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import appConfig from "../Utils/Config";
 import CredentialsModel from "../Models/CredentialsModel";
 import { AuthActionType } from "../Redux/AuthState";
@@ -7,21 +7,31 @@ import ClientType from "../Models/ClientType";
 
 class AuthService {
 
-        // Login to backend:
-         public async login(credentials: CredentialsModel): Promise<void> {
-        
-        const response = await axios.post<string>(appConfig.authUrl, credentials);
-        // Extract token: 
-        const token = response.data;
-        // Update redux:
-        store.dispatch({ type: AuthActionType.Login, payload: token });
+    private loginUrl = appConfig.authUrl;
+
+    public login(UserCredentials: CredentialsModel): Promise<AxiosResponse<string>> {
+        return axios.post(this.loginUrl + "login", UserCredentials);
     }
 
-    // Logout: 
-    public logout(): void {
-    // Update redux: 
-    store.dispatch({ type: AuthActionType.Logout });
+    public logout() {
+        store.dispatch({ type: AuthActionType.Logout });
     }
+    // Login to backend:
+    // public async login(credentials: CredentialsModel): Promise<void> {
+
+    //     const response = await axios.post<string>(appConfig.authUrl, credentials);
+    //     // Extract token: 
+    //     const token = response.data;
+    //     // Update redux:
+    //     store.dispatch({ type: AuthActionType.Login, payload: token });
+    // }
+
+    // Logout: 
+    // public logout(): void {
+    //     // Update redux: 
+    //     store.dispatch({ type: AuthActionType.Logout });
+    // }
+
 }
 
 const authService = new AuthService();

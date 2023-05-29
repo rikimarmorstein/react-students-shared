@@ -1,0 +1,14 @@
+.PageNotFound {
+	background-color: aliceblue;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.error{
+    background-color: aliceblue;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 45%;
+    height: 50%;
+    margin-top: -22%;
+    margin-left: 25%;
+}

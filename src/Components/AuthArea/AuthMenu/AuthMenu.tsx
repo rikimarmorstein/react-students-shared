@@ -51,7 +51,7 @@ function AuthMenu(): JSX.Element {
                 <>
                     <span >
                         {/* {user.clientType === "CUSTOMER" && <NavLink id="details" to="/customerDetails"><FaUserCircle title="Customer details" /></NavLink>}{user.clientType === "COMPANY" && <NavLink id="details" to="/companyDetails"><FaUserCircle title="Company details" /></NavLink>} */}
-                          Hello {user.name} | </span>
+                        Hello {user.name} | </span>
                     <NavLink to="" onClick={logout} id="logout">Logout <FiLogOut className="out" /></NavLink>
                 </>}
 

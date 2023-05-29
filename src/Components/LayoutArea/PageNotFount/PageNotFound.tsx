@@ -1,9 +1,10 @@
-import "./PageNotFount.css";
+import "./PageNotFound.css";
+import error from "../../../Assets/Images/404-error.png"
 
 function PageNotFount(): JSX.Element {
     return (
         <div className="PageNotFount">
-			
+			<img className="error" src={error}></img>
         </div>
     );
 }
