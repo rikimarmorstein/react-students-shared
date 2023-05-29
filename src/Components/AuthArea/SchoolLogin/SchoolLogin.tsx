@@ -25,7 +25,7 @@ function SchoolLogin(): JSX.Element {
     authService.login(credentials).then(() => {
       notificationService.success("Welcome!");
       runLogoutTimer();
-      navigate("/school-home");
+      navigate("/school-director");
     })
       .catch((err) =>
         notificationService.error(err)

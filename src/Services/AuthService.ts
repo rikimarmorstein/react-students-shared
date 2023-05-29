@@ -10,7 +10,7 @@ class AuthService {
     private loginUrl = appConfig.authUrl;
 
     public login(UserCredentials: CredentialsModel): Promise<AxiosResponse<string>> {
-        return axios.post(this.loginUrl + "login", UserCredentials);
+        return axios.post(this.loginUrl , UserCredentials);
     }
 
     public logout() {

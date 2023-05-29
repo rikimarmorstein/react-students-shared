@@ -47,46 +47,10 @@ function a11yProps(index: number) {
 }
 
 function Login(): JSX.Element {
-    const navigate = useNavigate();
 
     const [value, setValue] = React.useState(0);
 
-    const { register, handleSubmit } = useForm<CredentialsModel>();
     
-    function send(credentials: CredentialsModel) {
-        authService.login(credentials).then(() => {
-          notificationService.success("Welcome!");
-          runLogoutTimer();
-          if (credentials.clientType === "ADMIN") {
-
-            navigate("/admin");
-          }
-          if (credentials.clientType === "SCHOOL_DIRECTOR") {
-            navigate("/school-director");
-          }
-           if (credentials.clientType === "TEACHER") {
-            navigate("/teacher");
-          }
-          if (credentials.clientType === "PARENT") {
-
-            navigate("/parent");
-          }
-        })
-          .catch((err) =>
-            notificationService.error(err)
-          );
-      }
-      const runLogoutTimer = () => {
-
-        setTimeout(() => {
-          authService.logout();
-        //   store.dispatch(logout());
-          
-          navigate("/login")
-    
-        }, 1_800_000) //  30:00 minutes - 1800000
-    
-      }
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
