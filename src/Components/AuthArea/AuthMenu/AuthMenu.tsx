@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import UserModel from "../../../Models/UserModel";
-// import { logoutAction as logoutCompany } from "../../../Redux/CompanyState";
-// import { logoutAction as logoutCoupon } from "../../../Redux/CouponState";
-// import { logoutAction as logoutCustomer } from "../../../Redux/CustomerState";
+
 import authService from "../../../Services/AuthService";
 import { FaUserCircle } from "react-icons/fa";
 import { CgUserList } from "react-icons/cg";
@@ -11,6 +9,7 @@ import { FiLogOut } from "react-icons/fi";
 import "./AuthMenu.css";
 import CredentialsModel from "../../../Models/CredentialsModel";
 import store from "../../../Redux/Store";
+import { logoutAction } from "../../../Redux/SchoolDirectorState";
 
 function AuthMenu(): JSX.Element {
 
@@ -32,9 +31,8 @@ function AuthMenu(): JSX.Element {
 
     function logout(): void {
         authService.logout();
-        // store.dispatch(logoutCompany());
-        // store.dispatch(logoutCoupon());
-        // store.dispatch(logoutCustomer());
+        // store.dispatch(logoutAction());
+       
 
     }
 

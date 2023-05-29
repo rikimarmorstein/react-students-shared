@@ -7,6 +7,12 @@ import Box from '@mui/material/Box';
 import SchoolLogin from "../../AuthArea/SchoolLogin/SchoolLogin";
 import TeacherLogin from "../../AuthArea/TeacherLogin/TeacherLogin";
 import ParentLogin from "../ParentLogin/ParentLogin";
+import authService from "../../../Services/AuthService";
+import CredentialsModel from "../../../Models/CredentialsModel";
+import notificationService from "../../../Services/NotificationService";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -41,7 +47,46 @@ function a11yProps(index: number) {
 }
 
 function Login(): JSX.Element {
+    const navigate = useNavigate();
+
     const [value, setValue] = React.useState(0);
+
+    const { register, handleSubmit } = useForm<CredentialsModel>();
+    
+    function send(credentials: CredentialsModel) {
+        authService.login(credentials).then(() => {
+          notificationService.success("Welcome!");
+          runLogoutTimer();
+          if (credentials.clientType === "ADMIN") {
+
+            navigate("/admin");
+          }
+          if (credentials.clientType === "SCHOOL_DIRECTOR") {
+            navigate("/school-director");
+          }
+           if (credentials.clientType === "TEACHER") {
+            navigate("/teacher");
+          }
+          if (credentials.clientType === "PARENT") {
+
+            navigate("/parent");
+          }
+        })
+          .catch((err) =>
+            notificationService.error(err)
+          );
+      }
+      const runLogoutTimer = () => {
+
+        setTimeout(() => {
+          authService.logout();
+        //   store.dispatch(logout());
+          
+          navigate("/login")
+    
+        }, 1_800_000) //  30:00 minutes - 1800000
+    
+      }
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
