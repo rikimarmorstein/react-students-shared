@@ -15,10 +15,10 @@ function AddTeacher(): JSX.Element {
 
     const schema = yup.object().shape({
         // clientType: yup.string().required("ClientType is required"),
-        name: yup.string().required("Name is required"),
-        phone: yup.string().required("Phone is required"),
-        password: yup.number().min(1).required("Password is required"),
-        numClass: yup.number().min(0).required("Num Class is required")
+        name: yup.string().required("שדה זה חובה"),
+        phone: yup.string().required("שדה זה חובה"),
+        password: yup.number().min(4).required("שדה זה חובה"),
+        numClass: yup.number()
     })
 
     const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm<TeacherUserModel>({
@@ -38,28 +38,27 @@ function AddTeacher(): JSX.Element {
 
     return (
         <div>
-            <h1>Add Teacher</h1>
+            <h1>הוספת מורה</h1>
             {/* clientType: yup.string().required("ClientType is required"), */}
-            <form className='AddCoupon' onSubmit={handleSubmit(sendTeacher)}>
+            <form className='AddTeacher' onSubmit={handleSubmit(sendTeacher)}>
 
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name">שם המורה</label>
                 <span>{errors.name?.message}</span>
-                <input {...register("name")} id='name' type="text" placeholder='name teacher here' />
+                <input {...register("name")} id='name' type="text" placeholder='הזן את שם המורה' />
 
-                <label htmlFor="phone"> Phone</label>
+                <label htmlFor="phone"> טלפון של המורה</label>
                 <span>{errors.phone?.message}</span>
-                <input {...register("phone")} id='phone' type="number" placeholder=' phone here' />
+                <input {...register("phone")} id='phone' type="number" placeholder='הזן מספר טלפון' />
 
-
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">סיסמה חד פעמית</label>
                 <span>{errors.password?.message}</span>
-                <input {...register("password")} id='password' type="text" placeholder='password here' />
+                <input {...register("password")} id='password' type="text" placeholder='הזן סיסמה חד פעמית' />
 
-                <label htmlFor="numClass">Num Class</label>
+                <label htmlFor="numClass">מספר כיתה אליה משויך</label>
                 <span>{errors.numClass?.message}</span>
-                <input {...register("numClass")} id='numClass' type="number" placeholder='numClass here' />
+                <input {...register("numClass")} id='numClass' type="number" placeholder='הזן מספר כיתה שאליה המורה משויך' />
 
-                <button disabled={!isValid}>Add</button>
+                <button disabled={!isValid}>הוספה</button>
             </form>
         </div>
     );

@@ -26,8 +26,7 @@ function SchoolDirectorDetails(): JSX.Element {
     return (
         <div className="SchoolDirectorDetails">
 
-            <p>פרטי בית הספר</p>
-            {/* <p>clientType: {schoolDirector?.clientType}</p> */}
+            <h1>פרטי בית הספר</h1>
             <p>שם בית הספר: {schoolDirector?.name}</p>
             <p>כתובת: {schoolDirector?.address}</p>
             <p>טלפון/פלאפון: {schoolDirector?.phone}</p>
