@@ -21,6 +21,7 @@ function Menu(): JSX.Element {
 
     return (
         <div className="Menu">
+<<<<<<< HEAD
 {clientType === undefined && <>
 
 <NavLink to="/home">  דף הבית</NavLink>    <span> | </span>
@@ -37,6 +38,9 @@ function Menu(): JSX.Element {
 
 </span>
 </>}
+=======
+
+>>>>>>> 94f5bddde517b1a2e2ac96b0d91950b8e057c8e3
 
         </div>
     );

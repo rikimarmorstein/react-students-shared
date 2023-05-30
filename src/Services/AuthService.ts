@@ -14,20 +14,20 @@ class AuthService {
     //     return axios.post(this.loginUrl, userCredentials);
 
     // }
-    
-  // Login to backend:
-     public async login(credentials: CredentialsModel): Promise<void> {
 
-         const response = await axios.post<string>(appConfig.authUrl, credentials);
-         // Extract token: 
+    // Login to backend:
+    public async login(credentials: CredentialsModel): Promise<void> {
+
+        const response = await axios.post<string>(appConfig.authUrl, credentials);
+        // Extract token: 
         const token = response.data;
-         // Update redux:
+        // Update redux:
         store.dispatch({ type: AuthActionType.Login, payload: token });
-     }
+    }
 
     // Logout: 
-     public logout(): void {
-         // Update redux: 
+    public logout(): void {
+        // Update redux: 
         store.dispatch({ type: AuthActionType.Logout });
     }
 
