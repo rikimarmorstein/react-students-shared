@@ -3,7 +3,7 @@ import { authReducer } from "./AuthState";
 import { schoolReducer } from "./SchoolDirectorState";
 
 
-const reducers = combineReducers({ authState: authReducer, schoolDSchoolDirectorState: schoolReducer});
+const reducers = combineReducers({ authState: authReducer, schoolDirectorState: schoolReducer});
 const store = createStore(reducers);
 
 export default store;
