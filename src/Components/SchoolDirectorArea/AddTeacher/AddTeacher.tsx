@@ -10,11 +10,11 @@ import schoolDirectorService from "../../../Services/SchoolDirectorService";
 import { addTeacherAction } from "../../../Redux/SchoolDirectorState";
 
 function AddTeacher(): JSX.Element {
-    
+
     const navigate = useNavigate();
 
     const schema = yup.object().shape({
-        clientType: yup.string().required("ClientType is required"),
+        // clientType: yup.string().required("ClientType is required"),
         name: yup.string().required("Name is required"),
         phone: yup.string().required("Phone is required"),
         password: yup.number().min(1).required("Password is required"),
@@ -30,7 +30,7 @@ function AddTeacher(): JSX.Element {
         schoolDirectorService.addTeacher(teacher).then((res) => {
             store.dispatch(addTeacherAction(teacher));
             notify.success("Added teacher successfully");
-            navigate("/?????????");
+            navigate("/school-director");
         }).catch((error) => {
             notify.error(error);
         })
@@ -39,18 +39,8 @@ function AddTeacher(): JSX.Element {
     return (
         <div>
             <h1>Add Teacher</h1>
-
             {/* clientType: yup.string().required("ClientType is required"), */}
-
-
             <form className='AddCoupon' onSubmit={handleSubmit(sendTeacher)}>
-                {/* <select {...register("category")} name="category" id="category">
-                    <option value="FOOD">Food</option>
-                    <option value="ELECTRICITY">Electricity</option>
-                    <option value="RESTAURANT">Restaurant</option>
-                    <option value="VACATION">Vacation</option>
-                </select>
-                <span>{errors.category?.message}</span> */}
 
                 <label htmlFor="name">Name</label>
                 <span>{errors.name?.message}</span>
