@@ -15,7 +15,13 @@ function AuthMenu(): JSX.Element {
 
 
     const [user, setUser] = useState<CredentialsModel>();
-
+    // const [isLoggedIn, setIsLoggedIn] = useState<boolean>(store.getState().authState?.token?.length > 0);
+    
+    // useEffect(() => {
+    //     store.subscribe(() => {
+    //         setIsLoggedIn(store.getState().authState?.token?.length > 0)
+    //          })
+    // }, [])
     useEffect(() => {
 
         setUser(store.getState().authState.user); // First update
@@ -36,7 +42,6 @@ function AuthMenu(): JSX.Element {
 
     }
 
-
     return (
         <div className="AuthMenu">
             {!user && 
@@ -52,6 +57,7 @@ function AuthMenu(): JSX.Element {
                         Hello {user.name} | </span>
                     <NavLink to="" onClick={logout} id="logout">Logout <FiLogOut className="out" /></NavLink>
                 </>}
+                {/* {isLoggedIn ?  <>fdfsf</>:<>xxxfdfsf</>} */}
 
         </div>
     );

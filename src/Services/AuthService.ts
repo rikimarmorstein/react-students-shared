@@ -9,28 +9,27 @@ class AuthService {
 
     private loginUrl = appConfig.authUrl;
 
-    public login(UserCredentials: CredentialsModel): Promise<AxiosResponse<string>> {
-        return axios.post(this.loginUrl , UserCredentials);
-    }
+    // public login(userCredentials: CredentialsModel): Promise<AxiosResponse<string>> {
 
-    public logout() {
-        store.dispatch({ type: AuthActionType.Logout });
-    }
-    // Login to backend:
-    // public async login(credentials: CredentialsModel): Promise<void> {
+    //     return axios.post(this.loginUrl, userCredentials);
 
-    //     const response = await axios.post<string>(appConfig.authUrl, credentials);
-    //     // Extract token: 
-    //     const token = response.data;
-    //     // Update redux:
-    //     store.dispatch({ type: AuthActionType.Login, payload: token });
     // }
+    
+  // Login to backend:
+     public async login(credentials: CredentialsModel): Promise<void> {
+
+         const response = await axios.post<string>(appConfig.authUrl, credentials);
+         // Extract token: 
+        const token = response.data;
+         // Update redux:
+        store.dispatch({ type: AuthActionType.Login, payload: token });
+     }
 
     // Logout: 
-    // public logout(): void {
-    //     // Update redux: 
-    //     store.dispatch({ type: AuthActionType.Logout });
-    // }
+     public logout(): void {
+         // Update redux: 
+        store.dispatch({ type: AuthActionType.Logout });
+    }
 
 }
 
