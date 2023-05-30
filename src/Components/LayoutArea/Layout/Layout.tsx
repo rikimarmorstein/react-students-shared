@@ -11,8 +11,7 @@ function Layout(): JSX.Element {
         <div className="Layout">
             <header>
                 <Header />
-             <AuthMenu />
-          
+                <AuthMenu />
             </header>
             <aside>
                 <Menu />
