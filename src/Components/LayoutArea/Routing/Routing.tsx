@@ -6,6 +6,7 @@ import AdminArea from "../../AdminArea/AdminArea/AdminArea";
 import Layout from "../Layout/Layout";
 import PageNotFound from "../PageNotFount/PageNotFound";
 import SchoolDirector from "../../SchoolDirectorArea/SchoolDirector/SchoolDirector";
+import AddStudent from "../../SchoolDirectorArea/AddStudent/AddStudent";
 
 function Routing(): JSX.Element {
 
@@ -16,13 +17,14 @@ function Routing(): JSX.Element {
                 <Route path="/" element={<Layout />} />
                 <Route path="/home" element={<HomeArea />} />
                 <Route index element={<HomeArea />} />
-
+//admin
+                <Route path="/admin" element={<AdminArea />} />
+                <Route path="/admin-login" element={<AdminArea />} />
+//school
                 <Route path="/login" element={<Login />} />
                 <Route path="/school-director/add-teacher" element={<AddTeacher />} />
                 <Route path="/school-director" element={<SchoolDirector />} />
-
-                <Route path="/admin" element={<AdminArea />} />
-                <Route path="/admin-login" element={<AdminArea />} />
+                <Route path="/add-student" element={<AddStudent />} />
 
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
