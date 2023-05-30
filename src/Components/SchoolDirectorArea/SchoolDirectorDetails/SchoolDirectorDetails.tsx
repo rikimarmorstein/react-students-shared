@@ -8,7 +8,7 @@ function SchoolDirectorDetails(): JSX.Element {
     const navigate = useNavigate();
     const params = useParams();
     const schoolDirectorId: number = Number(params.id);
-    const schoolDirector: SchoolUserModel | undefined = store.getState().schoolDirectorState.schools.find((schoolDirector) => schoolDirector.id === schoolDirectorId);
+    const schoolDirector: SchoolUserModel | undefined = store.getState().schoolState.schools.find((schoolDirector) => schoolDirector.id === schoolDirectorId);
 
     function teacher() {
         navigate("/teacher");
