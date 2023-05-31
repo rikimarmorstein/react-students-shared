@@ -5,7 +5,6 @@ import Login from "../../AuthArea/Login/Login";
 import AdminArea from "../../AdminArea/AdminArea/AdminArea";
 import Layout from "../Layout/Layout";
 import PageNotFound from "../PageNotFount/PageNotFound";
-import TeacherDetails from "../../Teacher/TeacherDetails/TeacherDetails";
 import AddStudent from "../../SchoolDirectorArea/AddStudent/AddStudent";
 import SchoolDirectorDetails from "../../SchoolDirectorArea/SchoolDirectorDetails/SchoolDirectorDetails";
 import UpdateTeacher from "../../SchoolDirectorArea/UpdateTeacher/UpdateTeacher";
@@ -40,10 +39,10 @@ function Routing(): JSX.Element {
                 <Route path="/add-student" element={<AddStudent />} />
 
 //teacher
-                <Route path="/teacher" element={<TeacherDetails />} />
+                {/* <Route path="/teacher" element={<TeacherDetails />} /> */}
 //student
                 {/* <Route path="/student" element={<StudentDetails />} /> */}
- //transportation
+//transportation
                 {/* <Route path="/transportation" element={<TransportationDetails />} /> */}
 
                 <Route path="*" element={<PageNotFound />} />

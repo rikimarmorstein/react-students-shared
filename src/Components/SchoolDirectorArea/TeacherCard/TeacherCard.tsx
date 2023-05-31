@@ -1,4 +1,4 @@
-import "./TeacterCard.css";
+import "./TeacherCard.css";
 
 function TeacherCard(): JSX.Element {
     return (
