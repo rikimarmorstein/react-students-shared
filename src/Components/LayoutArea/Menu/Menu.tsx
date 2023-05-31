@@ -21,26 +21,28 @@ function Menu(): JSX.Element {
 
     return (
         <div className="Menu">
-{clientType === undefined && <>
+            {clientType === undefined && <>
 
-<NavLink to="/home">  דף הבית</NavLink>    <span> | </span>
-<NavLink to="/about">אודות</NavLink>
+                <NavLink to="/home">  דף הבית</NavLink>    <span> | </span>
+                <NavLink to="/about">אודות</NavLink>
 
-</>}
+            </>}
 
-{clientType === ClientType.SCHOOL && <>
+            {clientType === ClientType.SCHOOL && <>
 
-<NavLink to="/school-home">דף הבית <FaHome /> </NavLink>  <span> | </span>
-<NavLink to="/about">אודות</NavLink> <span> | </span>
-<NavLink to="/add-student">הוספת תלמיד</NavLink><span> | </span>
-<NavLink to="">כל התלמידים</NavLink><span>
+                <NavLink to="/school-home">דף הבית <FaHome /> </NavLink>  <span> | </span>
+                <NavLink to="/about">אודות</NavLink> <span> | </span>
+                <NavLink to="/add-student">הוספת תלמיד</NavLink><span> | </span>
+                <NavLink to="">כל התלמידים</NavLink><span>
+                    {/* <NavLink to="/add-student">הוספת מורה</NavLink><span> | </span>
+                    <NavLink to="">כל המורים</NavLink><span> */}
 
-</span>
-</>}
+                    </span>
+                </>}
 
 
-        </div>
-    );
+            </div>
+            );
 }
 
-export default Menu;
+            export default Menu;

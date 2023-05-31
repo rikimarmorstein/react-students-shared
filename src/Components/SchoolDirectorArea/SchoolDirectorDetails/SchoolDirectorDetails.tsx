@@ -29,7 +29,7 @@ function SchoolDirectorDetails(): JSX.Element {
             <h1>פרטי בית הספר</h1>
             <p>שם בית הספר: {schoolDirector?.name}</p>
             <p>כתובת: {schoolDirector?.address}</p>
-            <p>טלפון/פלאפון: {schoolDirector?.phone}</p>
+            <p>טלפון: {schoolDirector?.phone}</p>
             <p>סיסמה: {schoolDirector?.password}</p>
 
             <div className="ButtonTeacher">
