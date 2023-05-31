@@ -22,8 +22,8 @@ function AddStudent(): JSX.Element {
 
         try {
             await schoolDirectorService.addStudent(student);
-           console.log(student);
-           
+            console.log(student);
+
             store.dispatch(addStudentsAction(student));
             notificationService.success("תלמיד נוסף בהצלחה");
             navigate("/");
@@ -32,17 +32,17 @@ function AddStudent(): JSX.Element {
         }
     }
 
-    function no(){
+    function no() {
         setTravel(true);
     }
-    function yes(){
+    function yes() {
         setTravel(false);
     }
     return (
         <div className="AddStudent">
-			 <form>
+            <form>
                 <h2>הוספת תלמיד</h2>
-              
+
                 <label>מספר זהות:</label><br />
                 <TextField type="number" {...register("studentId",
                     {
@@ -64,10 +64,10 @@ function AddStudent(): JSX.Element {
                 <TextField type="text" {...register("lastName",
                     {
                         required: { value: true, message: "חסר שם משפחה" }
-                        
+
                     })} />
                 <span>{formState.errors?.lastName?.message}</span><br /><br />
-                
+
 
                 <label>טלפון: </label><br />
                 <TextField type="number" {...register("phone",
@@ -92,43 +92,43 @@ function AddStudent(): JSX.Element {
                     {
                         min: { value: 0, message: "לא ניתן להכניס מספר שלילי" },
                         required: { value: true, message: "חסר numBus" },
-                        
+
                     })} />
                 <span>{formState.errors?.numBus?.message}</span><br /><br />
-              
+
                 <label>?האם נוסע: </label>
-                <FormControl  variant="outlined" style={{ 'width': '100%' }} >
+                <FormControl variant="outlined" style={{ 'width': '100%' }} >
                     <InputLabel id="demo-simple-select-outlined-label"></InputLabel>
                     <Select type="boolean"
-                        defaultValue={true} 
+                        defaultValue={true}
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
                         required {...register("travel")}>
-                         <MenuItem value={true as any} onClick={yes}>כן</MenuItem>
+                        <MenuItem value={true as any} onClick={yes}>כן</MenuItem>
                         <MenuItem value={false as any} onClick={no}>לא</MenuItem>
-                        
+
                     </Select>
                 </FormControl><br />
-                {travel===true ? <><FormControl variant="outlined" style={{ 'width': '100%' }} >
+                {travel === true ? <><FormControl variant="outlined" style={{ 'width': '100%' }} >
                     <InputLabel id="demo-simple-select-outlined-label"></InputLabel>
                     <Select
-                        defaultValue={Cause.ABSENCE} 
+                        defaultValue={Cause.ABSENCE}
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
                         required {...register("cause")}>
 
-                         <MenuItem value={Cause.ABSENCE}>העדרות</MenuItem>
-                         <MenuItem value={Cause.RELEASE}>שחרור</MenuItem>
+                        <MenuItem value={Cause.ABSENCE}>העדרות</MenuItem>
+                        <MenuItem value={Cause.RELEASE}>שחרור</MenuItem>
                         <MenuItem value={Cause.OTHER} >אחר</MenuItem>
-                        
+
                     </Select>
-                </FormControl></>:<></>}
+                </FormControl></> : <></>}
                 <br />  <br />
                 <label>כתובת איסוף: </label><br />
                 <TextField type="text" {...register("pickupAddress",
                     {
                         required: { value: true, message: "חסר adress" },
-                        
+
                     })} />
                 <span>{formState.errors?.pickupAddress?.message}</span><br /><br />
                 <label>הערות: </label><br />
@@ -140,25 +140,25 @@ function AddStudent(): JSX.Element {
                 <FormControl variant="outlined" style={{ 'width': '100%' }} >
                     <InputLabel id="demo-simple-select-outlined-label"></InputLabel>
                     <Select
-                        defaultValue={Hour.SIXTEEN} 
+                        defaultValue={Hour.SIXTEEN}
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
-                         required {...register("hour")}>
-                         <MenuItem value={Hour.SIXTEEN} >13:00 </MenuItem>
+                        required {...register("hour")}>
+                        <MenuItem value={Hour.SIXTEEN} >13:00 </MenuItem>
                         <MenuItem value={Hour.THIRTEEN} >16:00</MenuItem>
-                        
+
                     </Select>
                 </FormControl><br /><br />
                 <label>סיסמא: </label><br />
                 <TextField type="text" {...register("password",
                     {
                         required: { value: true, message: "חסר password" },
-                        
+
                     })} />
                 <span>{formState.errors?.password?.message}</span><br /><br />
-               
 
-                <Button onClick={handleSubmit(send)}>Add</Button>
+
+                <Button onClick={handleSubmit(send)}>הוספה</Button>
 
             </form>
         </div>
