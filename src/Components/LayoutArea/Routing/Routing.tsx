@@ -42,7 +42,7 @@ function Routing(): JSX.Element {
                 {/* <Route path="/teacher" element={<TeacherDetails />} /> */}
 //student
                 {/* <Route path="/student" element={<StudentDetails />} /> */}
- //transportation
+//transportation
                 {/* <Route path="/transportation" element={<TransportationDetails />} /> */}
 
                 <Route path="*" element={<PageNotFound />} />
