@@ -149,13 +149,13 @@ function AddStudent(): JSX.Element {
 
                     </Select>
                 </FormControl><br /><br />
-                <label>סיסמא: </label><br />
+                {/* <label>סיסמא: </label><br />
                 <TextField type="text" {...register("password",
                     {
                         required: { value: true, message: "חסר password" },
 
                     })} />
-                <span>{formState.errors?.password?.message}</span><br /><br />
+                <span>{formState.errors?.password?.message}</span><br /><br /> */}
 
 
                 <Button onClick={handleSubmit(send)}>הוספה</Button>

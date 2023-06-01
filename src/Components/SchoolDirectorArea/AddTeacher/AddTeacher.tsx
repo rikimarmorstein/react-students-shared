@@ -17,7 +17,7 @@ function AddTeacher(): JSX.Element {
         // clientType: yup.string().required("ClientType is required"),
         firstName: yup.string().required("חסר של פרטי"),
         lastName: yup.string().required("חסר שם משפחה"),
-        phone: yup.number().min(9).max(10).required("יש להזין מספר בין 9-10 ספרות"),
+        phone: yup.string().min(9).max(10).required("יש להזין מספר בין 9-10 ספרות"),
         password: yup.string().min(4).max(10).required("חובה להכיל מינימום 4 תווים ומקסימום 10 תווים"),
         numClass: yup.number()
     })
@@ -63,7 +63,9 @@ function AddTeacher(): JSX.Element {
                 <span>{errors.numClass?.message}</span>
                 <input {...register("numClass")} id='numClass' type="number" placeholder='הזן מספר כיתה שאליה המורה משויך' />
 
-                <button disabled={!isValid}>הוספה</button>
+                <button >הוספה</button>
+                {/* <button disabled={!isValid}>הוספה</button> */}
+
             </form>
         </div>
     );
