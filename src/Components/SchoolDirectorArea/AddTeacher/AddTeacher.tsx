@@ -8,13 +8,14 @@ import { useForm } from "react-hook-form";
 import TeacherUserModel from "../../../Models/TeacherUserModel";
 import schoolDirectorService from "../../../Services/SchoolDirectorService";
 import { addTeacherAction } from "../../../Redux/SchoolDirectorState";
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+
 
 function AddTeacher(): JSX.Element {
 
     const navigate = useNavigate();
 
     const schema = yup.object().shape({
-        // clientType: yup.string().required("ClientType is required"),
         firstName: yup.string().required("חסר של פרטי"),
         lastName: yup.string().required("חסר שם משפחה"),
         phone: yup.string().min(9).max(10).required("יש להזין מספר בין 9-10 ספרות"),
@@ -40,31 +41,29 @@ function AddTeacher(): JSX.Element {
     return (
         <div>
             <h1>הוספת מורה</h1>
-            {/* clientType: yup.string().required("ClientType is required"), */}
             <form className='AddTeacher' onSubmit={handleSubmit(sendTeacher)}>
 
                 <label htmlFor="firstName">שם פרטי של המורה</label>
+                <TextField {...register("firstName")} id='firstName' type="text" placeholder='הזן את שם הפרטי של המורה' />
                 <span>{errors.firstName?.message}</span>
-                <input {...register("firstName")} id='firstName' type="text" placeholder='הזן את שם הפרטי של המורה' />
 
                 <label htmlFor="lastName">שם משפחה של המורה</label>
+                <TextField {...register("lastName")} id='lastName' type="text" placeholder='הזן את שם המשפחה של המורה' />
                 <span>{errors.lastName?.message}</span>
-                <input {...register("lastName")} id='lastName' type="text" placeholder='הזן את שם המשפחה של המורה' />
 
                 <label htmlFor="phone"> טלפון של המורה</label>
+                <TextField {...register("phone")} id='phone' type="number" placeholder='הזן מספר טלפון' />
                 <span>{errors.phone?.message}</span>
-                <input {...register("phone")} id='phone' type="number" placeholder='הזן מספר טלפון' />
 
                 <label htmlFor="password">סיסמה</label>
+                <TextField {...register("password")} id='password' type="text" placeholder='הזן סיסמה חד פעמית' />
                 <span>{errors.password?.message}</span>
-                <input {...register("password")} id='password' type="text" placeholder='הזן סיסמה חד פעמית' />
 
                 <label htmlFor="numClass">מספר כיתה אליה משויך</label>
+                <TextField {...register("numClass")} id='numClass' type="number" placeholder='הזן מספר כיתה שאליה המורה משויך' />
                 <span>{errors.numClass?.message}</span>
-                <input {...register("numClass")} id='numClass' type="number" placeholder='הזן מספר כיתה שאליה המורה משויך' />
 
-                <button >הוספה</button>
-                {/* <button disabled={!isValid}>הוספה</button> */}
+                <button disabled={!isValid}>הוספה</button>
 
             </form>
         </div>
