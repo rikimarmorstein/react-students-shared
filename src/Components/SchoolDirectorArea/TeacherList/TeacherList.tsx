@@ -6,6 +6,7 @@ import schoolDirectorService from "../../../Services/SchoolDirectorService";
 import store from "../../../Redux/Store";
 import { fetchTeacherAction } from "../../../Redux/SchoolDirectorState";
 import notify from "../../../Services/NotificationService"
+import TeacherCard from "../TeacherCard/TeacherCard";
 
 function TeacherList(): JSX.Element {
 
@@ -23,12 +24,20 @@ function TeacherList(): JSX.Element {
     }, []);
 
     function addTeacher(){
-        navigate("")
+        navigate("/school-director/add-teacher");
     }
 
     return (
-        <div className="TeacherList">
+        <div>
+            <h2>מורים</h2>
+        <div className="TeacherList" id="teacher-list-top">
+            <button onClick={addTeacher}>הוספת מורה</button>
+            {teachers.length > 0 ? teachers.map((teacher) => (
+                <TeacherCard key={teacher.id} teacher={teacher}/>
+            )): <span>אין מורים כרגע😒</span>}
+            <a href="#teacher-list-top">👆</a>
 
+        </div>
         </div>
     );
 }
