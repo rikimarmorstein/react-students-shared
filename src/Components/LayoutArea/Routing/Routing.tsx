@@ -35,7 +35,7 @@ function Routing(): JSX.Element {
                 <Route path="/school-director/update-teacher" element={<UpdateTeacher />} />
                 <Route path="/school-director/delete-teacher" element={<DeleteTeacher />} />
                 <Route path="/school-director/list-teacher" element={<TeacherList />} />
-                {/* <Route path="/school-director/card-teacher" element={<TeacherCard />} /> */}
+            jbj    {/* <Route path="/school-director/card-teacher" element={<TeacherCard />} /> */}
 
 //student in SchoolDirector
                 <Route path="/add-student" element={<AddStudent />} />
