@@ -30,7 +30,7 @@ function SchoolDirectorDetails(): JSX.Element {
             <p>שם בית הספר: {schoolDirector?.name}</p>
             <p>כתובת: {schoolDirector?.address}</p>
             <p>טלפון: {schoolDirector?.phone}</p>
-            <p>סיסמה: {schoolDirector?.password}</p>
+            <p>{schoolDirector?.password}סיסמה:</p>
 
             <div className="ButtonTeacher">
                 <button onClick={teacher}>מורים</button>

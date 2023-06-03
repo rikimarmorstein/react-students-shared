@@ -14,7 +14,14 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import React, { useState } from "react";
 import "./SchoolLogin.css";
 import authService from "../../../Services/AuthService";
+import SchoolUserModel from "../../../Models/SchoolUserModel";
 
+
+interface SchoolCardProps {
+  school: SchoolUserModel;
+}
+
+// function SchoolLogin(props: SchoolCardProps): JSX.Element {
 function SchoolLogin(): JSX.Element {
   const { register, handleSubmit, formState } = useForm<CredentialsModel>();
 
@@ -26,6 +33,7 @@ function SchoolLogin(): JSX.Element {
       notificationService.success("Welcome!");
       runLogoutTimer();
       navigate("/school-director");
+      // navigate("/school-director/" + props.school.id);
     })
       .catch((err) =>
         notificationService.error(err)
