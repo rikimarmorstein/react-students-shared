@@ -45,6 +45,7 @@ function Routing(): JSX.Element {
 //teacher
                 <Route path="/teacher/:id" element={<TeacherDetails />} />
                 <Route path="/teacher-home" element={<TeacherHome />} />
+                
 //student
                 {/* <Route path="/student" element={<StudentDetails />} /> */}
                 {/* <Route path="/student-home" element={< />} /> */}
