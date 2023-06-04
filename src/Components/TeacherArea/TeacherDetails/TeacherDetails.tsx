@@ -16,7 +16,7 @@ function TeacherDetails(): JSX.Element {
     }
 
     function DeleteTeacher() {
-        navigate("/admin/companies/delete/" + teacherId)
+        navigate("/school-director/delete-teacher/" + teacherId)
     }
     function Back() {
         navigate("/school-director/teachers")
@@ -24,15 +24,13 @@ function TeacherDetails(): JSX.Element {
 
     return (
         <div className="TeacherDetails">
-            <button className="ToBack" onClick={Back}>🔙הקודם</button>
-
-            <div className="ButtonCompany">
-                <button onClick={updateTeacher}>עדכון</button>
-                <button onClick={DeleteTeacher}>מחיקה</button>
-            </div>
-            <p>{teacher.firstName +" "+teacher.lastName}שם המורה</p>
-            <p>{teacher.phone}טלפון</p>
-            <p>{teacher.numClass}המשויכת לכיתה</p>
+            <h1>פרטי מורה</h1>
+            <button className="ToBack" onClick={Back}>🔙 הקודם</button>
+            <button onClick={updateTeacher}>עדכון</button>
+            <button onClick={DeleteTeacher}>מחיקה</button>
+            <p>{teacher.firstName + " " + teacher.lastName}  -שם המורה</p>
+            <p>{teacher.phone}  -טלפון</p>
+            <p>{teacher.numClass}  -המשויכת לכיתה</p>
         </div>
     );
 }

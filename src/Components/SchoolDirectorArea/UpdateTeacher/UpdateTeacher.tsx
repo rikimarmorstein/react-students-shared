@@ -22,7 +22,7 @@ function UpdateTeacher(): JSX.Element {
         firstName: yup.string().required("חסר של פרטי"),
         lastName: yup.string().required("חסר שם משפחה"),
         phone: yup.number().min(9).max(10).required("יש להזין מספר בין 9-10 ספרות"),
-        password: yup.string().min(4).max(10).required("חובה להכיל מינימום 4 תווים ומקסימום 10 תווים"),
+        password: yup.string().min(4).max(10).required("חובה להכיל מינימום 4 תווים ומקסימום 10 תווים")
         // numClass: yup.number()
     })
 
@@ -36,9 +36,9 @@ function UpdateTeacher(): JSX.Element {
 
     const sendUpdateTeacher = (teacher: TeacherUserModel): void => {
         schoolDirectorService.updateTeacher(teacher).then((res) => {
-            notify.success("מורה עודכן בהצלחה");
             store.dispatch(updateTeacherAction(teacher))
-            navigate("/school-director");
+            notify.success("מורה עודכן בהצלחה");
+            navigate("/school-director/teachers");
         }).catch((error) => {
             notify.error(error);
         })
@@ -46,8 +46,8 @@ function UpdateTeacher(): JSX.Element {
 
     return (
         <div>
-            <h1>עדכון מורה</h1>
             <form className='UpdateTeacher' onSubmit={handleSubmit(sendUpdateTeacher)}>
+            <h1>עדכון מורה</h1>
 
             <label htmlFor="firstName">שם פרטי של המורה</label>
                 <TextField {...register("firstName")} id='firstName' type="text" />

@@ -29,8 +29,8 @@ function TeacherList(): JSX.Element {
 
     return (
         <div>
-            <h2>מורים</h2>
         <div className="TeacherList" id="teacher-list-top">
+            <h1>מורים</h1>
             <button onClick={addTeacher}>הוספת מורה</button>
             {teachers.length > 0 ? teachers.map((teacher) => (
                 <TeacherCard key={teacher.id} teacher={teacher}/>

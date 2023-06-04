@@ -40,15 +40,15 @@ function AddTeacher(): JSX.Element {
 
     return (
         <div>
-            <h1>הוספת מורה</h1>
             <form className='AddTeacher' onSubmit={handleSubmit(sendTeacher)}>
+            <h1>הוספת מורה</h1>
 
                 <label htmlFor="firstName">שם פרטי של המורה</label>
-                <TextField {...register("firstName")} id='firstName' type="text" placeholder='הזן את שם הפרטי של המורה' />
+                <TextField {...register("firstName")} id='firstName' type="text" placeholder='הזן את שם הפרטי' />
                 <span>{errors.firstName?.message}</span>
 
                 <label htmlFor="lastName">שם משפחה של המורה</label>
-                <TextField {...register("lastName")} id='lastName' type="text" placeholder='הזן את שם המשפחה של המורה' />
+                <TextField {...register("lastName")} id='lastName' type="text" placeholder='הזן את שם המשפחה' />
                 <span>{errors.lastName?.message}</span>
 
                 <label htmlFor="phone"> טלפון של המורה</label>
@@ -56,11 +56,11 @@ function AddTeacher(): JSX.Element {
                 <span>{errors.phone?.message}</span>
 
                 <label htmlFor="password">סיסמה</label>
-                <TextField {...register("password")} id='password' type="text" placeholder='הזן סיסמה חד פעמית' />
+                <TextField {...register("password")} id='password' type="text" placeholder='הזן סיסמה' />
                 <span>{errors.password?.message}</span>
 
-                <label htmlFor="numClass">מספר כיתה אליה משויך</label>
-                <TextField {...register("numClass")} id='numClass' type="text" placeholder='הזן מספר כיתה שאליה המורה משויך' />
+                <label htmlFor="numClass">כיתה אליה משויך</label>
+                <TextField {...register("numClass")} id='numClass' type="text" placeholder='הזן כיתה' />
                 <span>{errors.numClass?.message}</span>
 
                 <button disabled={!isValid}>הוספה</button>

@@ -26,7 +26,7 @@ function DeleteTeacher(): JSX.Element {
         <div className="DeleteTeacher">
             <h2>?האם אתה בטוח שברצונך למחוק מורה זה</h2>
             <button onClick={sendDeleteTeacher}>כן</button>
-            <button onClick={() => navigate("/school-director")}>לא</button>
+            <button onClick={() => navigate("/school-director/teachers")}>לא</button>
         </div>
     );
 }

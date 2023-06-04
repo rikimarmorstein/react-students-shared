@@ -16,7 +16,7 @@ function TeacherCard(props: TeacherCardProps): JSX.Element {
 
     return (
         <div className="TeacherCard">
-			<p>{props.teacher.firstName}</p> <p>{props.teacher.lastName}</p>
+			<p>{props.teacher.firstName+ "  "+props.teacher.lastName}</p>
 			<p>{props.teacher.phone}</p>
 			<p>{props.teacher.numClass}</p>
             <button onClick={MoreDetails}> לפרטים נוספים לחץ כאן</button>
