@@ -28,7 +28,6 @@ function AllStudents(): JSX.Element {
 
     }, []);
 
-console.log(students);
 
     return (
         <div className="AllStudents">

@@ -10,7 +10,12 @@ import SchoolDirectorDetails from "../../SchoolDirectorArea/SchoolDirectorDetail
 import UpdateTeacher from "../../SchoolDirectorArea/UpdateTeacher/UpdateTeacher";
 import DeleteTeacher from "../../SchoolDirectorArea/DeleteTeacher/DeleteTeacher";
 import TeacherList from "../../SchoolDirectorArea/TeacherList/TeacherList";
+<<<<<<< HEAD
 import AllStudents from "../../SchoolDirectorArea/AllStudents/AllStudents";
+=======
+import TeacherDetails from "../../TeacherArea/TeacherDetails/TeacherDetails";
+import TeacherCard from "../../SchoolDirectorArea/TeacherCard/TeacherCard";
+>>>>>>> c7ddd5c1671c2c514748ec918d7825dc057f1e3c
 
 
 function Routing(): JSX.Element {
@@ -41,7 +46,7 @@ function Routing(): JSX.Element {
                 <Route path="/add-student" element={<AddStudent />} />
 
 //teacher
-                {/* <Route path="/teacher" element={<TeacherDetails />} /> */}
+                <Route path="/teacher" element={<TeacherDetails />} />
 //student
                 {/* <Route path="/student" element={<StudentDetails />} /> */}
 //transportation

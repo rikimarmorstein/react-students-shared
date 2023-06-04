@@ -5,6 +5,7 @@ import Header from "../Header/Header";
 import Menu from "../Menu/Menu";
 import Routing from "../Routing/Routing";
 import "./Layout.css";
+import Main from "../Main/Main";
 
 function Layout(): JSX.Element {
     return (
@@ -17,8 +18,7 @@ function Layout(): JSX.Element {
                 <Menu />
             </aside>
             <main>
-                <Routing />
-                <Outlet />
+                <Main/>
             </main>
             <footer>
                 <Footer />
