@@ -13,6 +13,7 @@ import TeacherList from "../../SchoolDirectorArea/TeacherList/TeacherList";
 import AllStudents from "../../SchoolDirectorArea/AllStudents/AllStudents";
 import TeacherDetails from "../../TeacherArea/TeacherDetails/TeacherDetails";
 import TeacherCard from "../../SchoolDirectorArea/TeacherCard/TeacherCard";
+import TeacherHome from "../../TeacherArea/TeacherHome/TeacherHome";
 
 
 function Routing(): JSX.Element {
@@ -44,10 +45,12 @@ function Routing(): JSX.Element {
 
 //teacher
                 <Route path="/teacher" element={<TeacherDetails />} />
+                <Route path="/teacher-home" element={<TeacherHome />} />
 //student
                 {/* <Route path="/student" element={<StudentDetails />} /> */}
+                {/* <Route path="/student-home" element={< />} /> */}
 //transportation
-                {/* <Route path="/transportation" element={<TransportationDetails />} /> */}
+                {/* <Route path="/transportation-home" element={<TransportationDetails />} /> */}
 
                 <Route path="*" element={<PageNotFound />} />
             </Routes>

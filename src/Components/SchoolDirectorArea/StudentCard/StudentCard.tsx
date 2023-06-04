@@ -3,14 +3,14 @@ import store from "../../../Redux/Store";
 import "./StudentCard.css";
 
 interface StudentCardProps {
-    student: StudentUserModel;
+  student: StudentUserModel;
 }
 function StudentCard(props: StudentCardProps): JSX.Element {
 
-    return (
-        <div className="StudentCard">
-		{/* <div> */}
-            {/* <table>
+  return (
+    <div className="StudentCard">
+      {/* <div> */}
+      {/* <table>
           <tr>  
                 <th>שם</th>
                <th> phone</th>
@@ -23,8 +23,8 @@ function StudentCard(props: StudentCardProps): JSX.Element {
              <td>   hour: {props.student.hour}</td>
           </tr>  </table>
           </div>	 */}
-        </div>
-    );
+    </div>
+  );
 }
 
 export default StudentCard;
