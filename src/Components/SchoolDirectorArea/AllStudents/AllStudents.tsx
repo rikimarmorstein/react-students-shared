@@ -12,15 +12,9 @@ function AllStudents(): JSX.Element {
 
 
     const [students, setStudents] = useState<StudentUserModel[]>(store.getState().schoolState.students);
-    // const [selectedPrice, setSelectedPrice] = useState<number>(0);
     // const [selectedName, setSelectedName] = useState<string>("");
 
-    // function formatDate(bool: Boolean) {
-    //     let dateForm = new Boolean(bool);
-    //     dateForm.valueOf().
-
-    //     return [year, month, day].join('-');
-    // }
+   
 
     useEffect(() => {
         (async () => {
