@@ -11,11 +11,11 @@ function SchoolDirectorDetails(): JSX.Element {
     const schoolDirector: SchoolUserModel | undefined = store.getState().schoolState.schools.find((schoolDirector) => schoolDirector.id === schoolDirectorId);
 
     function teacher() {
-        navigate("/teacher-home");
+        navigate("/school-director/teachers");
     }
 
     function student() {
-        navigate("/student-home");
+        navigate("/school-director/students");
     }
 
     function transportation() {

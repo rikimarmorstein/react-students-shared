@@ -33,18 +33,17 @@ function Routing(): JSX.Element {
                 <Route path="/school-director" element={<SchoolDirectorDetails />} />
 
 //teacher in SchoolDirector
+                <Route path="/school-director/teachers" element={<TeacherList />} />
                 <Route path="/school-director/add-teacher" element={<AddTeacher />} />
-                <Route path="/school-director/update-teacher" element={<UpdateTeacher />} />
-                <Route path="/school-director/delete-teacher" element={<DeleteTeacher />} />
-                <Route path="/school-director/list-teacher" element={<TeacherList />} />
-                {/* <Route path="/school-director/card-teacher" element={<TeacherCard />} /> */}
+                <Route path="/school-director/update-teacher/:id" element={<UpdateTeacher />} />
+                <Route path="/school-director/delete-teacher/:id" element={<DeleteTeacher />} />
 
 //student in SchoolDirector
                 <Route path="/add-student" element={<AddStudent />} />
                 <Route path="/school-director/students" element={<AllStudents />} />
 
 //teacher
-                <Route path="/teacher" element={<TeacherDetails />} />
+                <Route path="/teacher/:id" element={<TeacherDetails />} />
                 <Route path="/teacher-home" element={<TeacherHome />} />
 //student
                 {/* <Route path="/student" element={<StudentDetails />} /> */}

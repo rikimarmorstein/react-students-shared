@@ -16,7 +16,7 @@ function AuthMenu(): JSX.Element {
 
     const [user, setUser] = useState<CredentialsModel>();
     // const [isLoggedIn, setIsLoggedIn] = useState<boolean>(store.getState().authState?.token?.length > 0);
-    
+
     // useEffect(() => {
     //     store.subscribe(() => {
     //         setIsLoggedIn(store.getState().authState?.token?.length > 0)
@@ -38,15 +38,15 @@ function AuthMenu(): JSX.Element {
     function logout(): void {
         authService.logout();
         // store.dispatch(logoutAction());
-       
+
 
     }
 
     return (
         <div className="AuthMenu">
-            {!user && 
+            {!user &&
                 <>
-                    <span >{}
+                    <span >{ }
                         <NavLink to="/login" title="Login"> <CgUserList className="login" /></NavLink></span>
                 </>
             }
@@ -54,10 +54,10 @@ function AuthMenu(): JSX.Element {
                 <>
                     <span >
                         {/* {user.clientType === "CUSTOMER" && <NavLink id="details" to="/customerDetails"><FaUserCircle title="Customer details" /></NavLink>}{user.clientType === "COMPANY" && <NavLink id="details" to="/companyDetails"><FaUserCircle title="Company details" /></NavLink>} */}
-                        Hello {user.name} | </span>
+                        {user.name}  שלום | </span>
                     <NavLink to="" onClick={logout} id="logout">Logout <FiLogOut className="out" /></NavLink>
                 </>}
-                {/* {isLoggedIn ?  <>fdfsf</>:<>xxxfdfsf</>} */}
+            {/* {isLoggedIn ?  <>fdfsf</>:<>xxxfdfsf</>} */}
 
         </div>
     );

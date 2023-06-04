@@ -20,7 +20,7 @@ function AddTeacher(): JSX.Element {
         lastName: yup.string().required("חסר שם משפחה"),
         phone: yup.string().min(9).max(10).required("יש להזין מספר בין 9-10 ספרות"),
         password: yup.string().min(4).max(10).required("חובה להכיל מינימום 4 תווים ומקסימום 10 תווים"),
-        numClass: yup.number()
+        // numClass: yup.number()
     })
 
     const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm<TeacherUserModel>({
@@ -60,7 +60,7 @@ function AddTeacher(): JSX.Element {
                 <span>{errors.password?.message}</span>
 
                 <label htmlFor="numClass">מספר כיתה אליה משויך</label>
-                <TextField {...register("numClass")} id='numClass' type="number" placeholder='הזן מספר כיתה שאליה המורה משויך' />
+                <TextField {...register("numClass")} id='numClass' type="text" placeholder='הזן מספר כיתה שאליה המורה משויך' />
                 <span>{errors.numClass?.message}</span>
 
                 <button disabled={!isValid}>הוספה</button>

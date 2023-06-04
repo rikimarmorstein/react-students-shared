@@ -11,7 +11,7 @@ function TeacherCard(props: TeacherCardProps): JSX.Element {
     const navigate = useNavigate();
 
     function MoreDetails(){
-        navigate("/teacher");
+        navigate("/teacher/"+props.teacher.id);
     }
 
     return (
