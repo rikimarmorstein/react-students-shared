@@ -33,11 +33,11 @@ function Menu(): JSX.Element {
                 <NavLink to="/school-home">דף הבית <FaHome /> </NavLink>  <span> | </span>
                 <NavLink to="/about">אודות</NavLink> <span> | </span>
                 <NavLink to="/add-student">הוספת תלמיד</NavLink><span> | </span>
-                <NavLink to="">כל התלמידים</NavLink><span>
+                {/* <NavLink to="">כל התלמידים</NavLink><span> */}
                     {/* <NavLink to="/add-student">הוספת מורה</NavLink><span> | </span>
                     <NavLink to="">כל המורים</NavLink><span> */}
 
-                    </span>
+                    {/* </span> */}
                 </>}
 
 

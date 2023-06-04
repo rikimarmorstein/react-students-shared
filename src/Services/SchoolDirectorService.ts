@@ -4,6 +4,8 @@ import SchoolUserModel from "../Models/SchoolUserModel";
 import tokenAxios from "../Utils/Interceptors";
 import TeacherUserModel from "../Models/TeacherUserModel";
 import StudentUserModel from "../Models/StudentUserModel";
+import { fetchStudentsAction } from "../Redux/SchoolDirectorState";
+import store from "../Redux/Store";
 
 class SchoolDirectorService{
     private schoolDirectorUrl = appConfig.schoolDirectorUrl;
@@ -44,10 +46,20 @@ class SchoolDirectorService{
         return tokenAxios.delete(this.schoolDirectorUrl + "student/" + studentId);
     }
 
-    public getAllStudents(): Promise<AxiosResponse<StudentUserModel[]>> {
-        return tokenAxios.get(this.schoolDirectorUrl + "all-students");
+    // public getAllStudents(): Promise<AxiosResponse<StudentUserModel[]>> {
+    //     return tokenAxios.get(this.schoolDirectorUrl + "all-students");
+    // }
+    public async getAllStudents(): Promise<StudentUserModel[]> {
+        if (store.getState().schoolState.students.length <= 1) {
+            const response = await tokenAxios.get<StudentUserModel[]>(this.schoolDirectorUrl + "all-students");
+            const students = response.data;
+
+            store.dispatch(fetchStudentsAction(students));
+            return students;
+        }
+        return store.getState().schoolState.students;
     }
-    
+
     public getOneStudent(studentId: number): Promise<AxiosResponse<StudentUserModel>> {
         return tokenAxios.get(this.schoolDirectorUrl + "one-student/" + studentId);
     }
