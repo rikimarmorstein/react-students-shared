@@ -32,6 +32,7 @@ function SchooList(): JSX.Element {
 
     return (
         <div className="SchooList">
+            <h1>בתי ספר</h1>
             {schools.length > 0 ? schools.map((school) => (
                 <SchoolDirectorCard key={school.id} school={school} />
             )) : <span>no coupons yet 😒</span>}
