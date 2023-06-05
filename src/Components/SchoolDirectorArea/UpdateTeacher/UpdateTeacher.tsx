@@ -9,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import schoolDirectorService from "../../../Services/SchoolDirectorService";
 import { updateTeacherAction } from "../../../Redux/SchoolDirectorState";
 import notify from "../../../Services/NotificationService";
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 
 
 function UpdateTeacher(): JSX.Element {
@@ -23,7 +23,6 @@ function UpdateTeacher(): JSX.Element {
         lastName: yup.string().required("חסר שם משפחה"),
         phone: yup.string().min(9).max(10).required("יש להזין מספר בין 9-10 ספרות"),
         password: yup.string().min(4).max(10).required("חובה להכיל מינימום 4 תווים ומקסימום 10 תווים")
-        // numClass: yup.number()
     })
 
     let defaultValueObj = { ...teacher }
