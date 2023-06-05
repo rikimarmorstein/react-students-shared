@@ -33,6 +33,7 @@ function SchoolLogin(): JSX.Element {
       notificationService.success("Welcome!");
       runLogoutTimer();
       navigate("/school-director");
+      
       // navigate("/school-director/" + props.school.id);
     })
       .catch((err) =>

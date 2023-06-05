@@ -21,7 +21,7 @@ function UpdateTeacher(): JSX.Element {
     const schema = yup.object().shape({
         firstName: yup.string().required("חסר של פרטי"),
         lastName: yup.string().required("חסר שם משפחה"),
-        phone: yup.number().min(9).max(10).required("יש להזין מספר בין 9-10 ספרות"),
+        phone: yup.string().min(9).max(10).required("יש להזין מספר בין 9-10 ספרות"),
         password: yup.string().min(4).max(10).required("חובה להכיל מינימום 4 תווים ומקסימום 10 תווים")
         // numClass: yup.number()
     })
