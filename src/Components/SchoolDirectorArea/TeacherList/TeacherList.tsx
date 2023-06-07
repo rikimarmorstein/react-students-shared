@@ -6,7 +6,7 @@ import schoolDirectorService from "../../../Services/SchoolDirectorService";
 import store from "../../../Redux/Store";
 import { fetchTeacherAction } from "../../../Redux/SchoolDirectorState";
 import notify from "../../../Services/NotificationService"
-import XLSX from 'xlsx';
+// import XLSX from 'xlsx';
 
 function TeacherList(): JSX.Element {
 
@@ -39,26 +39,26 @@ function TeacherList(): JSX.Element {
         navigate("/school-director/teachers")
     }
 
-    function exportToExcel() {
-        const worksheet = XLSX.utils.json_to_sheet(teachers);
-        const workbook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(workbook, worksheet, "Teachers");
-        const excelBuffer = XLSX.write(workbook, {
-          bookType: "xlsx",
-          type: "array",
-        });
-      
-        const blob = new Blob([excelBuffer], { type: "application/octet-stream" });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", "teachers.xlsx");
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-      }
-      
+    // function exportToExcel() {
+    //     const worksheet = XLSX.utils.json_to_sheet(teachers);
+    //     const workbook = XLSX.utils.book_new();
+    //     XLSX.utils.book_append_sheet(workbook, worksheet, "Teachers");
+    //     const excelBuffer = XLSX.write(workbook, {
+    //         bookType: "xlsx",
+    //         type: "array",
+    //     });
+
+    //     const blob = new Blob([excelBuffer], { type: "application/octet-stream" });
+    //     const url = URL.createObjectURL(blob);
+    //     const link = document.createElement("a");
+    //     link.href = url;
+    //     link.setAttribute("download", "teachers.xlsx");
+    //     document.body.appendChild(link);
+    //     link.click();
+    //     document.body.removeChild(link);
+    //     URL.revokeObjectURL(url);
+    // }
+
 
     return (
         <div>
@@ -67,26 +67,26 @@ function TeacherList(): JSX.Element {
                 <button onClick={addTeacher}>הוספת מורה</button>
                 <button className="ToBack" onClick={goBack}>🔙 הקודם</button>
                 <table>
-                <thead>
-                    <tr>
-                        <th> שם פרטי </th>
-                        <th> שם משפחה </th>
-                        <th> טלפון </th>
-                        <th> משויך/כת לכיתה </th>
-                    </tr>
-                    </thead>
-          <tbody>
-                    {teachers.map((teacher) => (
+                    <thead>
                         <tr>
-                            <th> {teacher.firstName} </th>
-                            <th> {teacher.lastName} </th>
-                            <th> {teacher.phone} </th>
-                            <th> {teacher.numClass} </th>
-                            <th> <button onClick={updateTeacher}>עדכון</button></th>
-                            <th>  <button onClick={deleteTeacher}>מחיקה</button> </th>
+                            <th> שם פרטי </th>
+                            <th> שם משפחה </th>
+                            <th> טלפון </th>
+                            <th> משויך/כת לכיתה </th>
                         </tr>
-                    ))}
- </tbody>
+                    </thead>
+                    <tbody>
+                        {teachers.map((teacher) => (
+                            <tr>
+                                <th> {teacher.firstName} </th>
+                                <th> {teacher.lastName} </th>
+                                <th> {teacher.phone} </th>
+                                <th> {teacher.numClass} </th>
+                                <th> <button onClick={updateTeacher}>עדכון</button></th>
+                                <th>  <button onClick={deleteTeacher}>מחיקה</button> </th>
+                            </tr>
+                        ))}
+                    </tbody>
                 </table>
 
 
