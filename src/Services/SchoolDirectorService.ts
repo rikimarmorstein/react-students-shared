@@ -14,6 +14,10 @@ class SchoolDirectorService{
         return tokenAxios.put(this.schoolDirectorUrl +  "school", school);
     }
 
+    public getSchoolDetails(): Promise<AxiosResponse<SchoolUserModel>>{
+        return tokenAxios.get(this.schoolDirectorUrl + "school");
+    }
+
     public addTeacher(teacher: TeacherUserModel): Promise<AxiosResponse<any>> {
         return tokenAxios.post(this.schoolDirectorUrl + "teacher" , teacher);
     }
