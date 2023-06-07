@@ -7,6 +7,7 @@ import store from "../../../Redux/Store";
 import notificationService from "../../../Services/NotificationService";
 import StudentCard from "../StudentCard/StudentCard";
 import { format } from "path/win32";
+import { NavLink } from "react-router-dom";
 
 function AllStudents(): JSX.Element {
 
@@ -55,12 +56,14 @@ function AllStudents(): JSX.Element {
             <td>  {c.studentId}</td>
             <td>  {c.numClass}</td>
             <td> {c.numBus}</td>
-            <td>   {c.travel == true ? <>✔</> : <>✖</>}
-            </td>
+            <td>   {c.travel == true ? <>✔</> : <>✖</>} </td>
+            <td>   {c.cause} </td>
+
             <td>   {c.hour}</td>
             <td> {c.phone}</td>
             <td> {c.pickupAddress}</td>
             <td> {c.remark}</td>
+            <td> <NavLink to={"/school-director/students/update/"+ c.id}>update</NavLink></td>
 
           </tr>
           // <StudentCard key={c.id} student={c} />

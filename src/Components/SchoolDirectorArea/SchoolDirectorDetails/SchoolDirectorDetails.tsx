@@ -47,12 +47,12 @@ function SchoolDirectorDetails(): JSX.Element {
         <div className="SchoolDirectorDetails">
  {school== undefined && <Loading/>}  
             { school ?
-                <div>
-                    <h1>פרטי בית הספר</h1>
-            <h3>שם בית הספר: {school.schoolName}</h3>
-            <h4>כתובת: {school.address}</h4>
-            <h4>טלפון: {school.phone}</h4>
-            <h4>{school.password}סיסמה:</h4>
+                <div className="schoolCard">
+            <h1>פרטי בית הספר</h1>
+            <p> {school.schoolName} :שם בית הספר  </p>
+            <p> {school.address} :כתובת  </p>
+            <p> {school.phone} :טלפון  </p>
+            <p>{school.password} :סיסמא</p>
                 </div> : <Loading/>}
                 
             <div className="ButtonTeacher">
