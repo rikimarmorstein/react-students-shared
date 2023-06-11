@@ -4,7 +4,7 @@ import "./Loading.css";
 function Loading(): JSX.Element {
     return (
         <div className="Loading">
-						<img src={loadingImage}/>
+            <img src={loadingImage} />
 
         </div>
     );
