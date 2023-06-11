@@ -67,15 +67,15 @@ function TeacherList(): JSX.Element {
                 <button onClick={addTeacher}>הוספת מורה</button>
                 <button className="ToBack" onClick={goBack}>🔙 הקודם</button>
                 <table>
-                    <thead>
+                    {/* <thead> */}
                         <tr>
                             <th> שם פרטי </th>
                             <th> שם משפחה </th>
                             <th> טלפון </th>
                             <th> משויך/כת לכיתה </th>
                         </tr>
-                    </thead>
-                    <tbody>
+                    {/* </thead>
+                    <tbody> */}
                         {teachers.map((teacher) => (
                             <tr>
                                 <th> {teacher.firstName} </th>
@@ -86,7 +86,7 @@ function TeacherList(): JSX.Element {
                                 <th>  <button onClick={deleteTeacher}>מחיקה</button> </th>
                             </tr>
                         ))}
-                    </tbody>
+                    {/* </tbody> */}
                 </table>
 
 
