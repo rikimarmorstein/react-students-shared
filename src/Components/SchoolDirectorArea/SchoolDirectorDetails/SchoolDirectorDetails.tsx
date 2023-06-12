@@ -55,10 +55,10 @@ function SchoolDirectorDetails(): JSX.Element {
                     <p>{school.password} :סיסמא</p>
                 </div> : <Loading />}
 
-            <div className="ButtonTeacher">
+            <div className="ButtonSchool">
                 <button onClick={teacher}>מורים</button>
                 <button onClick={student}>תלמידים</button>
-                <button onClick={student}>הסעות</button>
+                <button onClick={transportation}>הסעות</button>
             </div>
         </div>
     );
