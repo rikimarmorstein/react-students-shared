@@ -2,9 +2,14 @@ import { AxiosResponse } from "axios";
 import appConfig from "../Utils/Config";
 import tokenAxios from "../Utils/Interceptors";
 import StudentUserModel from "../Models/StudentUserModel";
+import TeacherUserModel from "../Models/TeacherUserModel";
 
 class TeacherService{
     private teacherUrl = appConfig.teacherUrl;
+
+    public getTeacherDetails(): Promise<AxiosResponse<TeacherUserModel>>{
+        return tokenAxios.get(this.teacherUrl + "teacher");
+    }
 
     public getAllStudents(): Promise<AxiosResponse<StudentUserModel []>> {
         return tokenAxios.get(this.teacherUrl + "all-students");

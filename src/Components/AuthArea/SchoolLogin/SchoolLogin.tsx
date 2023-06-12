@@ -17,9 +17,9 @@ import authService from "../../../Services/AuthService";
 import SchoolUserModel from "../../../Models/SchoolUserModel";
 
 
-interface SchoolCardProps {
-  school: SchoolUserModel;
-}
+// interface SchoolCardProps {
+//   school: SchoolUserModel;
+// }
 
 // function SchoolLogin(props: SchoolCardProps): JSX.Element {
 function SchoolLogin(): JSX.Element {

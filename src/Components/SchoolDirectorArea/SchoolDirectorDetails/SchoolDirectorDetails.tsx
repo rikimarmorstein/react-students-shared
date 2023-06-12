@@ -15,7 +15,7 @@ function SchoolDirectorDetails(): JSX.Element {
 
             schoolDirectorService.getSchoolDetails().then((school) => {
                 setSchool(school.data);
-               
+
             }, (error) => {
                 notificationService.error(error);
             });
@@ -45,16 +45,16 @@ function SchoolDirectorDetails(): JSX.Element {
 
     return (
         <div className="SchoolDirectorDetails">
- {school== undefined && <Loading/>}  
-            { school ?
+            {school == undefined && <Loading />}
+            {school ?
                 <div className="schoolCard">
-            <h1>פרטי בית הספר</h1>
-            <p> {school.schoolName} :שם בית הספר  </p>
-            <p> {school.address} :כתובת  </p>
-            <p> {school.phone} :טלפון  </p>
-            <p>{school.password} :סיסמא</p>
-                </div> : <Loading/>}
-                
+                    <h1>פרטי בית הספר</h1>
+                    <p> {school.schoolName} :שם בית הספר  </p>
+                    <p> {school.address} :כתובת  </p>
+                    <p> {school.phone} :טלפון  </p>
+                    <p>{school.password} :סיסמא</p>
+                </div> : <Loading />}
+
             <div className="ButtonTeacher">
                 <button onClick={teacher}>מורים</button>
                 <button onClick={student}>תלמידים</button>
