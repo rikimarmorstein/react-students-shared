@@ -148,7 +148,7 @@ function UpdateStudent(): JSX.Element {
                         <MenuItem value={Cause.OTHER} >אחר</MenuItem>
 
                     </Select>
-                </FormControl></> : <></>}
+                </FormControl></> : <>{}</>}
                 <br />  <br />
                 <label>כתובת איסוף: </label><br />
                 <TextField type="text" {...register("pickupAddress",
