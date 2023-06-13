@@ -21,8 +21,8 @@ function AddStudent(): JSX.Element {
     async function send(student: StudentUserModel) {
 
         try {
-            await schoolDirectorService.addStudent(student);
             console.log(student);
+            await schoolDirectorService.addStudent(student);
 
             store.dispatch(addStudentsAction(student));
             notificationService.success("תלמיד נוסף בהצלחה");

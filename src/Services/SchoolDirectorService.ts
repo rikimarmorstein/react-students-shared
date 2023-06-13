@@ -6,6 +6,7 @@ import TeacherUserModel from "../Models/TeacherUserModel";
 import StudentUserModel from "../Models/StudentUserModel";
 import { fetchStudentsAction } from "../Redux/SchoolDirectorState";
 import store from "../Redux/Store";
+import Cause from "../Models/Cause";
 
 class SchoolDirectorService{
     private schoolDirectorUrl = appConfig.schoolDirectorUrl;

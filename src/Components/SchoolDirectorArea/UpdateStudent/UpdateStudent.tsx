@@ -3,7 +3,7 @@ import StudentUserModel from "../../../Models/StudentUserModel";
 import "./UpdateStudent.css";
 import { useNavigate, useParams } from "react-router-dom";
 import schoolDirectorService from "../../../Services/SchoolDirectorService";
-import { useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import notificationService from "../../../Services/NotificationService";
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import Cause from "../../../Models/Cause";
@@ -17,12 +17,14 @@ function UpdateStudent(): JSX.Element {
     const id = +params.studentId;
     const { register, handleSubmit, formState, setValue } = useForm<StudentUserModel>();
     const [travel, setTravel] = useState<boolean>();
-
+//    const [cause, setCause] = useState<Cause>();
+   // let cause:Cause;
     const navigate = useNavigate();
 
     useEffect(() => {
 
         schoolDirectorService.getOneStudent(id)
+        
             .then((s) => {
                 setValue("firstName", s.data.firstName)
                 setValue("lastName", s.data.lastName)
@@ -30,6 +32,8 @@ function UpdateStudent(): JSX.Element {
 
                 setValue("hour", s.data.hour)
                 setValue("cause", s.data.cause)
+                console.log(s.data.cause+"mkdmk");
+
                 setValue("pickupAddress", s.data.pickupAddress)
                 setValue("studentId", s.data.studentId)
                 setValue("remark", s.data.remark)
@@ -46,7 +50,18 @@ function UpdateStudent(): JSX.Element {
     async function send(student: StudentUserModel) {
         student.id = id;
         try {
+            if(travel===false){
+                schoolDirectorService.setStudentToTravel(id);
+student.cause=null;
+            }else{
+                
+           //  schoolDirectorService.setStudentToNotTravel( id );  
+            }
+            
             await schoolDirectorService.updateStudent(student);
+            console.log(student.cause);
+            console.log(student.travel);
+            console.log(student.hour);
             notificationService.success("פרטי תלמיד עודכנו בהצלחה");
             store.dispatch(updateStudentsAction(student))
 
@@ -55,13 +70,19 @@ function UpdateStudent(): JSX.Element {
             notificationService.error(error)
         }
     }
-
     function no() {
         setTravel(true);
-        teacherService.isStudentTravel(id);
     }
+    // function noTravel(e: FormEvent<HTMLFormElement>) {
+    //         let currentCategory = e.currentTarget.value;
+    //       //  setCause(currentCategory);
+    //    return cause === currentCategory;
+    //     }
+   //     schoolDirectorService.setStudentToNotTravel(id);
+   
     function yes() {
         setTravel(false);
+     //   schoolDirectorService.setStudentToTravel(id);
     }
 
     return (
@@ -134,21 +155,27 @@ function UpdateStudent(): JSX.Element {
                         <MenuItem value={false as any} onClick={no}>לא</MenuItem>
 
                     </Select>
-                </FormControl><br />
-                {travel === true ? <><FormControl variant="outlined" style={{ 'width': '100%' }} >
+                </FormControl>
+              {/* <span>{formState.errors?.travel?.message}</span><br /><br /> */}
+                <br />
+                <FormControl variant="outlined" style={{ 'width': '100%' }} >
                     <InputLabel id="demo-simple-select-outlined-label"></InputLabel>
+                   {travel === true ? <>
                     <Select
-                        // defaultValue={Cause.ABSENCE}
+                  //      defaultValue={Cause.ABSENCE}
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
                         required {...register("cause")}>
 
-                        <MenuItem value={Cause.ABSENCE}>העדרות</MenuItem>
-                        <MenuItem value={Cause.RELEASE}>שחרור</MenuItem>
+                        <MenuItem value={Cause.ABSENCE} >העדרות</MenuItem>
+                        <MenuItem value={Cause.RELEASE} >שחרור</MenuItem>
                         <MenuItem value={Cause.OTHER} >אחר</MenuItem>
+                        <span>{formState.errors?.cause?.message}</span><br /><br />
 
                     </Select>
-                </FormControl></> : <>{}</>}
+                   </> : <></>}
+                </FormControl>
+                
                 <br />  <br />
                 <label>כתובת איסוף: </label><br />
                 <TextField type="text" {...register("pickupAddress",
@@ -166,12 +193,13 @@ function UpdateStudent(): JSX.Element {
                 <FormControl variant="outlined" style={{ 'width': '100%' }} >
                     <InputLabel id="demo-simple-select-outlined-label"></InputLabel>
                     <Select
-                        defaultValue={Hour.SIXTEEN}
+                      //  defaultValue={Hour.SIXTEEN}
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
                         required {...register("hour")}>
                         <MenuItem value={Hour.SIXTEEN} >13:00 </MenuItem>
                         <MenuItem value={Hour.THIRTEEN} >16:00</MenuItem>
+                        <span>{formState.errors?.hour?.message}</span><br /><br />
 
                     </Select>
                 </FormControl><br /><br />
