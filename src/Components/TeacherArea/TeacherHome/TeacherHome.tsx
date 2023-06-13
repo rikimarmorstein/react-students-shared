@@ -16,30 +16,33 @@ function TeacherHome(): JSX.Element {
     useEffect(() => {
         teacherService.getTeacherDetails().then((teacher) => {
             setTeacher(teacher.data);
-            // store.dispatch(fetchTeacherAction(res.data));
+            // store.dispatch(fetchTeacherAction(teacher.data));
         }).catch((error) => {
             notificationService.error(error);
         })
     }, []);
 
 
+    function teacherDetails() {
+        navigate("/teacher/" + teacher.id);
+    }
     function student() {
         navigate("/school-director/students");
     }
 
     return (
         <div className="TeacherHome">
-            {teacher == undefined && <Loading />}
+            {/* {teacher == undefined && <Loading />}
             {teacher ?
                 <div className="teacherCard">
-                    <h1>פרטי בית הספר</h1>
+                    <h1>שלום</h1>
                     <p> {teacher.firstName +" "+ teacher.lastName} :שם המורה  </p>
                     <p> {teacher.phone} :טלפון  </p>
-                    <p>{teacher.password} :סיסמא</p>
-                </div> : <Loading />}
+                    <p> {teacher.password} :סיסמא</p>
+                </div> : <Loading />} */}
 
             <div className="ButtonTeacher">
-                {/* <button onClick={teacher}>מורים</button> */}
+                <button onClick={teacherDetails}>פרטים אישיים</button>
                 <button onClick={student}>תלמידים</button>
                 {/* <button onClick={student}>הסעות</button> */}
             </div>

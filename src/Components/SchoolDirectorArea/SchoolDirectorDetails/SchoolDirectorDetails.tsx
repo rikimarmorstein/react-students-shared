@@ -49,8 +49,8 @@ function SchoolDirectorDetails(): JSX.Element {
             {school ?
                 <div className="schoolCard">
                     <h1>פרטי בית הספר</h1>
-                    <p> {school.schoolName} :שם בית הספר  </p>
-                    <p> {school.address} :כתובת  </p>
+                    <p> " שם בית הספר :"{school.schoolName} </p>
+                    <p> כתובת : {school.address}  </p>
                     <p> {school.phone} :טלפון  </p>
                     <p>{school.password} :סיסמא</p>
                 </div> : <Loading />}

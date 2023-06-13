@@ -11,6 +11,10 @@ class TeacherService{
         return tokenAxios.get(this.teacherUrl + "teacher");
     }
 
+    public updateTeacherMe(teacher: TeacherUserModel): Promise<AxiosResponse<any>> {
+        return tokenAxios.put(this.teacherUrl+ "update-teacher" , teacher);
+    }
+
     public getAllStudents(): Promise<AxiosResponse<StudentUserModel []>> {
         return tokenAxios.get(this.teacherUrl + "all-students");
     }

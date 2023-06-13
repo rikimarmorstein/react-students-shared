@@ -15,6 +15,7 @@ import TeacherDetails from "../../TeacherArea/TeacherDetails/TeacherDetails";
 import TeacherCard from "../../SchoolDirectorArea/TeacherCard/TeacherCard";
 import TeacherHome from "../../TeacherArea/TeacherHome/TeacherHome";
 import UpdateStudent from "../../SchoolDirectorArea/UpdateStudent/UpdateStudent";
+import UpdateTeacherMe from "../../TeacherArea/UpdateTeacherMe/UpdateTeacherMe";
 
 
 function Routing(): JSX.Element {
@@ -47,6 +48,7 @@ function Routing(): JSX.Element {
 //teacher
                 <Route path="/teacher/:id" element={<TeacherDetails />} />
                 <Route path="/teacher-home" element={<TeacherHome />} />
+                <Route path="/update-teacher/:id" element={<UpdateTeacherMe />} />
                 
 //student
                 {/* <Route path="/student" element={<StudentDetails />} /> */}
