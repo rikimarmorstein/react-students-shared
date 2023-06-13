@@ -16,6 +16,7 @@ import TeacherCard from "../../SchoolDirectorArea/TeacherCard/TeacherCard";
 import TeacherHome from "../../TeacherArea/TeacherHome/TeacherHome";
 import UpdateStudent from "../../SchoolDirectorArea/UpdateStudent/UpdateStudent";
 import UpdateTeacherMe from "../../TeacherArea/UpdateTeacherMe/UpdateTeacherMe";
+import ParentHome from "../../ParentArea/ParentHome/ParentHome";
 
 
 function Routing(): JSX.Element {
@@ -50,11 +51,14 @@ function Routing(): JSX.Element {
                 <Route path="/teacher-home" element={<TeacherHome />} />
                 <Route path="/update-teacher/:id" element={<UpdateTeacherMe />} />
                 
-//student
+//student in teacher
                 {/* <Route path="/student" element={<StudentDetails />} /> */}
                 {/* <Route path="/student-home" element={< />} /> */}
 //transportation
                 {/* <Route path="/transportation-home" element={<TransportationDetails />} /> */}
+// parent
+                <Route path="/parent-home" element={<ParentHome />} />
+
 
                 <Route path="*" element={<PageNotFound />} />
             </Routes>

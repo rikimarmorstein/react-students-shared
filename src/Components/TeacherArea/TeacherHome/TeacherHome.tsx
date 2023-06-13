@@ -32,14 +32,14 @@ function TeacherHome(): JSX.Element {
 
     return (
         <div className="TeacherHome">
-            {/* {teacher == undefined && <Loading />}
+            {teacher == undefined && <Loading />}
             {teacher ?
                 <div className="teacherCard">
-                    <h1>שלום</h1>
-                    <p> {teacher.firstName +" "+ teacher.lastName} :שם המורה  </p>
-                    <p> {teacher.phone} :טלפון  </p>
-                    <p> {teacher.password} :סיסמא</p>
-                </div> : <Loading />} */}
+                    <h1> {teacher.firstName +" "+ teacher.lastName}</h1>
+                    {/* <p> {teacher.firstName +" "+ teacher.lastName} :שם המורה  </p> */}
+                    {/* <p> {teacher.phone} :טלפון  </p>
+                    <p> {teacher.password} :סיסמא</p> */}
+                </div> : <Loading />}
 
             <div className="ButtonTeacher">
                 <button onClick={teacherDetails}>פרטים אישיים</button>
