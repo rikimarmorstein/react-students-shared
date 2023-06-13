@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import TeacherUserModel from "../../../Models/TeacherUserModel";
 import "./TeacherList.css";
 import { useEffect, useState } from "react";
@@ -27,16 +27,8 @@ function TeacherList(): JSX.Element {
         navigate("/school-director/add-teacher");
     }
 
-
-    function updateTeacher() {
-        navigate("/school-director/update-teacher/");
-    }
-
-    function deleteTeacher() {
-        navigate("/school-director/delete-teacher/")
-    }
     function goBack() {
-        navigate("/school-director/teachers")
+        navigate("/school-director")
     }
 
     // function exportToExcel() {
@@ -78,12 +70,12 @@ function TeacherList(): JSX.Element {
                     <tbody> */}
                         {teachers.map((teacher) => (
                             <tr>
-                                <th> {teacher.firstName} </th>
-                                <th> {teacher.lastName} </th>
-                                <th> {teacher.phone} </th>
-                                <th> {teacher.numClass} </th>
-                                <th> <button onClick={updateTeacher}>עדכון</button></th>
-                                <th>  <button onClick={deleteTeacher}>מחיקה</button> </th>
+                                <td> {teacher.firstName} </td>
+                                <td> {teacher.lastName} </td>
+                                <td> {teacher.phone} </td>
+                                <td> {teacher.numClass} </td>
+                                <td> <NavLink to={"/school-director/update-teacher/"+ teacher.id}>עדכון</NavLink></td>
+                                <td> <NavLink to={"/school-director/delete-teacher/"+ teacher.id}>מחיקה</NavLink></td>
                             </tr>
                         ))}
                     {/* </tbody> */}
