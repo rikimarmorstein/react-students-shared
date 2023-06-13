@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import "./TeacherDetails.css";
 import TeacherUserModel from "../../../Models/TeacherUserModel";
 import store from "../../../Redux/Store";
@@ -27,9 +27,9 @@ function TeacherDetails(): JSX.Element {
     }, []);
 
 
-    function updateTeacher() {
-        navigate("/update-teacher/" + teacher.id);
-    }
+    // function updateTeacher() {
+    //     navigate("/update-teacher/" + teacher.id);
+    // }
 
     // function DeleteTeacher() {
     //     navigate("/school-director/delete-teacher/" + teacher.id)
@@ -48,9 +48,11 @@ function TeacherDetails(): JSX.Element {
                     <p>{teacher.phone}  -טלפון</p>
                     <p> {teacher.password} -סיסמא</p>
                     <p>{teacher.numClass}  -המשויכ/ת לכיתה</p>
+            <NavLink to={"/update-teacher/" + teacher.id}>עדכון</NavLink>
                 </div> : <Loading />}
             <button className="ToBack" onClick={Back}>🔙 הקודם</button>
-            <button onClick={updateTeacher}>עדכון</button>
+
+            {/* <button onClick={updateTeacher}>עדכון</button> */}
             {/* <button onClick={DeleteTeacher}>מחיקה</button> */}
         </div>
     );
