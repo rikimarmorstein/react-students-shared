@@ -32,7 +32,6 @@ function UpdateStudent(): JSX.Element {
 
                 setValue("hour", s.data.hour)
                 setValue("cause", s.data.cause)
-                console.log(s.data.cause+"mkdmk");
 
                 setValue("pickupAddress", s.data.pickupAddress)
                 setValue("studentId", s.data.studentId)
@@ -162,7 +161,7 @@ student.cause=null;
                     <InputLabel id="demo-simple-select-outlined-label"></InputLabel>
                    {travel === true ? <>
                     <Select
-                  //      defaultValue={Cause.ABSENCE}
+                        defaultValue={Cause.ABSENCE}
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
                         required {...register("cause")}>
@@ -193,7 +192,7 @@ student.cause=null;
                 <FormControl variant="outlined" style={{ 'width': '100%' }} >
                     <InputLabel id="demo-simple-select-outlined-label"></InputLabel>
                     <Select
-                      //  defaultValue={Hour.SIXTEEN}
+                     defaultValue={Hour.SIXTEEN}
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
                         required {...register("hour")}>
