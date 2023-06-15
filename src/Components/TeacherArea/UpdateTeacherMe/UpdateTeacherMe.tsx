@@ -37,7 +37,7 @@ function UpdateTeacherMe(): JSX.Element {
     const sendUpdateTeacherMe = (teacher: TeacherUserModel): void => {
         teacherService.updateTeacherMe(teacher).then((res) => {
             store.dispatch(updateTeacherAction(teacher))
-            notify.success("מורה עודכן בהצלחה");
+            notify.success("פרטיך עודכנו בהצלחה");
             navigate("/teacher/"+ teacher.id);
         }).catch((error) => {
             notify.error(error);
