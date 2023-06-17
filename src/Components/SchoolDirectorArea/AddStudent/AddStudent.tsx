@@ -26,7 +26,7 @@ function AddStudent(): JSX.Element {
 
             store.dispatch(addStudentsAction(student));
             notificationService.success("תלמיד נוסף בהצלחה");
-            navigate("/");
+            navigate("/school-director/students");
         } catch (error: any) {
             notificationService.error(error);
         }
