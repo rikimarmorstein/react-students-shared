@@ -20,6 +20,8 @@ function TeacherDetails(): JSX.Element {
     useEffect(() => {
         teacherService.getTeacherDetails().then((teacher) => {
             setTeacher(teacher.data);
+            console.log(teacher);
+            
             // store.dispatch(fetchTeacherAction(teacher.data));
         }).catch((error) => {
             notificationService.error(error);

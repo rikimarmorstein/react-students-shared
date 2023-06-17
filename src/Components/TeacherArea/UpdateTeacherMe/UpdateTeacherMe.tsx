@@ -12,6 +12,7 @@ import notify from "../../../Services/NotificationService";
 import { TextField } from "@mui/material";
 import notificationService from "../../../Services/NotificationService";
 import teacherService from "../../../Services/TeacherService";
+import { log } from "console";
 
 
 function UpdateTeacherMe(): JSX.Element {
@@ -57,8 +58,10 @@ function UpdateTeacherMe(): JSX.Element {
         console.log(teacher);
         teacher.id=teacherId;
         teacherService.updateTeacherMe(teacher).then((res) => {
+            console.log(teacher);
+            
             store.dispatch(updateTeacherAction(teacher))
-            notify.success("מורה עודכן בהצלחה");
+            notify.success("פרטיך עודכנו בהצלחה");
             navigate("/teacher/"+ teacher.id);
         }).catch((error) => {
             notify.error(error);
