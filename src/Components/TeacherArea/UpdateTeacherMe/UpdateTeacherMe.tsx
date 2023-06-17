@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import "./UpdateTeacherMe.css";
 import * as yup from 'yup';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TeacherUserModel from "../../../Models/TeacherUserModel";
 import store from "../../../Redux/Store";
 import { useForm } from "react-hook-form";
@@ -10,6 +10,7 @@ import schoolDirectorService from "../../../Services/SchoolDirectorService";
 import { updateTeacherAction } from "../../../Redux/SchoolDirectorState";
 import notify from "../../../Services/NotificationService";
 import { TextField } from "@mui/material";
+import notificationService from "../../../Services/NotificationService";
 import teacherService from "../../../Services/TeacherService";
 
 
@@ -17,24 +18,44 @@ function UpdateTeacherMe(): JSX.Element {
     const navigate = useNavigate();
     const params = useParams();
     const teacherId: number = Number(params.id);
-    const [teacher, setTeacher] = useState<TeacherUserModel>(store.getState().schoolState.teachers.filter(teacher => teacher.id === teacherId)[0]);
+    // const [teacher, setTeacher] = useState<TeacherUserModel>(store.getState().schoolState.teachers.filter(teacher => teacher.id === teacherId)[0]);
+    const {  register, handleSubmit,  formState, setValue } = useForm<TeacherUserModel>();
 
     const schema = yup.object().shape({
         firstName: yup.string().required("חסר של פרטי"),
         lastName: yup.string().required("חסר שם משפחה"),
-        // phone: yup.string().min(9).max(10).required("יש להזין מספר בין 9-10 ספרות"),
-        // password: yup.string().min(4).max(10).required("חובה להכיל מינימום 4 תווים ומקסימום 10 תווים")
+      //   phone: yup.string().min(9).max(10).required("יש להזין מספר בין 9-10 ספרות"),
+     // password: yup.string().min(4).max(10).required("חובה להכיל מינימום 4 תווים ומקסימום 10 תווים")
     })
+    useEffect(() => {
 
-    let defaultValueObj = { ...teacher }
+        teacherService.getTeacherDetails()
+        
+            .then((s) => {
+                setValue("firstName", s.data.firstName)
+                setValue("lastName", s.data.lastName)
+                setValue("phone", s.data.phone)
+                setValue("password", s.data.password)
+                setValue("numClass", s.data.numClass)
 
-    const { register, handleSubmit, control, formState: { errors, isDirty, isValid } } = useForm<TeacherUserModel>({
-        defaultValues: defaultValueObj,
-        mode: "all",
-        resolver: yupResolver(schema),
-    })
+                console.log(s);
+                 })
+
+            .catch((err) =>
+                notificationService.error(err)
+            );
+    }, []);
+    // let defaultValueObj = { ...teacher }
+
+    // const { register, handleSubmit, control, formState: { errors, isDirty, isValid } } = useForm<TeacherUserModel>({
+    //     defaultValues: defaultValueObj,
+    //     mode: "all",
+    //     resolver: yupResolver(schema),
+    // })
 
     const sendUpdateTeacherMe = (teacher: TeacherUserModel): void => {
+        console.log(teacher);
+        teacher.id=teacherId;
         teacherService.updateTeacherMe(teacher).then((res) => {
             store.dispatch(updateTeacherAction(teacher))
             notify.success("מורה עודכן בהצלחה");
@@ -51,11 +72,11 @@ function UpdateTeacherMe(): JSX.Element {
 
             <label htmlFor="firstName">שם פרטי של המורה</label>
                 <TextField {...register("firstName")} id='firstName' type="text" />
-                <span>{errors.firstName?.message}</span>
+                <span>{formState.errors?.firstName?.message}</span>
 
                 <label htmlFor="lastName">שם משפחה של המורה</label>
                 <TextField {...register("lastName")} id='lastName' type="text"  />
-                <span>{errors.lastName?.message}</span>
+                <span>{formState.errors?.lastName?.message}</span>
 
                 {/* <label htmlFor="phone"> טלפון של המורה</label>
                 <TextField {...register("phone")} id='phone' type="number"/>
@@ -70,7 +91,9 @@ function UpdateTeacherMe(): JSX.Element {
                 <span>{errors.numClass?.message}</span> */}
             
                 <div className='vertical-center'>
-                    <button disabled={!isValid}>עדכן</button>
+                    <button 
+                    // disabled={!isValid}
+                    >עדכן</button>
                 </div>
             </form>
         </div>
