@@ -11,6 +11,7 @@ import { updateTeacherAction } from "../../../Redux/SchoolDirectorState";
 import notify from "../../../Services/NotificationService";
 import { TextField } from "@mui/material";
 import teacherService from "../../../Services/TeacherService";
+import { log } from "console";
 
 
 function UpdateTeacherMe(): JSX.Element {
@@ -36,6 +37,8 @@ function UpdateTeacherMe(): JSX.Element {
 
     const sendUpdateTeacherMe = (teacher: TeacherUserModel): void => {
         teacherService.updateTeacherMe(teacher).then((res) => {
+            console.log(teacher);
+            
             store.dispatch(updateTeacherAction(teacher))
             notify.success("פרטיך עודכנו בהצלחה");
             navigate("/teacher/"+ teacher.id);
