@@ -27,7 +27,7 @@ function TeacherHome(): JSX.Element {
         navigate("/teacher/" + teacher.id);
     }
     function student() {
-        navigate("/school-director/students");
+        navigate("/teacher/students");
     }
 
     return (
