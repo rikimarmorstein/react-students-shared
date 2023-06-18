@@ -10,6 +10,8 @@ import schoolDirectorService from "../../../Services/SchoolDirectorService";
 import { updateTeacherAction } from "../../../Redux/SchoolDirectorState";
 import notify from "../../../Services/NotificationService";
 import { TextField } from "@mui/material";
+import { IoChevronBackCircleSharp } from "react-icons/io5";
+
 
 
 function UpdateTeacher(): JSX.Element {
@@ -43,9 +45,15 @@ function UpdateTeacher(): JSX.Element {
         })
     }
 
+    function goBack() {
+        navigate("/school-director/teachers")
+    }
+
     return (
         <div>
             <form className='UpdateTeacher' onSubmit={handleSubmit(sendUpdateTeacher)}>
+            <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp/></button>
+
             <h1>עדכון מורה</h1>
 
             <label htmlFor="firstName">שם פרטי של המורה</label>

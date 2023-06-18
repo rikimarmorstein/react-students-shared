@@ -8,7 +8,9 @@ import { useForm } from "react-hook-form";
 import TeacherUserModel from "../../../Models/TeacherUserModel";
 import schoolDirectorService from "../../../Services/SchoolDirectorService";
 import { addTeacherAction } from "../../../Redux/SchoolDirectorState";
-import {TextField } from "@mui/material";
+import { TextField } from "@mui/material";
+import { IoChevronBackCircleSharp } from "react-icons/io5";
+
 
 
 function AddTeacher(): JSX.Element {
@@ -20,7 +22,7 @@ function AddTeacher(): JSX.Element {
         lastName: yup.string().required("חסר שם משפחה"),
         phone: yup.string().min(9).max(10).required("יש להזין מספר בין 9-10 ספרות"),
         password: yup.string().min(4).max(10).required("חובה להכיל מינימום 4 תווים ומקסימום 10 תווים"),
-       
+
     })
 
     const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm<TeacherUserModel>({
@@ -38,10 +40,16 @@ function AddTeacher(): JSX.Element {
         })
     }
 
+    function goBack() {
+        navigate("/school-director/teachers")
+    }
+
     return (
         <div>
             <form className='AddTeacher' onSubmit={handleSubmit(sendTeacher)}>
-            <h1>הוספת מורה</h1>
+            <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp/></button>
+
+                <h1>הוספת מורה</h1>
 
                 <label htmlFor="firstName">שם פרטי של המורה</label>
                 <TextField {...register("firstName")} id='firstName' type="text" placeholder='הזן את שם הפרטי' />

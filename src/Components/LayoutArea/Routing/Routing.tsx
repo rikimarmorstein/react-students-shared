@@ -46,13 +46,13 @@ function Routing(): JSX.Element {
                 <Route path="/add-student" element={<AddStudent />} />
                 <Route path="/school-director/students" element={<AllStudents />} />
                 <Route path="/school-director/students/update/:studentId" element={<UpdateStudent />} />
-               <Route path="/school-director/students/delete/:studentId" element={<DeleteStudent />} />
+                <Route path="/school-director/students/delete/:studentId" element={<DeleteStudent />} />
 
 //teacher
                 <Route path="/teacher/:id" element={<TeacherDetails />} />
                 <Route path="/teacher-home" element={<TeacherHome />} />
                 <Route path="/update-teacher/:id" element={<UpdateTeacherMe />} />
-                
+
 //student in teacher
                 {/* <Route path="/student" element={<StudentDetails />} /> */}
                 {/* <Route path="/student-home" element={< />} /> */}

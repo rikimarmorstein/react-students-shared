@@ -10,6 +10,8 @@ import Cause from "../../../Models/Cause";
 import Hour from "../../../Models/Hour";
 import store from "../../../Redux/Store";
 import { updateStudentsAction } from "../../../Redux/SchoolDirectorState";
+import { IoChevronBackCircleSharp } from "react-icons/io5";
+
 import teacherService from "../../../Services/TeacherService";
 
 function UpdateStudent(): JSX.Element {
@@ -17,14 +19,14 @@ function UpdateStudent(): JSX.Element {
     const id = +params.studentId;
     const { register, handleSubmit, formState, setValue } = useForm<StudentUserModel>();
     const [travel, setTravel] = useState<boolean>();
-//    const [cause, setCause] = useState<Cause>();
-   // let cause:Cause;
+    //    const [cause, setCause] = useState<Cause>();
+    // let cause:Cause;
     const navigate = useNavigate();
 
     useEffect(() => {
 
         schoolDirectorService.getOneStudent(id)
-        
+
             .then((s) => {
                 setValue("firstName", s.data.firstName)
                 setValue("lastName", s.data.lastName)
@@ -39,7 +41,7 @@ function UpdateStudent(): JSX.Element {
                 setValue("numClass", s.data.numClass)
                 setValue("numBus", s.data.numBus)
                 setValue("travel", s.data.travel)
-                                // setValue("password", s.data.password)
+                // setValue("password", s.data.password)
 
             })
             .catch((err) =>
@@ -49,14 +51,14 @@ function UpdateStudent(): JSX.Element {
     async function send(student: StudentUserModel) {
         student.id = id;
         try {
-            if(travel===false){
+            if (travel === false) {
                 schoolDirectorService.setStudentToTravel(id);
-student.cause=null;
-            }else{
-                
-           //  schoolDirectorService.setStudentToNotTravel( id );  
+                student.cause = null;
+            } else {
+
+                //  schoolDirectorService.setStudentToNotTravel( id );  
             }
-            
+
             await schoolDirectorService.updateStudent(student);
             console.log(student.cause);
             console.log(student.travel);
@@ -77,16 +79,22 @@ student.cause=null;
     //       //  setCause(currentCategory);
     //    return cause === currentCategory;
     //     }
-   //     schoolDirectorService.setStudentToNotTravel(id);
-   
+    //     schoolDirectorService.setStudentToNotTravel(id);
+
     function yes() {
         setTravel(false);
-     //   schoolDirectorService.setStudentToTravel(id);
+        //   schoolDirectorService.setStudentToTravel(id);
+    }
+
+    function goBack() {
+        navigate("/school-director/students")
     }
 
     return (
         <div className="UpdateStudent">
-			   <form>
+            <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp /></button>
+
+            <form>
                 <h2>עדכון תלמיד</h2>
 
                 <label>מספר זהות:</label><br />
@@ -155,26 +163,26 @@ student.cause=null;
 
                     </Select>
                 </FormControl>
-              {/* <span>{formState.errors?.travel?.message}</span><br /><br /> */}
+                {/* <span>{formState.errors?.travel?.message}</span><br /><br /> */}
                 <br />
                 <FormControl variant="outlined" style={{ 'width': '100%' }} >
                     <InputLabel id="demo-simple-select-outlined-label"></InputLabel>
-                   {travel === true ? <>
-                    <Select
-                        defaultValue={Cause.ABSENCE}
-                        labelId="demo-simple-select-outlined-label"
-                        id="demo-simple-select-outlined"
-                        required {...register("cause")}>
+                    {travel === true ? <>
+                        <Select
+                            defaultValue={Cause.ABSENCE}
+                            labelId="demo-simple-select-outlined-label"
+                            id="demo-simple-select-outlined"
+                            required {...register("cause")}>
 
-                        <MenuItem value={Cause.ABSENCE} >העדרות</MenuItem>
-                        <MenuItem value={Cause.RELEASE} >שחרור</MenuItem>
-                        <MenuItem value={Cause.OTHER} >אחר</MenuItem>
-                        <span>{formState.errors?.cause?.message}</span><br /><br />
+                            <MenuItem value={Cause.ABSENCE} >העדרות</MenuItem>
+                            <MenuItem value={Cause.RELEASE} >שחרור</MenuItem>
+                            <MenuItem value={Cause.OTHER} >אחר</MenuItem>
+                            <span>{formState.errors?.cause?.message}</span><br /><br />
 
-                    </Select>
-                   </> : <></>}
+                        </Select>
+                    </> : <></>}
                 </FormControl>
-                
+
                 <br />  <br />
                 <label>כתובת איסוף: </label><br />
                 <TextField type="text" {...register("pickupAddress",
@@ -192,7 +200,7 @@ student.cause=null;
                 <FormControl variant="outlined" style={{ 'width': '100%' }} >
                     <InputLabel id="demo-simple-select-outlined-label"></InputLabel>
                     <Select
-                     defaultValue={Hour.SIXTEEN}
+                        defaultValue={Hour.SIXTEEN}
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
                         required {...register("hour")}>
@@ -212,7 +220,7 @@ student.cause=null;
 
 
                 <Button onClick={handleSubmit(send)}>שמור</Button>
-</form>
+            </form>
         </div>
     );
 }

@@ -10,6 +10,8 @@ import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@m
 import { useState } from "react";
 import Cause from "../../../Models/Cause";
 import Hour from "../../../Models/Hour";
+import { IoChevronBackCircleSharp } from "react-icons/io5";
+
 
 function AddStudent(): JSX.Element {
 
@@ -17,6 +19,10 @@ function AddStudent(): JSX.Element {
 
     const { register, handleSubmit, formState } = useForm<StudentUserModel>();
     const navigate = useNavigate();
+
+    function goBack() {
+        navigate("/school-director/students")
+    }
 
     async function send(student: StudentUserModel) {
 
@@ -40,6 +46,8 @@ function AddStudent(): JSX.Element {
     }
     return (
         <div className="AddStudent">
+            <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp /></button>
+
             <form>
                 <h2>הוספת תלמיד</h2>
 

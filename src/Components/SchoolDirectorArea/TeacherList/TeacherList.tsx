@@ -64,7 +64,7 @@ function TeacherList(): JSX.Element {
                 <table>
                     {/* <thead> */}
                         <tr>
-                            <th> שם פרטי </th>
+                            <th> שם פרטי </th> 
                             <th> שם משפחה </th>
                             <th> טלפון </th>
                             <th> משויך/כת לכיתה </th>
