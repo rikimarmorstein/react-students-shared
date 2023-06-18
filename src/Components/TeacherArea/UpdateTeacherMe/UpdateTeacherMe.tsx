@@ -20,18 +20,18 @@ function UpdateTeacherMe(): JSX.Element {
     const params = useParams();
     const teacherId: number = Number(params.id);
     // const [teacher, setTeacher] = useState<TeacherUserModel>(store.getState().schoolState.teachers.filter(teacher => teacher.id === teacherId)[0]);
-    const {  register, handleSubmit,  formState, setValue } = useForm<TeacherUserModel>();
+    const { register, handleSubmit, formState, setValue } = useForm<TeacherUserModel>();
 
     const schema = yup.object().shape({
         firstName: yup.string().required("חסר של פרטי"),
         lastName: yup.string().required("חסר שם משפחה"),
-      //   phone: yup.string().min(9).max(10).required("יש להזין מספר בין 9-10 ספרות"),
-     // password: yup.string().min(4).max(10).required("חובה להכיל מינימום 4 תווים ומקסימום 10 תווים")
+        //   phone: yup.string().min(9).max(10).required("יש להזין מספר בין 9-10 ספרות"),
+        // password: yup.string().min(4).max(10).required("חובה להכיל מינימום 4 תווים ומקסימום 10 תווים")
     })
     useEffect(() => {
 
         teacherService.getTeacherDetails()
-        
+
             .then((s) => {
                 setValue("firstName", s.data.firstName)
                 setValue("lastName", s.data.lastName)
@@ -40,7 +40,7 @@ function UpdateTeacherMe(): JSX.Element {
                 setValue("numClass", s.data.numClass)
 
                 console.log(s);
-                 })
+            })
 
             .catch((err) =>
                 notificationService.error(err)
@@ -56,13 +56,13 @@ function UpdateTeacherMe(): JSX.Element {
 
     const sendUpdateTeacherMe = (teacher: TeacherUserModel): void => {
         console.log(teacher);
-        teacher.id=teacherId;
+        teacher.id = teacherId;
         teacherService.updateTeacherMe(teacher).then((res) => {
             console.log(teacher);
-            
+
             store.dispatch(updateTeacherAction(teacher))
             notify.success("פרטיך עודכנו בהצלחה");
-            navigate("/teacher/"+ teacher.id);
+            navigate("/teacher/" + teacher.id);
         }).catch((error) => {
             notify.error(error);
         })
@@ -71,14 +71,14 @@ function UpdateTeacherMe(): JSX.Element {
     return (
         <div>
             <form className='UpdateTeacher' onSubmit={handleSubmit(sendUpdateTeacherMe)}>
-            <h1>עדכון מורה</h1>
+                <h1>עדכון מורה</h1>
 
-            <label htmlFor="firstName">שם פרטי של המורה</label>
+                <label htmlFor="firstName">שם פרטי של המורה</label>
                 <TextField {...register("firstName")} id='firstName' type="text" />
                 <span>{formState.errors?.firstName?.message}</span>
 
                 <label htmlFor="lastName">שם משפחה של המורה</label>
-                <TextField {...register("lastName")} id='lastName' type="text"  />
+                <TextField {...register("lastName")} id='lastName' type="text" />
                 <span>{formState.errors?.lastName?.message}</span>
 
                 {/* <label htmlFor="phone"> טלפון של המורה</label>
@@ -92,9 +92,9 @@ function UpdateTeacherMe(): JSX.Element {
                 <label htmlFor="numClass">מספר כיתה אליה משויך</label>
                 <TextField {...register("numClass")} id='numClass' type="text" />
                 <span>{errors.numClass?.message}</span> */}
-            
+
                 <div className='vertical-center'>
-                    <button 
+                    <button
                     // disabled={!isValid}
                     >עדכן</button>
                 </div>
