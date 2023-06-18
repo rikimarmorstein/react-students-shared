@@ -6,6 +6,9 @@ import schoolDirectorService from "../../../Services/SchoolDirectorService";
 import store from "../../../Redux/Store";
 import { fetchTeacherAction } from "../../../Redux/SchoolDirectorState";
 import notify from "../../../Services/NotificationService"
+import { BsFillTrash3Fill, BsFillPencilFill , BsPersonFillAdd} from "react-icons/bs";
+import { IoChevronBackCircleSharp } from "react-icons/io5";
+
 // import XLSX from 'xlsx';
 
 function TeacherList(): JSX.Element {
@@ -56,8 +59,8 @@ function TeacherList(): JSX.Element {
         <div>
             <div className="TeacherList">
                 <h1>מורים</h1>
-                <button onClick={addTeacher}>הוספת מורה</button>
-                <button className="ToBack" onClick={goBack}>🔙 הקודם</button>
+                <button onClick={addTeacher}><BsPersonFillAdd/></button>
+                <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp/></button>
                 <table>
                     {/* <thead> */}
                         <tr>
@@ -74,8 +77,8 @@ function TeacherList(): JSX.Element {
                                 <td> {teacher.lastName} </td>
                                 <td> {teacher.phone} </td>
                                 <td> {teacher.numClass} </td>
-                                <td> <NavLink to={"/school-director/update-teacher/"+ teacher.id}>עדכון</NavLink></td>
-                                <td> <NavLink to={"/school-director/delete-teacher/"+ teacher.id}>מחיקה</NavLink></td>
+                                <td> <NavLink to={"/school-director/update-teacher/"+ teacher.id}><BsFillPencilFill /></NavLink></td>
+                                <td> <NavLink to={"/school-director/delete-teacher/"+ teacher.id}><BsFillTrash3Fill /></NavLink></td>
                             </tr>
                         ))}
                     {/* </tbody> */}
