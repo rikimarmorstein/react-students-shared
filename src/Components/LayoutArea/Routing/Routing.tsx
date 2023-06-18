@@ -18,6 +18,7 @@ import UpdateStudent from "../../SchoolDirectorArea/UpdateStudent/UpdateStudent"
 import UpdateTeacherMe from "../../TeacherArea/UpdateTeacherMe/UpdateTeacherMe";
 import ParentHome from "../../ParentArea/ParentHome/ParentHome";
 import DeleteStudent from "../../SchoolDirectorArea/DeleteStudent/DeleteStudent";
+import TransportationDetails from "../../TransportationArea/TransportationDetails/TransportationDetails";
 
 
 function Routing(): JSX.Element {
@@ -57,7 +58,7 @@ function Routing(): JSX.Element {
                 {/* <Route path="/student" element={<StudentDetails />} /> */}
                 {/* <Route path="/student-home" element={< />} /> */}
 //transportation
-                {/* <Route path="/transportation-home" element={<TransportationDetails />} /> */}
+                <Route path="/transportation-home" element={<TransportationDetails />} />
 // parent
                 <Route path="/parent-home" element={<ParentHome />} />
 
