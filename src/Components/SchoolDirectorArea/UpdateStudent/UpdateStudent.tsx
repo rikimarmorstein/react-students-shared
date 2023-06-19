@@ -135,9 +135,9 @@ function UpdateStudent(): JSX.Element {
                 <span>{formState.errors?.phone?.message}</span><br /><br />
 
                 <label>מספר כיתה: </label><br />
-                <TextField type="number" {...register("numClass",
+                <TextField type="text" {...register("numClass",
                     {
-                        min: { value: 0, message: "לא ניתן להכניס מספר שלילי" },
+                        // min: { value: 0, message: "לא ניתן להכניס מספר שלילי" },
                         required: { value: true, message: "חסר numClass" },
                     })} />
                 <span>{formState.errors?.numClass?.message}</span><br /><br />
@@ -194,7 +194,7 @@ function UpdateStudent(): JSX.Element {
                 <label>הערות: </label><br />
                 <TextField type="text" {...register("remark",
                     {
-                        required: { value: true, message: "חסר remark" },
+                        // required: { value: true, message: "חסר remark" },
                     })} />
                 <span>{formState.errors?.remark?.message}</span><br /><br />
                 <FormControl variant="outlined" style={{ 'width': '100%' }} >
