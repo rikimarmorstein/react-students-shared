@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import "./AllStudents.css";
 import StudentUserModel from "../../../Models/StudentUserModel";
 import schoolDirectorService from "../../../Services/SchoolDirectorService";
@@ -11,26 +11,71 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { BsFillTrash3Fill, BsFillPencilFill, BsPersonFillAdd } from "react-icons/bs";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
 import { Button } from "@mui/material";
+
+
 function AllStudents(): JSX.Element {
-
-
-  const [students, setStudents] = useState<StudentUserModel[]>(store.getState().schoolState.students);
-  // const [selectedName, setSelectedName] = useState<string>("");
-
-
   const params = useParams();
   const studentId = +params.id;
-
   const navigate = useNavigate();
+  // const [students, setStudents] = useState<StudentUserModel[]>(store.getState().schoolState.students);
+  // const [classLayer, setClassLayer] = useState<string>("");
+  // // const [selectedName, setSelectedName] = useState<string>("");
 
-  function AddStudent() {
-    navigate("/add-student");
+  // function changeSelectClass(e: ChangeEvent<HTMLSelectElement>) {
+  //   const selectedClassLayer = e.currentTarget.value;
+  //   setClassLayer(selectedClassLayer);
+    
+  const [students, setStudents] = useState<StudentUserModel[]>(store.getState().schoolState.students);
+  const [classFilter, setClassFilter] = useState<string>("");
+  const [busFilter, setBusFilter] = useState<number | null>(null);
+  const [letterOrderFilter, setLetterOrderFilter] = useState<string>("");
+
+  function handleClassFilterChange(e: ChangeEvent<HTMLSelectElement>) {
+    setClassFilter(e.target.value);
   }
 
-  function goBack() {
-    navigate("/school-director")
+  function handleBusFilterChange(e: ChangeEvent<HTMLInputElement>) {
+    const busNumber = parseInt(e.target.value);
+    setBusFilter(isNaN(busNumber) ? null : busNumber);
   }
 
+  function handleLetterOrderFilterChange(e: ChangeEvent<HTMLInputElement>) {
+    setLetterOrderFilter(e.target.value);
+  }
+
+    function AddStudent() {
+      navigate("/add-student");
+    }
+  
+    function goBack() {
+      navigate("/school-director")
+    }
+
+    useEffect(() => {
+      let filteredStudents = store.getState().schoolState.students;
+  
+      if (classFilter !== "") {
+        filteredStudents = filteredStudents.filter((student) => student.numClass === classFilter);
+      }
+  
+      if (busFilter !== null) {
+        filteredStudents = filteredStudents.filter((student) => student.numBus === busFilter);
+      }
+  
+      if (letterOrderFilter !== "") {
+        filteredStudents = filteredStudents.filter((student) => student.lastName.startsWith(letterOrderFilter));
+      }
+  
+      setStudents(filteredStudents);
+    }, [classFilter, busFilter, letterOrderFilter]);
+  //   let filterStudents = store.getState().schoolState.students;
+  //   if (selectedClassLayer !== "") {
+  //     filterStudents = filterStudents.filter((student) => {
+  //       return student.numClass === selectedClassLayer;
+  //     })
+  //   }
+  //   setStudents(filterStudents);
+  // }
   useEffect(() => {
     (async () => {
       schoolDirectorService.getAllStudents().then((arr) => {
@@ -42,6 +87,7 @@ function AllStudents(): JSX.Element {
     })();
 
   }, []);
+
 
 
   async function deleteStudent(studentId: number) {
@@ -66,8 +112,27 @@ function AllStudents(): JSX.Element {
   return (
     <div className="AllStudents">
       <h1>תלמידים</h1>
-      <button onClick={AddStudent}><BsPersonFillAdd/> </button>
-      <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp/></button>
+      <button onClick={AddStudent}><BsPersonFillAdd /> </button>
+      <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp /></button>
+
+      <div className="סנן לפי">
+        <label>כיתות:</label>
+        <select name="classFilter" id="classFilter" onChange={handleClassFilterChange} value={classFilter}>
+          <option value="">הכל</option>
+          <option value="א">כיתות א</option>
+          <option value="ב">כיתות ב</option>
+          <option value="ג">כיתות ג</option>
+          <option value="ד">כיתות ד</option>
+          <option value="ה">כיתות ה</option>
+          <option value="ו">כיתות ו</option>
+        </select>
+
+        <label>מספר הסעה:</label>
+        <input type="number" name="busFilter" id="busFilter" min={0} onChange={handleBusFilterChange} value={busFilter ?? ""} />
+
+        <label>סדר אותיות:</label>
+        <input type="text" name="letterOrderFilter" id="letterOrderFilter" onChange={handleLetterOrderFilterChange} value={letterOrderFilter} />
+      </div>
 
       <table>
         <tr>

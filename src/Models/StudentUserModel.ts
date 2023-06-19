@@ -16,7 +16,7 @@ class StudentUserModel extends UserModel {
     public pickupAddress: string;
     public studentId: string;
     public remark: string;
-    public numClass: number;
+    public numClass: string;
     public numBus: number;
     public travel: boolean;
 }

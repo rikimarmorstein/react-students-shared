@@ -8,7 +8,7 @@ class TeacherUserModel extends UserModel {
     }
     public firstName: string;
     public lastName: string;
-    public numClass:number;
+    public numClass: string;
 }
 
 export default TeacherUserModel;
