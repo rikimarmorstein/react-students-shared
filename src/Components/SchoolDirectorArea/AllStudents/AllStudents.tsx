@@ -6,7 +6,6 @@ import schoolDirectorService from "../../../Services/SchoolDirectorService";
 import store from "../../../Redux/Store";
 import notificationService from "../../../Services/NotificationService";
 import StudentCard from "../StudentCard/StudentCard";
-import { format } from "path/win32";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { BsFillTrash3Fill, BsFillPencilFill, BsPersonFillAdd } from "react-icons/bs";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
@@ -14,15 +13,19 @@ import { Button } from "@mui/material";
 
 
 function AllStudents(): JSX.Element {
-  const params = useParams();
-  const studentId = +params.id;
+  const { id } = useParams();
+  const studentId = +id;
   const navigate = useNavigate();
 
-  const [students, setStudents] = useState<StudentUserModel[]>(store.getState().schoolState.students);
+  const [students, setStudents] = useState<StudentUserModel[]>([]); // Initialize with an empty array
+
+  // const [students, setStudents] = useState<StudentUserModel[]>(store.getState().schoolState.students);
   const [classFilter, setClassFilter] = useState<string>("");
   const [busFilter, setBusFilter] = useState<number | null>(null);
   const [letterOrderFilter, setLetterOrderFilter] = useState<string>("");
   const [sortBy, setSortBy] = useState<"bus" | "class">("bus");
+  const [boardingFilter, setBoardingFilter] = useState<string>("everyone");
+
 
   function handleSortByChange(e: ChangeEvent<HTMLSelectElement>) {
     setSortBy(e.target.value as "bus" | "class");
@@ -41,6 +44,10 @@ function AllStudents(): JSX.Element {
     setLetterOrderFilter(e.target.value);
   }
 
+  function handleBoardingFilterChange(e: ChangeEvent<HTMLSelectElement>) {
+    setBoardingFilter(e.target.value);
+  }
+
   function AddStudent() {
     navigate("/add-student");
   }
@@ -48,47 +55,6 @@ function AllStudents(): JSX.Element {
   function goBack() {
     navigate("/school-director")
   }
-
-  useEffect(() => {
-    let sortedStudents = [...store.getState().schoolState.students];
-  
-    if (sortBy === "bus") {
-      sortedStudents.sort((a, b) => a.numBus - b.numBus);
-    } else if (sortBy === "class") {
-      sortedStudents.sort((a, b) => {
-        if (a.numClass === b.numClass) {
-          return a.lastName.localeCompare(b.lastName);
-        } else {
-          return a.numClass.localeCompare(b.numClass);
-        }
-      });
-    }
-  
-    setStudents(sortedStudents);
-  }, [sortBy]);
-  
-  useEffect(() => {
-    let filteredStudents = store.getState().schoolState.students;
-
-
-    if (classFilter !== "") {
-      filteredStudents = filteredStudents.filter((student) => student.numClass === classFilter);
-    }
-
-    if (busFilter !== null) {
-      filteredStudents = filteredStudents.filter((student) => student.numBus === busFilter);
-    }
-
-    if (letterOrderFilter !== "") {
-      filteredStudents = filteredStudents.filter((student) => student.lastName.startsWith(letterOrderFilter));
-    }
-
-    filteredStudents.sort((a, b) => a.lastName.localeCompare(b.lastName));
-
-
-    setStudents(filteredStudents);
-  }, [classFilter, busFilter, letterOrderFilter]);
-
 
   useEffect(() => {
     (async () => {
@@ -103,6 +69,55 @@ function AllStudents(): JSX.Element {
   }, []);
 
 
+  useEffect(() => {
+    let sortedStudents = [...store.getState().schoolState.students];
+
+    if (sortBy === "bus") {
+      sortedStudents.sort((a, b) => a.numBus - b.numBus);
+    } else if (sortBy === "class") {
+      sortedStudents.sort((a, b) => {
+        if (a.numClass === b.numClass) {
+          return a.lastName.localeCompare(b.lastName);
+        } else {
+          return a.numClass.localeCompare(b.numClass);
+        }
+      });
+    }
+
+    setStudents(sortedStudents);
+  }, [sortBy]);
+
+
+
+  useEffect(() => {
+    let filteredStudents = [...store.getState().schoolState.students];
+
+    // let filteredStudents = store.getState().schoolState.students;
+
+
+    if (classFilter !== "") {
+      filteredStudents = filteredStudents.filter((student) => student.numClass === classFilter);
+    }
+
+    if (busFilter !== null) {
+      filteredStudents = filteredStudents.filter((student) => student.numBus === busFilter);
+    }
+
+    if (letterOrderFilter !== "") {
+      filteredStudents = filteredStudents.filter((student) => student.lastName.startsWith(letterOrderFilter));
+    }
+
+    if (boardingFilter === "boarding") {
+      filteredStudents = filteredStudents.filter((student) => student.travel);
+    } else if (boardingFilter === "not-boarding") {
+      filteredStudents = filteredStudents.filter((student) => !student.travel);
+    }
+
+    setStudents(filteredStudents);
+  }, [classFilter, busFilter, letterOrderFilter, boardingFilter]);
+
+  // }, [classFilter, busFilter, letterOrderFilter]);
+
 
   async function deleteStudent(studentId: number) {
 
@@ -111,7 +126,7 @@ function AllStudents(): JSX.Element {
 
       try {
         await schoolDirectorService.deleteStudent(studentId);
-        notificationService.success(" deleted");
+        notificationService.success("Deleted");
 
         navigate("/school-director/students");
 
@@ -129,15 +144,48 @@ function AllStudents(): JSX.Element {
       <button onClick={AddStudent}><BsPersonFillAdd /> </button>
       <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp /></button>
 
-      <div className="סנן לפי">
+      {/* <div className="SortBy">
         <label>סדר הצגה:</label>
         <select value={sortBy} onChange={handleSortByChange}>
           <option value="bus">מספר הסעה</option>
           <option value="class">מספר כיתה</option>
         </select>
+      </div> */}
+      <div className="Filters">
+        <h3>מיון:</h3>
+        <select onChange={handleSortByChange}>
+          <option value="bus">לפי מספר אוטובוס</option>
+          <option value="class">לפי כיתה</option>
+        </select>
+
+        <h3>סינון:</h3>
+        <input
+          type="text"
+          placeholder="כיתה"
+          value={classFilter}
+          onChange={handleClassFilterChange}
+        />
+        <input
+          type="number"
+          placeholder="מספר אוטובוס"
+          value={busFilter ?? ""}
+          onChange={handleBusFilterChange}
+        />
+        <input
+          type="text"
+          placeholder="חיפוש לפי שם משפחה"
+          value={letterOrderFilter}
+          onChange={handleLetterOrderFilterChange}
+        />
+        <select value={boardingFilter} onChange={handleBoardingFilterChange}>
+          <option value="everyone">הכל</option>
+          <option value="boarding">מבוטחים</option>
+          <option value="not-boarding">לא מבוטחים</option>
+        </select>
+
       </div>
 
-      <div className="סנן לפי">
+      {/* <div className="Filter">
         <label>כיתה</label>
         <input type="text" name="classFilter" id="classFilter" onChange={handleClassFilterChange} value={classFilter} />
 
@@ -146,7 +194,7 @@ function AllStudents(): JSX.Element {
 
         <label>חיפוש לפי שם משפחה</label>
         <input type="text" name="letterOrderFilter" id="letterOrderFilter" onChange={handleLetterOrderFilterChange} value={letterOrderFilter} />
-      </div>
+      </div> */}
       {/* Student list */}
       <table>
         <thead>
