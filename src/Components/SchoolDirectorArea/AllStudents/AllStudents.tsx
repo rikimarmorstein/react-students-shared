@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import "./AllStudents.css";
 import StudentUserModel from "../../../Models/StudentUserModel";
 import schoolDirectorService from "../../../Services/SchoolDirectorService";
@@ -10,6 +10,12 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { BsFillTrash3Fill, BsFillPencilFill, BsPersonFillAdd } from "react-icons/bs";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
 import { Button } from "@mui/material";
+import { saveAs } from "file-saver";
+import * as XLSX from "xlsx";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+
+
 
 
 function AllStudents(): JSX.Element {
@@ -25,6 +31,7 @@ function AllStudents(): JSX.Element {
   const [letterOrderFilter, setLetterOrderFilter] = useState<string>("");
   const [sortBy, setSortBy] = useState<"bus" | "class">("bus");
   const [boardingFilter, setBoardingFilter] = useState<string>("everyone");
+  const pdfRef = useRef(null);
 
 
   function handleSortByChange(e: ChangeEvent<HTMLSelectElement>) {
@@ -137,12 +144,49 @@ function AllStudents(): JSX.Element {
     }
   }
 
+  function handleExportToPdf() {
+    const input = pdfRef.current;
+  
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+  
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("students.pdf");
+    });
+  }
+
+  function handleExportToExcel() {
+    const worksheet = XLSX.utils.json_to_sheet(students);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Students");
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const data = new Blob([excelBuffer], { type: "application/octet-stream" });
+    saveAs(data, "students.xlsx");
+  }
+  
+  
+  
+
 
   return (
     <div className="AllStudents">
       <h1>תלמידים</h1>
       <button onClick={AddStudent}><BsPersonFillAdd /> </button>
       <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp /></button>
+
+      <div className="ExportButtons">
+      <Button onClick={handleExportToPdf}>Export to PDF</Button>
+      <Button onClick={handleExportToExcel}>Export to Excel</Button>
+    </div>
+
+    <div ref={pdfRef}> {/* Ref for PDF export */}
 
       <div className="Filters">
         <h3>מיון:</h3>
@@ -223,6 +267,8 @@ function AllStudents(): JSX.Element {
         </tbody>
       </table>
     </div>
+    </div>
+
   );
 }
 
