@@ -144,13 +144,6 @@ function AllStudents(): JSX.Element {
       <button onClick={AddStudent}><BsPersonFillAdd /> </button>
       <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp /></button>
 
-      {/* <div className="SortBy">
-        <label>סדר הצגה:</label>
-        <select value={sortBy} onChange={handleSortByChange}>
-          <option value="bus">מספר הסעה</option>
-          <option value="class">מספר כיתה</option>
-        </select>
-      </div> */}
       <div className="Filters">
         <h3>מיון:</h3>
         <select onChange={handleSortByChange}>
@@ -179,23 +172,11 @@ function AllStudents(): JSX.Element {
         />
         <select value={boardingFilter} onChange={handleBoardingFilterChange}>
           <option value="everyone">הכל</option>
-          <option value="boarding">מבוטחים</option>
-          <option value="not-boarding">לא מבוטחים</option>
+          <option value="boarding">מוסעים</option>
+          <option value="not-boarding">לא מוסעים</option>
         </select>
-
       </div>
 
-      {/* <div className="Filter">
-        <label>כיתה</label>
-        <input type="text" name="classFilter" id="classFilter" onChange={handleClassFilterChange} value={classFilter} />
-
-        <label>מספר הסעה:</label>
-        <input type="number" name="busFilter" id="busFilter" min={0} onChange={handleBusFilterChange} value={busFilter ?? ""} />
-
-        <label>חיפוש לפי שם משפחה</label>
-        <input type="text" name="letterOrderFilter" id="letterOrderFilter" onChange={handleLetterOrderFilterChange} value={letterOrderFilter} />
-      </div> */}
-      {/* Student list */}
       <table>
         <thead>
           <tr>
