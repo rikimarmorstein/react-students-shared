@@ -25,7 +25,7 @@ function AddStudent(): JSX.Element {
     }
 
     async function send(student: StudentUserModel) {
-//,
+
         try {
             console.log(student);
             await schoolDirectorService.addStudent(student);
