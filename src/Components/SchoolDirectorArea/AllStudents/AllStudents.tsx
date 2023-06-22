@@ -5,7 +5,6 @@ import schoolDirectorService from "../../../Services/SchoolDirectorService";
 
 import store from "../../../Redux/Store";
 import notificationService from "../../../Services/NotificationService";
-import StudentCard from "../StudentCard/StudentCard";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { BsFillTrash3Fill, BsFillPencilFill, BsPersonFillAdd } from "react-icons/bs";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
@@ -14,8 +13,6 @@ import { saveAs } from "file-saver";
 import * as XLSX from "xlsx";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-
-
 
 
 function AllStudents(): JSX.Element {
@@ -128,7 +125,7 @@ function AllStudents(): JSX.Element {
 
   async function deleteStudent(studentId: number) {
 
-    if (window.confirm("Are you sure?")) {
+    if (window.confirm("? האם אתה בטוח ")) {
       console.log(studentId);
 
       try {
@@ -146,34 +143,83 @@ function AllStudents(): JSX.Element {
 
   function handleExportToPdf() {
     const input = pdfRef.current;
-  
+
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF("p", "mm", "a4");
       const imgProps = pdf.getImageProperties(imgData);
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-  
+
       pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
       pdf.save("students.pdf");
     });
   }
 
+  // function handleExportToExcel() {
+  //   const worksheet = XLSX.utils.json_to_sheet(students);
+  //   const workbook = XLSX.utils.book_new();
+  //   XLSX.utils.book_append_sheet(workbook, worksheet, "Students");
+  //   const excelBuffer = XLSX.write(workbook, {
+  //     bookType: "xlsx",
+  //     type: "array",
+  //   });
+  //   const data = new Blob([excelBuffer], { type: "application/octet-stream" });
+  //   saveAs(data, "students.xlsx");
+  // }
   function handleExportToExcel() {
-    const worksheet = XLSX.utils.json_to_sheet(students);
+    // Convert student data to the desired format
+    const formattedStudents = students.map(student => ({
+      "שם פרטי": student.firstName,
+      "שם משפחה": student.lastName,
+      "מספר כיתה": student.numClass,
+      "מספר הסעה": student.numBus,
+      "האם נוסע": student.travel ? "✔" : "✖",
+      "סיבה": student.cause,
+      "שעת סיום": student.hour,
+      "טלפון": student.phone,
+      "תחנת איסוף": student.pickupAddress,
+      "הערות": student.remark
+    }));
+  
+    // Create worksheet from the formatted student data
+    const worksheet = XLSX.utils.json_to_sheet(formattedStudents);
+  
+    // Set the column headers in Hebrew
+    worksheet["A1"].v = "שם פרטי";
+    worksheet["B1"].v = "שם משפחה";
+    worksheet["C1"].v = "מספר כיתה";
+    worksheet["D1"].v = "מספר הסעה";
+    worksheet["E1"].v = "האם נוסע";
+    worksheet["F1"].v = "סיבה";
+    worksheet["G1"].v = "שעת סיום";
+    worksheet["H1"].v = "טלפון";
+    worksheet["I1"].v = "תחנת איסוף";
+    worksheet["J1"].v = "הערות";
+  
+    // Remove the column for identity card (assuming it was in column C)
+    const range = XLSX.utils.decode_range(worksheet["!ref"]);
+    for (let i = range.s.r; i <= range.e.r; i++) {
+      for (let j = 2; j <= range.e.c; j++) {
+        const cellAddress = XLSX.utils.encode_cell({ r: i, c: j });
+        const newCellAddress = XLSX.utils.encode_cell({ r: i, c: j - 1 });
+        worksheet[newCellAddress] = worksheet[cellAddress];
+      }
+    }
+    range.e.c -= 1;
+    worksheet["!ref"] = XLSX.utils.encode_range(range);
+  
+    // Create workbook and append the worksheet
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Students");
-    const excelBuffer = XLSX.write(workbook, {
-      bookType: "xlsx",
-      type: "array",
-    });
+  
+    // Generate the Excel file
+    const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
     const data = new Blob([excelBuffer], { type: "application/octet-stream" });
     saveAs(data, "students.xlsx");
   }
   
   
-  
-
 
   return (
     <div className="AllStudents">
@@ -182,91 +228,91 @@ function AllStudents(): JSX.Element {
       <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp /></button>
 
       <div className="ExportButtons">
-      <Button onClick={handleExportToPdf}>Export to PDF</Button>
-      <Button onClick={handleExportToExcel}>Export to Excel</Button>
-    </div>
-
-    <div ref={pdfRef}> {/* Ref for PDF export */}
-
-      <div className="Filters">
-        <h3>מיון:</h3>
-        <select onChange={handleSortByChange}>
-          <option value="bus">לפי מספר אוטובוס</option>
-          <option value="class">לפי כיתה</option>
-        </select>
-
-        <h3>סינון:</h3>
-        <input
-          type="text"
-          placeholder="כיתה"
-          value={classFilter}
-          onChange={handleClassFilterChange}
-        />
-        <input
-          type="number"
-          placeholder="מספר אוטובוס"
-          value={busFilter ?? ""}
-          onChange={handleBusFilterChange}
-        />
-        <input
-          type="text"
-          placeholder="חיפוש לפי שם משפחה"
-          value={letterOrderFilter}
-          onChange={handleLetterOrderFilterChange}
-        />
-        <select value={boardingFilter} onChange={handleBoardingFilterChange}>
-          <option value="everyone">הכל</option>
-          <option value="boarding">מוסעים</option>
-          <option value="not-boarding">לא מוסעים</option>
-        </select>
+        <Button onClick={handleExportToPdf}>PDF יצוא</Button>
+        <Button onClick={handleExportToExcel}>Excel יצוא</Button>
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>שם פרטי</th>
-            <th>שם משפחה</th>
-            <th>מספר זהות</th>
-            <th>מספר כיתה</th>
-            <th>מספר הסעה</th>
-            <th>האם נוסע</th>
-            <th>סיבה</th>
-            <th>שעת סיום</th>
-            <th>טלפון</th>
-            <th>תחנת איסוף</th>
-            <th>הערות</th>
-          </tr>
-        </thead>
-        <tbody>
+      <div ref={pdfRef}> {/* Ref for PDF export */}
 
-          {students.map((student) => (
-            <tr key={student.studentId}>
-              <td>{student.firstName}</td>
-              <td>{student.lastName}</td>
-              <td>{student.studentId}</td>
-              <td>{student.numClass}</td>
-              <td>{student.numBus}</td>
-              <td>{student.travel ? "✔" : "✖"}</td>
-              <td>{student.cause}</td>
-              <td>{student.hour}</td>
-              <td>{student.phone}</td>
-              <td>{student.pickupAddress}</td>
-              <td>{student.remark}</td>
-              <td>
-                <NavLink to={"/school-director/students/update/" + student.id}>
-                  <BsFillPencilFill />
-                </NavLink>
-              </td>
-              <td>
-                <NavLink to={"/school-director/students/delete/" + student.id}>
-                  <BsFillTrash3Fill />
-                </NavLink>
-              </td>
+        <div className="Filters">
+          <h3>מיון:</h3>
+          <select onChange={handleSortByChange}>
+            <option value="bus">לפי מספר אוטובוס</option>
+            <option value="class">לפי כיתה</option>
+          </select>
+
+          <h3>סינון:</h3>
+          <input
+            type="text"
+            placeholder="כיתה"
+            value={classFilter}
+            onChange={handleClassFilterChange}
+          />
+          <input
+            type="number"
+            placeholder="מספר אוטובוס"
+            value={busFilter ?? ""}
+            onChange={handleBusFilterChange}
+          />
+          <input
+            type="text"
+            placeholder="חיפוש לפי שם משפחה"
+            value={letterOrderFilter}
+            onChange={handleLetterOrderFilterChange}
+          />
+          <select value={boardingFilter} onChange={handleBoardingFilterChange}>
+            <option value="everyone">הכל</option>
+            <option value="boarding">מוסעים</option>
+            <option value="not-boarding">לא מוסעים</option>
+          </select>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>שם פרטי</th>
+              <th>שם משפחה</th>
+              <th>מספר זהות</th>
+              <th>מספר כיתה</th>
+              <th>מספר הסעה</th>
+              <th>האם נוסע</th>
+              <th>סיבה</th>
+              <th>שעת סיום</th>
+              <th>טלפון</th>
+              <th>תחנת איסוף</th>
+              <th>הערות</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+
+            {students.map((student) => (
+              <tr key={student.studentId}>
+                <td>{student.firstName}</td>
+                <td>{student.lastName}</td>
+                <td>{student.studentId}</td>
+                <td>{student.numClass}</td>
+                <td>{student.numBus}</td>
+                <td>{student.travel ? "✔" : "✖"}</td>
+                <td>{student.cause}</td>
+                <td>{student.hour}</td>
+                <td>{student.phone}</td>
+                <td>{student.pickupAddress}</td>
+                <td>{student.remark}</td>
+                <td>
+                  <NavLink to={"/school-director/students/update/" + student.id}>
+                    <BsFillPencilFill />
+                  </NavLink>
+                </td>
+                <td>
+                  <NavLink to={"/school-director/students/delete/" + student.id}>
+                    <BsFillTrash3Fill />
+                  </NavLink>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
 
   );
