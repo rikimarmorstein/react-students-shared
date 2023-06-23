@@ -4,9 +4,10 @@ import SchoolUserModel from "../Models/SchoolUserModel";
 import tokenAxios from "../Utils/Interceptors";
 import TeacherUserModel from "../Models/TeacherUserModel";
 import StudentUserModel from "../Models/StudentUserModel";
-import { fetchStudentsAction } from "../Redux/SchoolDirectorState";
+import { fetchStudentsAction, fetchTransportationAction } from "../Redux/SchoolDirectorState";
 import store from "../Redux/Store";
 import Cause from "../Models/Cause";
+import TransportationModel from "../Models/TransportationModel";
 
 class SchoolDirectorService{
     private schoolDirectorUrl = appConfig.schoolDirectorUrl;
@@ -91,6 +92,19 @@ class SchoolDirectorService{
 
     public getAllStudentsToTravelByBus(numBus:number): Promise<AxiosResponse<StudentUserModel[]>> {
         return tokenAxios.get(this.schoolDirectorUrl + "all-students-to-travel-by-bus?all-students-to-travel-by-bus=" +numBus);
+    }
+    public addTransportation(transportation: TransportationModel): Promise<AxiosResponse<any>> {
+        return tokenAxios.post(this.schoolDirectorUrl + "add-transportation" , transportation);
+    }
+    public async getAllTransportations(): Promise<TransportationModel[]> {
+        if (store.getState().schoolState.transportation.length <= 1) {
+            const response = await tokenAxios.get<TransportationModel[]>(this.schoolDirectorUrl + "all-transportation");
+            const transportation = response.data;
+
+            store.dispatch(fetchTransportationAction(transportation));
+            return transportation;
+        }
+        return store.getState().schoolState.transportation;
     }
 }
 

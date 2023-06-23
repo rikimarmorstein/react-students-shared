@@ -1,6 +1,7 @@
 import SchoolUserModel from "../Models/SchoolUserModel";
 import StudentUserModel from "../Models/StudentUserModel";
 import TeacherUserModel from "../Models/TeacherUserModel";
+import TransportationModel from "../Models/TransportationModel";
 
 
 //1. schools state-the data we need at global application level
@@ -8,6 +9,7 @@ export class SchoolDirectorState {
     public schools: SchoolUserModel[] = [];
     public teachers: TeacherUserModel[] = [];
     public students : StudentUserModel[] = [];
+    public transportation: TransportationModel[]=[];
 }
 
 //2. Action Types - list of actions - enum
@@ -26,6 +28,11 @@ export enum SchoolDirectorActionType {
     AddSchool = "AddSchool",//post
     UpdateSchool = "UpdateSchool",//put
     DeleteSchool = "DeleteSchool",//delete
+
+    FetchTransportations = "FetchTransportations",//get
+    AddTransportation = "AddTransportation",//post
+    UpdateTransportation = "UpdateTransportation",//put
+    DeleteTransportation = "DeleteTransportation",//delete
 
     Logout = "Logout"
 
@@ -79,6 +86,19 @@ export function deleteSchoolAction(id: number): SchoolDirectorsAction {
 export function logoutAction(): SchoolDirectorsAction {
     return { type: SchoolDirectorActionType.Logout, payload: {} };
 }
+export function fetchTransportationAction(transportation: TransportationModel[]): SchoolDirectorsAction {
+    return { type: SchoolDirectorActionType.FetchTransportations, payload: transportation };
+}
+export function addTransportationAction(transportation: TransportationModel): SchoolDirectorsAction {
+    return { type: SchoolDirectorActionType.AddTransportation, payload: transportation};
+}
+export function updateTransportationAction(transportation: TransportationModel): SchoolDirectorsAction {
+    return { type: SchoolDirectorActionType.UpdateTransportation, payload: transportation};
+}
+export function deleteTransportationAction(id: number): SchoolDirectorsAction {
+    return { type: SchoolDirectorActionType.DeleteTransportation, payload: id};
+}
+
 //5. reducer - a single function performing any of the above actions
 export function schoolReducer(currentState: SchoolDirectorState = new SchoolDirectorState(), action: SchoolDirectorsAction): SchoolDirectorState {
     const newState = { ...currentState };//duplicate current state
@@ -112,24 +132,25 @@ export function schoolReducer(currentState: SchoolDirectorState = new SchoolDire
             const indexToDeleteTeacher = newState.teachers.findIndex(p => p.id === action.payload);
             if (indexToDeleteTeacher >= 0) newState.teachers.splice(indexToDeleteTeacher, 1);
             break;
-        case SchoolDirectorActionType.FetchSchools://here payload is all schools
-            newState.schools = action.payload;
+        case SchoolDirectorActionType.FetchTransportations://here payload is all schools
+            newState.transportation = action.payload;
             break;
-        case SchoolDirectorActionType.AddSchool://here payload is a single school to add
-            newState.schools.push(action.payload);
+        case SchoolDirectorActionType.AddTransportation://here payload is a single school to add
+            newState.transportation.push(action.payload);
             break;
-        case SchoolDirectorActionType.UpdateSchool://here payload is a single school to update
-            const indexToUpdate = newState.schools.findIndex(p => p.id === action.payload.id);
-            if (indexToUpdate >= 0) newState.schools[indexToUpdate] = action.payload;
+        case SchoolDirectorActionType.UpdateTransportation://here payload is a single school to update
+            const indexToUpdate = newState.transportation.findIndex(p => p.id === action.payload.id);
+            if (indexToUpdate >= 0) newState.transportation[indexToUpdate] = action.payload;
             break;
-        case SchoolDirectorActionType.DeleteSchool://here payload is an id of school to delete
-            const indexToDelete = newState.schools.findIndex(p => p.id === action.payload);
-            if (indexToDelete >= 0) newState.schools.splice(indexToDelete, 1);
+        case SchoolDirectorActionType.DeleteTransportation://here payload is an id of school to delete
+            const indexToDelete = newState.transportation.findIndex(p => p.id === action.payload);
+            if (indexToDelete >= 0) newState.transportation.splice(indexToDelete, 1);
             break;
         case SchoolDirectorActionType.Logout://here payload is an id of school to delete
             newState.schools=[];
             newState.students=[];
             newState.teachers=[];
+            newState.transportation=[];
             break;
     }
     return newState;

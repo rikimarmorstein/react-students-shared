@@ -20,6 +20,8 @@ import ParentHome from "../../ParentArea/ParentHome/ParentHome";
 import DeleteStudent from "../../SchoolDirectorArea/DeleteStudent/DeleteStudent";
 import TransportationDetails from "../../TransportationArea/TransportationDetails/TransportationDetails";
 import AllStudentsTeacher from "../../TeacherArea/AllStudentsTeacher/AllStudentsTeacher";
+import AddTransportation from "../../TransportationArea/AddTransportation/AddTransportation";
+import TransportationList from "../../TransportationArea/TransportationList/TransportationList";
 
 
 function Routing(): JSX.Element {
@@ -59,7 +61,11 @@ function Routing(): JSX.Element {
 
                 {/* <Route path="/student-home" element={< />} /> */}
 //transportation
-                <Route path="/transportation-home" element={<TransportationDetails />} />
+                <Route path="/school-director/transportation-home" element={<TransportationDetails />} />
+                <Route path="/school-director/transportation-home/add" element={<AddTransportation />} />
+                <Route path="/school-director/transportation-home/all" element={<TransportationList />} />
+
+
 // parent
                 <Route path="/parent-home" element={<ParentHome />} />
 

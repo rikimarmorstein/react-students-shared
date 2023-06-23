@@ -39,7 +39,7 @@ function SchoolDirectorDetails(): JSX.Element {
     }
 
     function transportation() {
-        navigate("/transportation-home");
+        navigate("/school-director/transportation-home");
     }
 
 
