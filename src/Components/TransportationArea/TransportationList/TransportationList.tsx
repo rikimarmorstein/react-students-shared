@@ -7,7 +7,7 @@ import store from "../../../Redux/Store";
 import notify from "../../../Services/NotificationService"
 
 function TransportationList(): JSX.Element {
-    
+
     const [transportations, setTransportations] = useState<TransportationModel[]>([]);
 
     const navigate = useNavigate();
@@ -22,25 +22,25 @@ function TransportationList(): JSX.Element {
 
     return (
         <div className="TransportationList">
-			<table>
-                    {/* <thead> */}
-                        <tr>
-                            <th> מספר הסעה </th> 
-                            <th> תחנות </th>
-                           
-                        </tr>
-                    {/* </thead>
+            <table>
+                {/* <thead> */}
+                <tr>
+                    <th> מספר הסעה </th>
+                    <th> תחנות </th>
+
+                </tr>
+                {/* </thead>
                     <tbody> */}
-                        {transportations.map((transportation) => (
-                            <tr>
-                                <td> {transportation.numBus} </td>
-                                <td> {transportation.stations} </td>
-                              
-                                {/* <td> <NavLink to={"/school-director/"}>ב</NavLink></td> */}
-                            </tr>
-                        ))}
-                    {/* </tbody> */}
-                </table>
+                {transportations.map((transportation) => (
+                    <tr>
+                        <td> {transportation.numBus} </td>
+                        <td> {transportation.stations} </td>
+
+                        {/* <td> <NavLink to={"/school-director/"}>ב</NavLink></td> */}
+                    </tr>
+                ))}
+                {/* </tbody> */}
+            </table>
 
         </div>
     );

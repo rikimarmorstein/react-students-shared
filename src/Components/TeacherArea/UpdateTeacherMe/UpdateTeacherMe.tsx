@@ -70,7 +70,7 @@ function UpdateTeacherMe(): JSX.Element {
     }
 
     function Back() {
-        navigate("/teacher/"+ teacherId);
+        navigate("/teacher/" + teacherId);
     }
 
     return (

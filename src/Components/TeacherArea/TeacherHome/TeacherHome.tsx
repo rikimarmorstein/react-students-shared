@@ -35,7 +35,7 @@ function TeacherHome(): JSX.Element {
             {teacher == undefined && <Loading />}
             {teacher ?
                 <div className="teacherCard">
-                    <h1> {teacher.firstName +" "+ teacher.lastName}</h1>
+                    <h1> {teacher.firstName + " " + teacher.lastName}</h1>
                     {/* <p> {teacher.firstName +" "+ teacher.lastName} :שם המורה  </p> */}
                     {/* <p> {teacher.phone} :טלפון  </p>
                     <p> {teacher.password} :סיסמא</p> */}

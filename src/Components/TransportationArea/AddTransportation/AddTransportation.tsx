@@ -30,7 +30,7 @@ function AddTransportation(): JSX.Element {
     return (
 
         <div className="AddTransportation">
-			  <form >
+            <form >
 
                 <h1>הוספת הסעה</h1>
 
@@ -38,7 +38,7 @@ function AddTransportation(): JSX.Element {
                 <TextField type="text" {...register("numBus",
                     {
                         required: { value: true, message: "חסר מספר הסעה" },
-                       
+
                     })} />
                 <span>{formState.errors?.numBus?.message}</span>
 
@@ -46,10 +46,10 @@ function AddTransportation(): JSX.Element {
                 <TextField type="text" {...register("stations",
                     {
                         required: { value: true, message: "חסר תחנות" },
-                       
+
                     })} />
                 <span>{formState.errors?.stations?.message}</span>
-              
+
 
                 <Button onClick={handleSubmit(send)}>הוספה</Button>
 

@@ -7,7 +7,7 @@ import teacherService from "../../../Services/TeacherService";
 import notificationService from "../../../Services/NotificationService";
 import Loading from "../../SharedArea/Loading/Loading";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
-import { BsFillTrash3Fill, BsFillPencilFill , BsPersonFillAdd} from "react-icons/bs";
+import { BsFillTrash3Fill, BsFillPencilFill, BsPersonFillAdd } from "react-icons/bs";
 
 
 
@@ -25,7 +25,7 @@ function TeacherDetails(): JSX.Element {
         teacherService.getTeacherDetails().then((teacher) => {
             setTeacher(teacher.data);
             console.log(teacher);
-            
+
             // store.dispatch(fetchTeacherAction(teacher.data));
         }).catch((error) => {
             notificationService.error(error);
@@ -46,7 +46,7 @@ function TeacherDetails(): JSX.Element {
 
     return (
         <div className="TeacherDetails">
-            <button className="ToBack" onClick={Back}><IoChevronBackCircleSharp/></button>
+            <button className="ToBack" onClick={Back}><IoChevronBackCircleSharp /></button>
             {teacher == undefined && <Loading />}
             {teacher ?
                 <div className="teacherCard">
@@ -55,7 +55,7 @@ function TeacherDetails(): JSX.Element {
                     <p>{teacher.phone}  -טלפון</p>
                     <p> {teacher.password} -סיסמא</p>
                     <p>{teacher.numClass}  -המשויכ/ת לכיתה</p>
-            <NavLink to={"/update-teacher/" + teacher.id}><BsFillPencilFill /></NavLink>
+                    <NavLink to={"/update-teacher/" + teacher.id}><BsFillPencilFill /></NavLink>
                 </div> : <Loading />}
 
             {/* <button onClick={updateTeacher}>עדכון</button> */}

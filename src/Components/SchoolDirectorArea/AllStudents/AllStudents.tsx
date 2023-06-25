@@ -181,10 +181,10 @@ function AllStudents(): JSX.Element {
       "תחנת איסוף": student.pickupAddress,
       "הערות": student.remark
     }));
-  
+
     // Create worksheet from the formatted student data
     const worksheet = XLSX.utils.json_to_sheet(formattedStudents);
-  
+
     // Set the column headers in Hebrew
     worksheet["A1"].v = "שם פרטי";
     worksheet["B1"].v = "שם משפחה";
@@ -196,7 +196,7 @@ function AllStudents(): JSX.Element {
     worksheet["H1"].v = "טלפון";
     worksheet["I1"].v = "תחנת איסוף";
     worksheet["J1"].v = "הערות";
-  
+
     // Remove the column for identity card (assuming it was in column C)
     const range = XLSX.utils.decode_range(worksheet["!ref"]);
     for (let i = range.s.r; i <= range.e.r; i++) {
@@ -208,18 +208,18 @@ function AllStudents(): JSX.Element {
     }
     range.e.c -= 1;
     worksheet["!ref"] = XLSX.utils.encode_range(range);
-  
+
     // Create workbook and append the worksheet
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Students");
-  
+
     // Generate the Excel file
     const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
     const data = new Blob([excelBuffer], { type: "application/octet-stream" });
     saveAs(data, "students.xlsx");
   }
-  
-  
+
+
 
   return (
     <div className="AllStudents">

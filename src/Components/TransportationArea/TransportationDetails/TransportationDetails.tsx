@@ -6,17 +6,17 @@ import { Button } from "@mui/material";
 function TransportationDetails(): JSX.Element {
     const navigate = useNavigate();
 
-    function add(){
+    function add() {
         navigate("/school-director/transportation-home/add");
     }
-    function all(){
+    function all() {
         navigate("/school-director/transportation-home/all");
     }
     return (
         <div className="TransportationDetails">
-		
-        <Button onClick={add}>הוספת הסעה</Button>
-        <Button onClick={all}>כל ההסעות</Button>
+
+            <Button onClick={add}>הוספת הסעה</Button>
+            <Button onClick={all}>כל ההסעות</Button>
 
         </div>
     );
