@@ -68,7 +68,7 @@ function AllStudentsTeacher(): JSX.Element {
     <div className="AllStudents">
       <h1>תלמידים</h1>
       {/* <button onClick={AddStudent}><BsPersonFillAdd/> </button> */}
-      <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp/></button>
+      <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp /></button>
 
       <table>
         <tr>

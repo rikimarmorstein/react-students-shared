@@ -52,20 +52,20 @@ function UpdateTeacher(): JSX.Element {
     return (
         <div>
             <form className='UpdateTeacher' onSubmit={handleSubmit(sendUpdateTeacher)}>
-            <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp/></button>
+                <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp /></button>
 
-            <h1>עדכון מורה</h1>
+                <h1>עדכון מורה</h1>
 
-            <label htmlFor="firstName">שם פרטי של המורה</label>
+                <label htmlFor="firstName">שם פרטי של המורה</label>
                 <TextField {...register("firstName")} id='firstName' type="text" />
                 <span>{errors.firstName?.message}</span>
 
                 <label htmlFor="lastName">שם משפחה של המורה</label>
-                <TextField {...register("lastName")} id='lastName' type="text"  />
+                <TextField {...register("lastName")} id='lastName' type="text" />
                 <span>{errors.lastName?.message}</span>
 
                 <label htmlFor="phone"> טלפון של המורה</label>
-                <TextField {...register("phone")} id='phone' type="number"/>
+                <TextField {...register("phone")} id='phone' type="number" />
                 <span>{errors.phone?.message}</span>
 
                 <label htmlFor="password">סיסמה</label>
@@ -75,7 +75,7 @@ function UpdateTeacher(): JSX.Element {
                 <label htmlFor="numClass">מספר כיתה אליה משויך</label>
                 <TextField {...register("numClass")} id='numClass' type="text" />
                 <span>{errors.numClass?.message}</span>
-            
+
                 <div className='vertical-center'>
                     <button disabled={!isValid}>עדכן</button>
                 </div>
