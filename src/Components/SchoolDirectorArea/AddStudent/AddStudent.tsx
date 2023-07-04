@@ -91,7 +91,7 @@ function AddStudent(): JSX.Element {
                 <label>מספר כיתה: </label><br />
                 <TextField type="text" {...register("numClass",
                     {
-                        required: { value: true, message: "חסר numClass" },
+                        required: { value: true, message: "  חסר מספר כיתה" },
                     })} />
                 {/* <TextField type="number" {...register("numClass",
                     {
@@ -103,7 +103,7 @@ function AddStudent(): JSX.Element {
                 <TextField type="number" {...register("numBus",
                     {
                         min: { value: 0, message: "לא ניתן להכניס מספר שלילי" },
-                        required: { value: true, message: "חסר numBus" },
+                        required: { value: true, message: "חסר מספר הסעה" },
 
                     })} />
                 <span>{formState.errors?.numBus?.message}</span><br /><br />
@@ -139,7 +139,7 @@ function AddStudent(): JSX.Element {
                 <label>כתובת איסוף: </label><br />
                 <TextField type="text" {...register("pickupAddress",
                     {
-                        required: { value: true, message: "חסר adress" },
+                        required: { value: true, message: "חסר כתובת" },
 
                     })} />
                 <span>{formState.errors?.pickupAddress?.message}</span><br /><br />

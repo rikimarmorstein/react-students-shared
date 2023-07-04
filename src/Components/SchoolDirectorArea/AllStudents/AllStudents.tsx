@@ -130,7 +130,7 @@ function AllStudents(): JSX.Element {
 
       try {
         await schoolDirectorService.deleteStudent(studentId);
-        notificationService.success("Deleted");
+        notificationService.success("נמחק");
 
         navigate("/school-director/students");
 

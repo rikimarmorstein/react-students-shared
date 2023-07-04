@@ -15,27 +15,27 @@ function DeleteStudent(): JSX.Element {
 
     async function deleteStudent() {
 
-                    try {
-                await schoolDirectorService.deleteStudent(studentId);
-               
-                notificationService.success(" deleted");
-                store.dispatch(deleteStudentsAction(studentId));
+        try {
+            await schoolDirectorService.deleteStudent(studentId);
 
-                navigate("/school-director/students");
+            notificationService.success("נמחק");
+            store.dispatch(deleteStudentsAction(studentId));
 
-            } catch (error: any) {
-                notificationService.error(error);
+            navigate("/school-director/students");
 
-            }
+        } catch (error: any) {
+            notificationService.error(error);
+
+        }
     }
 
     return (
 
         <div className="DeleteStudent">
- <h2>?האם אתה בטוח שברצונך למחוק תלמיד זה   </h2>
+            <h2>?האם אתה בטוח שברצונך למחוק תלמיד זה   </h2>
             <button onClick={deleteStudent}>כן</button>
             <button onClick={() => navigate("/school-director/students")}>לא</button>
-               </div>
+        </div>
     );
 }
 
