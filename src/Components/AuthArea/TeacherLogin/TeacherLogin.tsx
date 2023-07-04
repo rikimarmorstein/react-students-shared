@@ -19,7 +19,7 @@ function TeacherLogin(): JSX.Element {
     credentials.clientType = ClientType.TEACHER;
 
     authService.login(credentials).then(() => {
-      notificationService.success("Welcome!");
+      notificationService.success("! ברוך הבא ");
       runLogoutTimer();
       navigate("/teacher-home");
     })
@@ -77,10 +77,9 @@ function TeacherLogin(): JSX.Element {
       <form onSubmit={handleSubmit(send)} >
         <TextField id="text" label="phone" variant="outlined" required {...register("phone",
           {
-            required: { value: true, message: "Missing phone" },
-            // validate: (value) => isValidateEmail(value) || "Invalid email address",
-            minLength: { value: 9, message: "Phone too short" },
-            maxLength: { value: 10, message: "Phone no too short" }
+            required: { value: true, message: "חסר טלפון" },
+            minLength: { value: 9, message: "הטלפון קצר מדי" },
+            maxLength: { value: 10, message: "הטלפון ארוך מדי" }
 
           }
         )}
@@ -117,7 +116,7 @@ function TeacherLogin(): JSX.Element {
         </FormControl>
         <br />
 
-        <Button id="button" variant="outlined" color="primary" type="submit">Login</Button>
+        <Button id="button" variant="outlined" color="primary" type="submit">התחברות</Button>
       </form>
 
     </div>

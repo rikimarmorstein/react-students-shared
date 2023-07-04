@@ -30,10 +30,10 @@ function SchoolLogin(): JSX.Element {
   function send(credentials: CredentialsModel) {
     credentials.clientType = ClientType.SCHOOL;
     authService.login(credentials).then(() => {
-      notificationService.success("Welcome!");
+      notificationService.success("! ברוך הבא ");
       runLogoutTimer();
       navigate("/school-director");
-      
+
       // navigate("/school-director/" + props.school.id);
     })
       .catch((err) =>
@@ -92,10 +92,9 @@ function SchoolLogin(): JSX.Element {
       <form onSubmit={handleSubmit(send)} >
         <TextField id="text" label="phone" variant="outlined" required {...register("phone",
           {
-            required: { value: true, message: "Missing phone" },
-            // validate: (value) => isValidateEmail(value) || "Invalid email address",
-            minLength: { value: 9, message: "Phone too short" },
-            maxLength: { value: 10, message: "Phone no too short" }
+            required: { value: true, message: "חסר טלפון" },
+            minLength: { value: 9, message: "הטלפון קצר מדי" },
+            maxLength: { value: 10, message: "הטלפון ארוך מדי" }
 
           }
         )}
@@ -107,7 +106,7 @@ function SchoolLogin(): JSX.Element {
         //   }}
         />                     <span>{formState.errors?.phone?.message}</span>
         {/* <span>Must include @ and .</span><br /><br /> */}
-        <br /><br/>
+        <br /><br />
         <FormControl id="password" variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password" variant="outlined" >Password</InputLabel>
           <OutlinedInput
@@ -132,7 +131,7 @@ function SchoolLogin(): JSX.Element {
         </FormControl>
         <br />
 
-        <Button id="button" variant="outlined" color="primary" type="submit">Login</Button>
+        <Button id="button" variant="outlined" color="primary" type="submit">התחברות</Button>
       </form>
 
     </div>
