@@ -17,7 +17,7 @@ function ParentLogin(): JSX.Element {
         credentials.clientType = ClientType.PARENTS;
 
         authService.login(credentials).then(() => {
-            notificationService.success("Welcome!");
+            notificationService.success("! ברוך הבא ");
             runLogoutTimer();
             navigate("/parent-home");
         })
@@ -72,9 +72,9 @@ function ParentLogin(): JSX.Element {
             <form onSubmit={handleSubmit(send)} >
                 <TextField id="text" label="phone" variant="outlined" required {...register("phone",
                     {
-                        required: { value: true, message: "Missing phone" },
-                        minLength: { value: 9, message: "Phone too short" },
-                        maxLength: { value: 10, message: "Phone no too short" }
+                        required: { value: true, message: "חסר טלפון" },
+                        minLength: { value: 9, message: "הטלפון קצר מדי" },
+                        maxLength: { value: 10, message: "הטלפון ארוך מדי" }
 
                     }
                 )}
@@ -82,7 +82,7 @@ function ParentLogin(): JSX.Element {
                 />  <span>{formState.errors?.phone?.message}</span>
                 <br /><br />
 
-                <Button id="button" variant="outlined" color="primary" type="submit">Login</Button>
+                <Button id="button" variant="outlined" color="primary" type="submit">התחברות</Button>
             </form>
 
 
