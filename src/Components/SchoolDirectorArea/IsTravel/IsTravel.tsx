@@ -13,10 +13,9 @@ function IsTravel(): JSX.Element {
     const navigate = useNavigate();
 
     useEffect(() => {
-
         schoolDirectorService.getOneStudent(id)
             .then((s) => {
-                schoolDirectorService.setStudentToTravel(id);    
+                schoolDirectorService.setStudentToTravel(id);
             })
             .catch((err) =>
                 notificationService.error(err)
@@ -24,7 +23,7 @@ function IsTravel(): JSX.Element {
     }, []);
     return (
         <div className="IsTravel">
-			
+
         </div>
     );
 }

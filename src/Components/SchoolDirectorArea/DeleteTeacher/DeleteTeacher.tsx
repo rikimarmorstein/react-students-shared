@@ -9,7 +9,6 @@ function DeleteTeacher(): JSX.Element {
 
     const params = useParams();
     const teacherId = +(params.id || '');
-
     const navigate = useNavigate();
 
     const sendDeleteTeacher = () => {

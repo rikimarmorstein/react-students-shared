@@ -47,7 +47,7 @@ function AddTeacher(): JSX.Element {
     return (
         <div>
             <form className='AddTeacher' onSubmit={handleSubmit(sendTeacher)}>
-            <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp/></button>
+                <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp /></button>
 
                 <h1>הוספת מורה</h1>
 

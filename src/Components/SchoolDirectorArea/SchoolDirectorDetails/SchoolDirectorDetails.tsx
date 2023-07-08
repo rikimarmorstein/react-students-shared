@@ -12,16 +12,12 @@ function SchoolDirectorDetails(): JSX.Element {
     const [school, setSchool] = useState<SchoolUserModel>();
     useEffect(() => {
         (async () => {
-
             schoolDirectorService.getSchoolDetails().then((school) => {
                 setSchool(school.data);
-
             }, (error) => {
                 notificationService.error(error);
             });
-
         })();
-
     }, []);
 
 

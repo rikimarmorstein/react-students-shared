@@ -9,8 +9,6 @@ school: SchoolUserModel;
 function SchoolDirectorCard(props: AllSchoolDirectorCardProps): JSX.Element {
 
     const navigate = useNavigate();
-
-
     function schoolDetail() {
         navigate("/school-details/" + props.school.id)
     }
