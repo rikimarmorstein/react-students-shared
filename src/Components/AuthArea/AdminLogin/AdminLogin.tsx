@@ -67,7 +67,7 @@ event.preventDefault();
                 <TextField id="text" label="phone" variant="outlined" required {...register("phone",
                     {
                         required: { value: true, message: "חסר מייל" },
-                        minLength: { value: 2, message: " קצר מדי" },
+                      //  minLength: { value: 2, message: " קצר מדי" },
 
                     }
                 )}
