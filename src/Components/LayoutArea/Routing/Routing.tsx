@@ -22,6 +22,7 @@ import TransportationDetails from "../../TransportationArea/TransportationDetail
 import AllStudentsTeacher from "../../TeacherArea/AllStudentsTeacher/AllStudentsTeacher";
 import AddTransportation from "../../TransportationArea/AddTransportation/AddTransportation";
 import TransportationList from "../../TransportationArea/TransportationList/TransportationList";
+import AdminLogin from "../../AuthArea/AdminLogin/AdminLogin";
 
 
 function Routing(): JSX.Element {
@@ -35,7 +36,9 @@ function Routing(): JSX.Element {
                 <Route index element={<HomeArea />} />
 //admin
                 <Route path="/admin" element={<AdminArea />} />
-                <Route path="/admin-login" element={<AdminArea />} />
+                <Route path="/admin-login" element={<AdminLogin />} />
+                <Route path="/admin-home" element={<AdminArea />} />
+
 //school
                 <Route path="/login" element={<Login />} />
                 <Route path="/school-director" element={<SchoolDirectorDetails />} />

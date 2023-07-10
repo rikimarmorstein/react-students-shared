@@ -5,8 +5,9 @@ class UserModel {
         public clientType: ClientType,
         public id: number,
         public name: string,
-        public phone: string,
+        public phone: string ,
         public password: string,
+
     ) { }
 
 }

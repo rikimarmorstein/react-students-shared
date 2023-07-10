@@ -65,6 +65,9 @@ function extractUser(token: string): UserModel {
     else if (container.clientType === ClientType.TEACHER) {
         user = new TeacherUserModel(container.clientType, container.sub, container.name, container.phone, container.password);
     }
+    // else if (container.clientType === ClientType.ADMIN) {
+    //     user = new AdminUserModel(container.clientType, container.sub, container.name, container.email, container.password);
+    // }
     else {
         user = new AdminUserModel(container.clientType, container.sub, container.name, container.email, container.password);
     }
