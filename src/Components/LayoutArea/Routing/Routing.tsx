@@ -23,6 +23,7 @@ import AllStudentsTeacher from "../../TeacherArea/AllStudentsTeacher/AllStudents
 import AddTransportation from "../../TransportationArea/AddTransportation/AddTransportation";
 import TransportationList from "../../TransportationArea/TransportationList/TransportationList";
 import AdminLogin from "../../AuthArea/AdminLogin/AdminLogin";
+import SchoolList from "../../AdminArea/SchooList/SchoolList";
 
 
 function Routing(): JSX.Element {
@@ -38,6 +39,7 @@ function Routing(): JSX.Element {
                 <Route path="/admin" element={<AdminArea />} />
                 <Route path="/admin-login" element={<AdminLogin />} />
                 <Route path="/admin-home" element={<AdminArea />} />
+                <Route path="/admin-home/all-schools" element={<SchoolList />} />
 
 //school
                 <Route path="/login" element={<Login />} />

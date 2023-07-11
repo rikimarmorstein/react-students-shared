@@ -6,14 +6,15 @@ import Menu from "../Menu/Menu";
 import Routing from "../Routing/Routing";
 import "./Layout.css";
 import Main from "../Main/Main";
+import Logout from "../../AdminArea/Logout/Logout";
 
 function Layout(): JSX.Element {
     return (
         <div className="Layout">
             <header>
+                {window.location.href.indexOf("/admin")>-1 ?  <Logout/> : <AuthMenu />}
                 <Header />
-                <AuthMenu />
-            </header>
+              </header>
             <aside>
                 <Menu />
             </aside>

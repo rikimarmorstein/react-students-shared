@@ -98,7 +98,7 @@ class SchoolDirectorService{
     }
     public async getAllTransportations(): Promise<TransportationModel[]> {
         if (store.getState().schoolState.transportation.length <= 1) {
-            const response = await tokenAxios.get<TransportationModel[]>(this.schoolDirectorUrl + "all-transportation");
+           const response =  await tokenAxios.get<TransportationModel[]>(this.schoolDirectorUrl + "all-transportation");
             const transportation = response.data;
 
             store.dispatch(fetchTransportationAction(transportation));

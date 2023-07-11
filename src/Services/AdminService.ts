@@ -3,6 +3,8 @@ import appConfig from "../Utils/Config";
 import CredentialsModel from "../Models/CredentialsModel";
 import SchoolUserModel from "../Models/SchoolUserModel";
 import tokenAxios from "../Utils/Interceptors";
+import store from "../Redux/Store";
+import { fetchSchoolAction } from "../Redux/SchoolDirectorState";
 
 class AdminService{
     private adminUrl = appConfig.adminUrl;
@@ -32,9 +34,15 @@ class AdminService{
         return tokenAxios.get(this.adminUrl + "one-school/" + schoolId);
     }
 
-    public getAllSchools(): Promise<AxiosResponse<SchoolUserModel[]>> {
-        return tokenAxios.get(this.adminUrl + "all-schools");
-    }
+    public async getAllSchools(): Promise<SchoolUserModel[]> {
+        if(store.getState().schoolState.schools.length>=1){
+            return store.getState().schoolState.schools;
+       }const response = await tokenAxios.get(this.adminUrl + "all-schools");
+       const schools = response.data;
+
+       store.dispatch(fetchSchoolAction(schools));
+       return schools;
+    } 
 }
 
 const adminService = new AdminService();
