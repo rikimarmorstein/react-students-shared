@@ -60,9 +60,7 @@ function UpdateStudent(): JSX.Element {
             }
 
             await schoolDirectorService.updateStudent(student);
-            console.log(student.cause);
-            console.log(student.travel);
-            console.log(student.hour);
+           
             notificationService.success("פרטי תלמיד עודכנו בהצלחה");
             store.dispatch(updateStudentsAction(student))
 
