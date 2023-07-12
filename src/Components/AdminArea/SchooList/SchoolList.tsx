@@ -30,8 +30,6 @@ function SchoolList(): JSX.Element {
         })
     }, []);
 
-   
-
     return (
         <div className="SchoolList">
             <h1>בתי ספר</h1>

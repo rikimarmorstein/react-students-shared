@@ -24,6 +24,8 @@ import AddTransportation from "../../TransportationArea/AddTransportation/AddTra
 import TransportationList from "../../TransportationArea/TransportationList/TransportationList";
 import AdminLogin from "../../AuthArea/AdminLogin/AdminLogin";
 import SchoolList from "../../AdminArea/SchooList/SchoolList";
+import DeleteSchool from "../../AdminArea/DeleteSchool/DeleteSchool";
+import UpdateSchool from "../../AdminArea/UpdateSchool/UpdateSchool";
 
 
 function Routing(): JSX.Element {
@@ -40,6 +42,9 @@ function Routing(): JSX.Element {
                 <Route path="/admin-login" element={<AdminLogin />} />
                 <Route path="/admin-home" element={<AdminArea />} />
                 <Route path="/admin-home/all-schools" element={<SchoolList />} />
+                <Route path="/admin-home/update-school/:id" element={<UpdateSchool />} />
+                <Route path="/admin-home/delete-school/:id" element={<DeleteSchool />} />
+
 
 //school
                 <Route path="/login" element={<Login />} />
