@@ -8,8 +8,8 @@ import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import adminService from "../../../Services/AdminService";
-import store from "../../../Redux/Store";
 import { updateSchoolAction } from "../../../Redux/SchoolDirectorState";
+import notificationService from "../../../Services/NotificationService";
 
 function UpdateSchool(): JSX.Element {
     const navigate = useNavigate();
@@ -42,35 +42,28 @@ function UpdateSchool(): JSX.Element {
         })
     }
 
-    function goBack() {
-        navigate("/school-director/teachers")
-    }
+    
     return (
         <div className="UpdateSchool">
-			 <form className='UpdateTeacher' onSubmit={handleSubmit(sendUpdateSchool)}>
-                <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp /></button>
+			 <form className='UpdateSchool' onSubmit={handleSubmit(sendUpdateSchool)}>
 
-                <h1>עדכון מורה</h1>
+                <h1>עדכון בית ספר</h1>
 
-                <label htmlFor="firstName">שם פרטי של המורה</label>
-                <TextField {...register("firstName")} id='firstName' type="text" />
-                <span>{errors.firstName?.message}</span>
+                <label htmlFor="schoolName">שם  של בית הספר</label>
+                <TextField {...register("schoolName")} id='schoolName' type="text" />
+                <span>{errors.schoolName?.message}</span>
 
-                <label htmlFor="lastName">שם משפחה של המורה</label>
-                <TextField {...register("lastName")} id='lastName' type="text" />
-                <span>{errors.lastName?.message}</span>
+                <label htmlFor="address">כתובת</label>
+                <TextField {...register("address")} id='address' type="text" />
+                <span>{errors.address?.message}</span>
 
-                <label htmlFor="phone"> טלפון של המורה</label>
-                <TextField {...register("phone")} id='phone' type="number" />
-                <span>{errors.phone?.message}</span>
-
-                <label htmlFor="password">סיסמה</label>
-                <TextField {...register("password")} id='password' type="text" />
+                <label htmlFor="password"> סיסמא  </label>
+                <TextField {...register("password")} id='password' type="number" />
                 <span>{errors.password?.message}</span>
 
-                <label htmlFor="numClass">מספר כיתה אליה משויך</label>
-                <TextField {...register("numClass")} id='numClass' type="text" />
-                <span>{errors.numClass?.message}</span>
+                <label htmlFor="phone">טלפון</label>
+                <TextField {...register("phone")} id='phone' type="text" />
+                <span>{errors.phone?.message}</span>
 
                 <div className='vertical-center'>
                     <button disabled={!isValid}>עדכן</button>
