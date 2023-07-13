@@ -20,14 +20,14 @@ function UpdateSchool(): JSX.Element {
     const [school, setSchool] = useState<SchoolUserModel>(store.getState().schoolState.schools.filter(school => school.id === schoolId)[0]);
     useEffect(() => {
 
-       adminService.getOneSchool(schoolId)
+        adminService.getOneSchool(schoolId)
 
             .then((s) => {
                 setValue("id", s.data.id)
 
                 setValue("schoolName", s.data.schoolName)
                 setValue("address", s.data.address)
-               
+
                 setValue("password", s.data.password)
                 setValue("phone", s.data.phone)
 
@@ -38,9 +38,9 @@ function UpdateSchool(): JSX.Element {
     }, []);
     async function send(school: SchoolUserModel) {
         try {
-            
-             await adminService.updateSchool(school);
-          
+
+            await adminService.updateSchool(school);
+
             notificationService.success("פרטי בית ספר עודכנו בהצלחה");
             store.dispatch(updateSchoolAction(school))
 
@@ -49,10 +49,10 @@ function UpdateSchool(): JSX.Element {
             notificationService.error(error)
         }
     }
-    
+
     return (
         <div className="UpdateSchool">
-			 <form className='UpdateSchool'>
+            <form className='UpdateSchool'>
 
                 <h1>עדכון בית ספר</h1>
 
@@ -60,8 +60,8 @@ function UpdateSchool(): JSX.Element {
                 <TextField type="text" {...register("schoolName",
                     {
                         required: { value: true, message: "חסר  שם" },
-                      
-                    })} />  
+
+                    })} />
                 <span>{formState.errors?.schoolName?.message}</span><br /><br />
 
                 <label htmlFor="address">כתובת</label>

@@ -6,13 +6,12 @@ import { Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedIn
 function AdminArea(): JSX.Element {
     const navigate = useNavigate();
 
-    function allSchool(){
+    function allSchool() {
         navigate("/admin-home/all-schools");
     }
     return (
         <div className="AdminArea">
-           
-           <Button onClick={allSchool}>רשימת בתי הספר</Button>
+            <Button onClick={allSchool}>רשימת בתי הספר</Button>
         </div>
 
     );

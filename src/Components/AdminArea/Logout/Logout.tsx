@@ -37,7 +37,7 @@ function Logout(): JSX.Element {
 
     return (
         <div className="Logout">
-			  {!user &&
+            {!user &&
                 <>
                     <span >{ }
                         <NavLink to="/admin-login" title="Login"> <CgUserList className="login" /></NavLink></span>
@@ -48,9 +48,9 @@ function Logout(): JSX.Element {
                     <span >
                         {/* {user.clientType === "CUSTOMER" && <NavLink id="details" to="/customerDetails"><FaUserCircle title="Customer details" /></NavLink>}{user.clientType === "COMPANY" && <NavLink id="details" to="/companyDetails"><FaUserCircle title="Company details" /></NavLink>} */}
                         שלום {user.name}| </span>
-                    <NavLink to="" onClick={logout} id="logout">Logout 
-                    {/* <FiLogOut className="out" />*/}
-                     </NavLink>
+                    <NavLink to="" onClick={logout} id="logout">Logout
+                        {/* <FiLogOut className="out" />*/}
+                    </NavLink>
                 </>}
         </div>
 

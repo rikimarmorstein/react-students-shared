@@ -7,7 +7,7 @@ import { deleteSchoolAction } from "../../../Redux/SchoolDirectorState";
 
 function DeleteSchool(): JSX.Element {
 
-    
+
     const params = useParams();
     const schoolId = +(params.schoolId || '');
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ function DeleteSchool(): JSX.Element {
     }
     return (
         <div className="DeleteSchool">
-			 <h2>?האם אתה בטוח שברצונך למחוק בית ספר זה   </h2>
+            <h2>?האם אתה בטוח שברצונך למחוק בית ספר זה   </h2>
             <button onClick={deleteSchool}>כן</button>
             <button onClick={() => navigate("/admin-home/all-schools")}>לא</button>
         </div>
