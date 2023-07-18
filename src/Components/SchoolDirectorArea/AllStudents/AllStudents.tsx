@@ -13,6 +13,8 @@ import { saveAs } from "file-saver";
 import * as XLSX from "xlsx";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { FaFilePdf} from 'react-icons/fa';
+import {SiMicrosoftexcel} from 'react-icons/si';
 
 
 function AllStudents(): JSX.Element {
@@ -228,8 +230,8 @@ function AllStudents(): JSX.Element {
       <button className="ToBack" onClick={goBack}><IoChevronBackCircleSharp /></button>
 
       <div className="ExportButtons">
-        <Button onClick={handleExportToPdf}>PDF יצוא</Button>
-        <Button onClick={handleExportToExcel}>Excel יצוא</Button>
+        <Button onClick={handleExportToPdf}><FaFilePdf/></Button>
+        <Button onClick={handleExportToExcel}><SiMicrosoftexcel/></Button>
       </div>
 
       <div ref={pdfRef}> {/* Ref for PDF export */}
