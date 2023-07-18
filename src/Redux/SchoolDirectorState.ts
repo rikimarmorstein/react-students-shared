@@ -140,6 +140,7 @@ export function schoolReducer(currentState: SchoolDirectorState = new SchoolDire
             const indexToDeleteStudents = newState.students.findIndex(p => p.id === action.payload);
             if (indexToDeleteStudents >= 0) newState.students.splice(indexToDeleteStudents, 1);
             break;
+
         case SchoolDirectorActionType.FetchTeachers://here payload is all schools
             newState.teachers = action.payload;
             break;
@@ -154,6 +155,7 @@ export function schoolReducer(currentState: SchoolDirectorState = new SchoolDire
             const indexToDeleteTeacher = newState.teachers.findIndex(p => p.id === action.payload);
             if (indexToDeleteTeacher >= 0) newState.teachers.splice(indexToDeleteTeacher, 1);
             break;
+
         case SchoolDirectorActionType.FetchTransportations://here payload is all schools
             newState.transportation = action.payload;
             break;
@@ -168,11 +170,27 @@ export function schoolReducer(currentState: SchoolDirectorState = new SchoolDire
             const indexToDelete = newState.transportation.findIndex(p => p.id === action.payload);
             if (indexToDelete >= 0) newState.transportation.splice(indexToDelete, 1);
             break;
+
+        case SchoolDirectorActionType.FetchStations://here payload is all schools
+            newState.station = action.payload;
+            break;
+        case SchoolDirectorActionType.AddStation://here payload is a single school to add
+            newState.station.push(action.payload);
+            break;
+        case SchoolDirectorActionType.UpdateStation://here payload is a single school to update
+            const indexToUpdateStation = newState.station.findIndex(p => p.id === action.payload.id);
+            if (indexToUpdateStation >= 0) newState.station[indexToUpdateStation] = action.payload;
+            break;
+        case SchoolDirectorActionType.DeleteStation://here payload is an id of school to delete
+            const indexToDeleteStation = newState.station.findIndex(p => p.id === action.payload);
+            if (indexToDeleteStation >= 0) newState.station.splice(indexToDeleteStation, 1);
+            break;
         case SchoolDirectorActionType.Logout://here payload is an id of school to delete
             newState.schools=[];
             newState.students=[];
             newState.teachers=[];
             newState.transportation=[];
+            newState.station=[];
             break;
     }
     return newState;
