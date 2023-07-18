@@ -1,4 +1,5 @@
 import SchoolUserModel from "../Models/SchoolUserModel";
+import StationModel from "../Models/StationModel";
 import StudentUserModel from "../Models/StudentUserModel";
 import TeacherUserModel from "../Models/TeacherUserModel";
 import TransportationModel from "../Models/TransportationModel";
@@ -10,6 +11,7 @@ export class SchoolDirectorState {
     public teachers: TeacherUserModel[] = [];
     public students : StudentUserModel[] = [];
     public transportation: TransportationModel[]=[];
+    public station: StationModel[]=[];
 }
 
 //2. Action Types - list of actions - enum
@@ -33,6 +35,11 @@ export enum SchoolDirectorActionType {
     AddTransportation = "AddTransportation",//post
     UpdateTransportation = "UpdateTransportation",//put
     DeleteTransportation = "DeleteTransportation",//delete
+
+    FetchStations = "FetchStations",//get
+    AddStation = "AddStation",//post
+    UpdateStation = "UpdateStation",//put
+    DeleteStation = "DeleteStation",//delete
 
     Logout = "Logout"
 
@@ -83,9 +90,7 @@ export function updateSchoolAction(school: SchoolUserModel): SchoolDirectorsActi
 export function deleteSchoolAction(id: number): SchoolDirectorsAction {
     return { type: SchoolDirectorActionType.DeleteSchool, payload: id};
 }
-export function logoutAction(): SchoolDirectorsAction {
-    return { type: SchoolDirectorActionType.Logout, payload: {} };
-}
+
 export function fetchTransportationAction(transportation: TransportationModel[]): SchoolDirectorsAction {
     return { type: SchoolDirectorActionType.FetchTransportations, payload: transportation };
 }
@@ -97,6 +102,23 @@ export function updateTransportationAction(transportation: TransportationModel):
 }
 export function deleteTransportationAction(id: number): SchoolDirectorsAction {
     return { type: SchoolDirectorActionType.DeleteTransportation, payload: id};
+}
+
+export function fetchStationAction(station: StationModel[]): SchoolDirectorsAction {
+    return { type: SchoolDirectorActionType.FetchStations, payload: station };
+}
+export function addStationAction(station: StationModel): SchoolDirectorsAction {
+    return { type: SchoolDirectorActionType.AddStation, payload: station};
+}
+export function updateStationAction(station: StationModel): SchoolDirectorsAction {
+    return { type: SchoolDirectorActionType.UpdateStation, payload: station};
+}
+export function deleteStationAction(id: number): SchoolDirectorsAction {
+    return { type: SchoolDirectorActionType.DeleteStation, payload: id};
+}
+
+export function logoutAction(): SchoolDirectorsAction {
+    return { type: SchoolDirectorActionType.Logout, payload: {} };
 }
 
 //5. reducer - a single function performing any of the above actions
