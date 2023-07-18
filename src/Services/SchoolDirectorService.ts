@@ -8,24 +8,25 @@ import { fetchStudentsAction, fetchTransportationAction } from "../Redux/SchoolD
 import store from "../Redux/Store";
 import Cause from "../Models/Cause";
 import TransportationModel from "../Models/TransportationModel";
+import StationModel from "../Models/StationModel";
 
-class SchoolDirectorService{
+class SchoolDirectorService {
     private schoolDirectorUrl = appConfig.schoolDirectorUrl;
-    
+
     public updateSchool(school: SchoolUserModel): Promise<AxiosResponse<any>> {
-        return tokenAxios.put(this.schoolDirectorUrl +  "school", school);
+        return tokenAxios.put(this.schoolDirectorUrl + "school", school);
     }
 
-    public getSchoolDetails(): Promise<AxiosResponse<SchoolUserModel>>{
+    public getSchoolDetails(): Promise<AxiosResponse<SchoolUserModel>> {
         return tokenAxios.get(this.schoolDirectorUrl + "school");
     }
 
     public addTeacher(teacher: TeacherUserModel): Promise<AxiosResponse<any>> {
-        return tokenAxios.post(this.schoolDirectorUrl + "teacher" , teacher);
+        return tokenAxios.post(this.schoolDirectorUrl + "teacher", teacher);
     }
 
     public updateTeacher(teacher: TeacherUserModel): Promise<AxiosResponse<any>> {
-        return tokenAxios.put(this.schoolDirectorUrl + "teacher" , teacher);
+        return tokenAxios.put(this.schoolDirectorUrl + "teacher", teacher);
     }
 
     public deleteTeacher(teacherId: number): Promise<AxiosResponse<any>> {
@@ -41,11 +42,11 @@ class SchoolDirectorService{
     }
 
     public addStudent(student: StudentUserModel): Promise<AxiosResponse<any>> {
-        return tokenAxios.post(this.schoolDirectorUrl + "student" , student);
+        return tokenAxios.post(this.schoolDirectorUrl + "student", student);
     }
 
     public updateStudent(student: StudentUserModel): Promise<AxiosResponse<any>> {
-        return tokenAxios.put(this.schoolDirectorUrl + "student" , student);
+        return tokenAxios.put(this.schoolDirectorUrl + "student", student);
     }
 
     public deleteStudent(studentId: number): Promise<AxiosResponse<any>> {
@@ -71,7 +72,7 @@ class SchoolDirectorService{
     }
 
     public getAllStudentsByClass(numClass: number): Promise<AxiosResponse<StudentUserModel[]>> {
-        return tokenAxios.get(this.schoolDirectorUrl + "all-student-class?all-student-class="+ numClass);
+        return tokenAxios.get(this.schoolDirectorUrl + "all-student-class?all-student-class=" + numClass);
     }
 
     public setStudentToNotTravel(studentId: number): Promise<AxiosResponse<any>> {
@@ -82,29 +83,42 @@ class SchoolDirectorService{
         return tokenAxios.put(this.schoolDirectorUrl + "set-student-to-travel/" + studentId);
     }
 
-    public whatCause(studentId: number, cause:string): Promise<AxiosResponse<any>> {
-        return tokenAxios.put(this.schoolDirectorUrl + "set-student-cause?set-student-cause="+cause+"/" + studentId);
+    public whatCause(studentId: number, cause: string): Promise<AxiosResponse<any>> {
+        return tokenAxios.put(this.schoolDirectorUrl + "set-student-cause?set-student-cause=" + cause + "/" + studentId);
     }
 
-    public whichHour(studentId: number, hour:string): Promise<AxiosResponse<any>> {
-        return tokenAxios.put(this.schoolDirectorUrl + "set-student-hour?set-student-hour="+hour+"/" + studentId);
+    public whichHour(studentId: number, hour: string): Promise<AxiosResponse<any>> {
+        return tokenAxios.put(this.schoolDirectorUrl + "set-student-hour?set-student-hour=" + hour + "/" + studentId);
     }
 
-    public getAllStudentsToTravelByBus(numBus:number): Promise<AxiosResponse<StudentUserModel[]>> {
-        return tokenAxios.get(this.schoolDirectorUrl + "all-students-to-travel-by-bus?all-students-to-travel-by-bus=" +numBus);
+    public getAllStudentsToTravelByBus(numBus: number): Promise<AxiosResponse<StudentUserModel[]>> {
+        return tokenAxios.get(this.schoolDirectorUrl + "all-students-to-travel-by-bus?all-students-to-travel-by-bus=" + numBus);
     }
     public addTransportation(transportation: TransportationModel): Promise<AxiosResponse<any>> {
-        return tokenAxios.post(this.schoolDirectorUrl + "add-transportation" , transportation);
+        return tokenAxios.post(this.schoolDirectorUrl + "add-transportation", transportation);
     }
+
+    public addStation(station: StationModel, numBus: number): Promise<AxiosResponse<any>> {
+        return tokenAxios.post(this.schoolDirectorUrl + "add-station?add-station=" + numBus, station);
+    }
+
+    public updateTransportation(transportation: TransportationModel): Promise<AxiosResponse<any>> {
+        return tokenAxios.post(this.schoolDirectorUrl + "update-transportation", transportation);
+    }
+
     public async getAllTransportations(): Promise<TransportationModel[]> {
         if (store.getState().schoolState.transportation.length <= 1) {
-           const response =  await tokenAxios.get<TransportationModel[]>(this.schoolDirectorUrl + "all-transportation");
+            const response = await tokenAxios.get<TransportationModel[]>(this.schoolDirectorUrl + "all-transportation");
             const transportation = response.data;
 
             store.dispatch(fetchTransportationAction(transportation));
             return transportation;
         }
         return store.getState().schoolState.transportation;
+    }
+
+    public deleteStation(station: StationModel): Promise<AxiosResponse<any>> {
+        return tokenAxios.delete(this.schoolDirectorUrl + station);
     }
 }
 
