@@ -29,12 +29,12 @@ function AddStation(): JSX.Element {
     // }
     return (
 
-        <div className="AddTransportation">
+        <div className=" AddStation">
             <form >
 
-                {/* <h1>הוספת הסעה</h1>
+                <h1>הוספת תחנה</h1>
 
-                <label >מספר הסעה</label>
+                {/* <label >מספר הסעה</label>
                 <TextField type="text" {...register("numBus",
                     {
                         required: { value: true, message: "חסר מספר הסעה" },
