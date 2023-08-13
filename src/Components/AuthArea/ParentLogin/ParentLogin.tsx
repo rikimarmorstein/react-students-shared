@@ -6,25 +6,40 @@ import ClientType from "../../../Models/ClientType";
 import authService from "../../../Services/AuthService";
 import notificationService from "../../../Services/NotificationService";
 import { Button, TextField } from "@mui/material";
+import { useEffect, useState } from "react";
+import parentService from "../../../Services/ParentService";
 
 
 function ParentLogin(): JSX.Element {
     const { register, handleSubmit, formState } = useForm<CredentialsModel>();
-
+    const [enteredPhoneNumber, setEnteredPhoneNumber] = useState("");
     const navigate = useNavigate();
 
     function send(credentials: CredentialsModel) {
         credentials.clientType = ClientType.PARENTS;
-
+        const phoneNumber = credentials.phone;
+        setEnteredPhoneNumber(phoneNumber);
+        
         authService.login(credentials).then(() => {
             notificationService.success("! ברוך הבא ");
             runLogoutTimer();
             navigate("/parent-home");
         })
             .catch((err) =>
-                notificationService.error(err)
+            notificationService.error(err)
             );
-    }
+        }
+        useEffect(() => {
+            if (enteredPhoneNumber) {
+                parentService.getAllStudentsByPhone(enteredPhoneNumber)
+                    .then((res) => {
+                        // Handle the response
+                    })
+                    .catch((error) => {
+                        // Handle the error
+                    });
+            }
+        }, [enteredPhoneNumber]);
     const runLogoutTimer = () => {
 
         setTimeout(() => {
@@ -35,6 +50,8 @@ function ParentLogin(): JSX.Element {
         }, 1_800_000) // 30:00 minutes - 1800000
 
     }
+
+
     // const [value, setValue] =useState<string>('');
 
     // const [value, setValue] = React.useState('');
@@ -84,7 +101,6 @@ function ParentLogin(): JSX.Element {
 
                 <Button id="button" variant="outlined" color="primary" type="submit">התחברות</Button>
             </form>
-
 
         </div>
     );
