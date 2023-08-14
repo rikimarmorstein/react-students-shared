@@ -29,9 +29,9 @@ function ParentDetails(): JSX.Element {
         })
     }, []);
 
-    function Back() {
-        navigate("/teacher-home")
-    }
+    // function Back() {
+    //     navigate("/teacher-home")
+    // }
 
     return (
         <div className="TeacherDetails">

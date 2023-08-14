@@ -10,6 +10,8 @@ class StudentUserModel extends UserModel {
     }
     public firstName: string;
     public lastName: string;
+    public parentName: string;
+    public parentPhone: string;
     public hour: Hour;
     public cause: Cause;
 
