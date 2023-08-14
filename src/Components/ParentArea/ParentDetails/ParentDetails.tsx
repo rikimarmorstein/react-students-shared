@@ -16,10 +16,6 @@ import { string } from "yup";
 
 function ParentDetails(): JSX.Element {
 
-    // const params = useParams();
-    // const teacherId: number = Number(params.id);
-    // const teacher: TeacherUserModel | undefined = store.getState().schoolState.teachers.find((teacher) => teacher.id === teacherId);
-
     const navigate = useNavigate();
 
     const [students, setStudents] = useState<StudentUserModel[]>([]);
