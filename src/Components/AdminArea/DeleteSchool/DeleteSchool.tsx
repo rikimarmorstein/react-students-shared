@@ -9,7 +9,7 @@ function DeleteSchool(): JSX.Element {
 
 
     const params = useParams();
-    const schoolId = +(params.schoolId || '');
+    const schoolId = +(params.id || '');
     const navigate = useNavigate();
     async function deleteSchool() {
 
