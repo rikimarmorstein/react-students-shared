@@ -120,6 +120,10 @@ class SchoolDirectorService {
     public deleteStation(station: StationModel): Promise<AxiosResponse<any>> {
         return tokenAxios.delete(this.schoolDirectorUrl + station);
     }
+
+    public getAvailableShuttleNumbers(): Promise<AxiosResponse<number[]>> {
+        return tokenAxios.get(this.schoolDirectorUrl + "available-shuttle-numbers");
+    }
 }
 
 const schoolDirectorService = new SchoolDirectorService();

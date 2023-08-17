@@ -7,7 +7,7 @@ import notificationService from "../../../Services/NotificationService";
 import store from "../../../Redux/Store";
 import { addStudentsAction } from "../../../Redux/SchoolDirectorState";
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cause from "../../../Models/Cause";
 import Hour from "../../../Models/Hour";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
@@ -37,6 +37,16 @@ function AddStudent(): JSX.Element {
             notificationService.error(error);
         }
     }
+
+    const [availableShuttles, setAvailableShuttles] = useState<number[]>([]);
+
+    useEffect(() => {
+        schoolDirectorService.getAvailableShuttleNumbers().then((shuttles) => {
+            setAvailableShuttles(shuttles.data);
+        }).catch((error) => {
+            notificationService.error(error);
+        });
+    }, []);
 
     function no() {
         setTravel(true);
@@ -76,9 +86,17 @@ function AddStudent(): JSX.Element {
                     })} />
                 <span>{formState.errors?.lastName?.message}</span><br /><br />
 
+                <label>שם ההורה: </label><br />
+                <TextField type="text" {...register("parentName",
+                    {
+                        required: { value: true, message: "חסר שם ההורה" }
+
+                    })} />
+                <span>{formState.errors?.parentName?.message}</span><br /><br />
+
 
                 <label>טלפון: </label><br />
-                <TextField type="number" {...register("phone",
+                <TextField type="number" {...register("parentPhone",
                     {
                         min: { value: 0, message: "לא ניתן להכניס מספר שלילי" },
                         required: { value: true, message: "חסר טלפון" },
@@ -86,7 +104,7 @@ function AddStudent(): JSX.Element {
                             value: 9, message: "חובה להכיל מינימום 9 ספרות"
                         }
                     })} />
-                <span>{formState.errors?.phone?.message}</span><br /><br />
+                <span>{formState.errors?.parentPhone?.message}</span><br /><br />
 
                 <label>מספר כיתה: </label><br />
                 <TextField type="text" {...register("numClass",
@@ -99,14 +117,30 @@ function AddStudent(): JSX.Element {
                         required: { value: true, message: "חסר numClass" },
                     })} /> */}
                 <span>{formState.errors?.numClass?.message}</span><br /><br />
-                <label>מספר הסעה: </label><br />
+                {/* <label>מספר הסעה: </label><br />
                 <TextField type="number" {...register("numBus",
                     {
                         min: { value: 0, message: "לא ניתן להכניס מספר שלילי" },
                         required: { value: true, message: "חסר מספר הסעה" },
 
                     })} />
-                <span>{formState.errors?.numBus?.message}</span><br /><br />
+                    
+                <span>{formState.errors?.numBus?.message}</span><br /><br /> */}
+                <label>Transfer number: </label><br />
+            <FormControl variant="outlined" style={{ 'width': '100%' }} >
+                <InputLabel id="demo-simple-select-outlined-label">Choose a shuttle</InputLabel>
+                <Select
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    required
+                    {...register("numBus")}
+                >
+                    {availableShuttles.map((shuttleNumber: number) => (
+                        <MenuItem key={shuttleNumber} value={shuttleNumber}>{shuttleNumber}</MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+            <span>{formState.errors?.numBus?.message}</span><br /><br />
 
                 <label>?האם נוסע: </label>
                 <FormControl variant="outlined" style={{ 'width': '100%' }} >
