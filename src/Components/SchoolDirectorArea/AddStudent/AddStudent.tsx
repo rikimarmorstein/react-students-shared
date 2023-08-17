@@ -43,6 +43,7 @@ function AddStudent(): JSX.Element {
     useEffect(() => {
         schoolDirectorService.getAvailableShuttleNumbers().then((shuttles) => {
             setAvailableShuttles(shuttles.data);
+            console.log(shuttles.data);
         }).catch((error) => {
             notificationService.error(error);
         });
@@ -126,9 +127,9 @@ function AddStudent(): JSX.Element {
                     })} />
                     
                 <span>{formState.errors?.numBus?.message}</span><br /><br /> */}
-                <label>Transfer number: </label><br />
+                <label>מספר הסעה: </label><br />
             <FormControl variant="outlined" style={{ 'width': '100%' }} >
-                <InputLabel id="demo-simple-select-outlined-label">Choose a shuttle</InputLabel>
+                <InputLabel id="demo-simple-select-outlined-label">יש לבחור מספר הסעה</InputLabel>
                 <Select
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
