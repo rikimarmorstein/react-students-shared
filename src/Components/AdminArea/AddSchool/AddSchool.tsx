@@ -25,6 +25,7 @@ function AddSchool(): JSX.Element {
             notificationService.error(error);
         }
     }
+    
     return (
         <div className="AddSchool">
             <form>
