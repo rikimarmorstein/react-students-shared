@@ -128,20 +128,20 @@ function AddStudent(): JSX.Element {
                     
                 <span>{formState.errors?.numBus?.message}</span><br /><br /> */}
                 <label>מספר הסעה: </label><br />
-            <FormControl variant="outlined" style={{ 'width': '100%' }} >
-                <InputLabel id="demo-simple-select-outlined-label">יש לבחור מספר הסעה</InputLabel>
-                <Select
-                    labelId="demo-simple-select-outlined-label"
-                    id="demo-simple-select-outlined"
-                    required
-                    {...register("numBus")}
-                >
-                    {availableShuttles.map((shuttleNumber: number) => (
-                        <MenuItem key={shuttleNumber} value={shuttleNumber}>{shuttleNumber}</MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
-            <span>{formState.errors?.numBus?.message}</span><br /><br />
+                <FormControl variant="outlined" style={{ 'width': '100%' }} >
+                    <InputLabel id="demo-simple-select-outlined-label">יש לבחור מספר הסעה</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-outlined-label"
+                        id="demo-simple-select-outlined"
+                        required
+                        {...register("numBus")}
+                    >
+                        {availableShuttles.map((shuttleNumber: number) => (
+                            <MenuItem key={shuttleNumber} value={shuttleNumber}>{shuttleNumber}</MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+                <span>{formState.errors?.numBus?.message}</span><br /><br />
 
                 <label>?האם נוסע: </label>
                 <FormControl variant="outlined" style={{ 'width': '100%' }} >
