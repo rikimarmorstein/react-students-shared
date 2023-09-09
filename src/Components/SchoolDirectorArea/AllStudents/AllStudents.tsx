@@ -157,7 +157,6 @@ function AllStudents(): JSX.Element {
       pdf.save("students.pdf");
     });
   }
-
   // function handleExportToExcel() {
   //   const worksheet = XLSX.utils.json_to_sheet(students);
   //   const workbook = XLSX.utils.book_new();
