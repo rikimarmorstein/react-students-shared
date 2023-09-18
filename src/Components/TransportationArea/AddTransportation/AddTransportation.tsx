@@ -42,13 +42,15 @@ function AddTransportation(): JSX.Element {
                     })} />
                 <span>{formState.errors?.numBus?.message}</span>
 
-                <label >תחנות</label>
+                <label >תחנה</label>
                 <TextField type="text" {...register("stations",
                     {
-                        required: { value: true, message: "חסר תחנות" },
+                        required: { value: true, message: "חסר תחנה" },
 
                     })} />
                 <span>{formState.errors?.stations?.message}</span>
+
+
 
 
                 <Button onClick={handleSubmit(send)}>הוספה</Button>

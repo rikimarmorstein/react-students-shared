@@ -25,7 +25,8 @@ function TransportationList(): JSX.Element {
             <table>
                 {/* <thead> */}
                 <tr>
-                    <th> מספר הסעה </th>
+                    <th> מספר הסעה |</th>
+                
                     <th> תחנות </th>
 
                 </tr>

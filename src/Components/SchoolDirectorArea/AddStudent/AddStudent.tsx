@@ -97,7 +97,7 @@ function AddStudent(): JSX.Element {
 
 
                 <label>טלפון: </label><br />
-                <TextField type="number" {...register("parentPhone",
+                <TextField type="number" {...register("phone",
                     {
                         min: { value: 0, message: "לא ניתן להכניס מספר שלילי" },
                         required: { value: true, message: "חסר טלפון" },
@@ -105,7 +105,7 @@ function AddStudent(): JSX.Element {
                             value: 9, message: "חובה להכיל מינימום 9 ספרות"
                         }
                     })} />
-                <span>{formState.errors?.parentPhone?.message}</span><br /><br />
+                <span>{formState.errors?.phone?.message}</span><br /><br />
 
                 <label>מספר כיתה: </label><br />
                 <TextField type="text" {...register("numClass",
